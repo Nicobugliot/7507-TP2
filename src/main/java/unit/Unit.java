@@ -4,13 +4,19 @@ import cell.Cell;
 
 public interface Unit {
 
-    void ability(Unit unit);
+    void useAbility(Unit unit);
 
     void moveTo(Cell cell);
 
-    void getDamage(Integer damage);
+    void appplyDamage(Integer damage);
 
     void setCell(Cell cell);
+
+    void getCell(Cell cell);
+
+    void isAlive();
+
+
 
     Cell getCell();
 }

@@ -5,16 +5,17 @@ import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
 
-public class InfantrySoldier implements Unit{
+public class Rider implements Unit{
 
     private Integer hp = 100;
-    private Integer cost = 1;
+    private Integer cost = 3;
     private Cell cell;
-    private Integer meleeDamage = 10;
-    private Integer rangedDamage = 0;
+    private Integer meleeDamage = 5;
+    private Integer rangedDamage = 15;
 
     @Override
     public void ability(Unit unit) {
+
         unit.applyDamage(meleeDamage);
     }
 
