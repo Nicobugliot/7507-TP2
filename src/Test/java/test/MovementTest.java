@@ -30,6 +30,8 @@ class MovementTest{
         player.moveUnity(infantrySoldier, nextCell);
 
         assertEquals(infantrySoldier.getCell(), nextCell);
+        assertEquals(actualCell.getUnity(), null);
+        assertEquals(nextCell.getUnity(), infantrySoldier);
     }
 
     @Test
@@ -49,6 +51,8 @@ class MovementTest{
         assertThrows(OccupiedCellException.class, () -> {
             player.moveUnity(firstInfantrySoldier, nextCell);
         });
+        assertEquals(actualCell.getUnity(), firstInfantrySoldier);
+        assertEquals(nextCell.getUnity(), secondInfantrySoldier);
     }
 
     @Test
@@ -66,6 +70,7 @@ class MovementTest{
         assertThrows(MovementException.class, () -> {
             player.moveUnity(infantrySoldier, nextCell);
         });
+        assertEquals(actualCell.getUnity(), infantrySoldier);
     }
 
 }

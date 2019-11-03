@@ -19,4 +19,6 @@ public interface Cell {
 
     void setUnity(Unity unity);
 
+    Unity getUnity();
+
 }

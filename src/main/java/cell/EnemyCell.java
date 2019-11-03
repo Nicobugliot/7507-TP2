@@ -42,11 +42,18 @@ public class EnemyCell implements Cell{
         this.yPosition = yPosition;
     }
 
+    @Override
     public void changeState(State state){
         this.state = state;
     }
 
+    @Override
     public void setUnity(Unity unity){
         this.unity =  unity;
+    }
+
+    @Override
+    public Unity getUnity() {
+        return unity;
     }
 }

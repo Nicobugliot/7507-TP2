@@ -51,4 +51,9 @@ public class AlliedCell implements Cell{
         this.unity =  unity;
     }
 
+    @Override
+    public Unity getUnity() {
+        return unity;
+    }
+
 }

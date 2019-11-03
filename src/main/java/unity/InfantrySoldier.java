@@ -4,7 +4,6 @@ import cell.Cell;
 import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
-import exceptions.OccupiedCellException;
 
 public class InfantrySoldier implements Unity{
 
@@ -23,6 +22,7 @@ public class InfantrySoldier implements Unity{
         if (this.unityCanMove(actualCell, nextCell)){
             // Libero la celda
             actualCell.changeState(new EmptyCell());
+            actualCell.setUnity(null);
 
             // Lleno la nueva celda
             nextCell.changeState(new OccupiedCell());
@@ -40,6 +40,7 @@ public class InfantrySoldier implements Unity{
     @Override
     public void setCell(Cell cell) {
         this.cell = cell;
+        cell.setUnity(this);
         cell.changeState(new OccupiedCell());
     }
 
