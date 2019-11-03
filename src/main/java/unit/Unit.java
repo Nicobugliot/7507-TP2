@@ -1,10 +1,10 @@
-package unity;
+package unit;
 
 import cell.Cell;
 
-public interface Unity {
+public interface Unit {
 
-    void ability(Unity unity);
+    void ability(Unit unit);
 
     void moveTo(Cell cell);
 
