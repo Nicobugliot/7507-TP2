@@ -5,19 +5,26 @@ import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
 
-public class InfantrySoldier implements Unit{
+public class Rider implements Unit{
 
-    private Integer hp = 100;
-    private Integer cost = 1;
+    private Integer hp = 50;
+    private Integer cost = 5;
     private Cell cell;
-    private Integer meleeDamage = 10;
-    private Integer rangedDamage = 0;
-    private String type = "Infantry";
+    private Integer meleeDamage = 0;
+    private Integer rangedDamage = 20;
+    private String type = "Artillery";
 
     @Override
     public void ability(Unit unit) {
-        unit.applyDamage(meleeDamage);
+        Cell targetCell = unit.getCell();
+        unit.applyDamage(rangedDamage); //ataca al objetivo
+        Unit[] affectedUnits = cell.getUnitsNearby();//método que devuelva las unidades que rodean a esa celda
+        for (Unit affectedUnit: affectedUnits) {
+            
+        }
     }
+
+    private
 
     @Override
     public void moveTo(Cell nextCell) {

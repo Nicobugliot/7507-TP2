@@ -5,18 +5,23 @@ import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
 
-public class InfantrySoldier implements Unit{
+public class Rider implements Unit{
 
-    private Integer hp = 100;
-    private Integer cost = 1;
+    private Integer hp = 75;
+    private Integer cost = 2;
     private Cell cell;
-    private Integer meleeDamage = 10;
+    private Integer meleeDamage = 0;
     private Integer rangedDamage = 0;
-    private String type = "Infantry";
+    private Integer healingAmount = 15;
+    private String type = "Healer";
 
     @Override
     public void ability(Unit unit) {
-        unit.applyDamage(meleeDamage);
+        if (unit.type != 'artillery' {//si no es una catapulta
+            unit.applyDamage((-1)*healingAmount);
+        }else{
+            throw new AbilityException("Can't heal artilley units");
+        }
     }
 
     @Override
