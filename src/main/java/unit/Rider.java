@@ -12,15 +12,11 @@ public class Rider implements Unit{
     private Cell cell;
     private Integer meleeDamage = 5;
     private Integer rangedDamage = 15;
-    private String type = "Cavalry";
 
     @Override
     public void ability(Unit unit) {
-        if (cell.alliesNearby(self) || !cell.enemiesNearby(self)) {//si hay al menos un aliado cerca o ningun enemigo
-            unit.applyDamage(rangedDamage);//ataca con el arco
-        }else{
-            unit.applyDamage(meleeDamage);//ataca con la espada
-        }
+
+        unit.applyDamage(meleeDamage);
     }
 
     @Override
@@ -70,10 +66,6 @@ public class Rider implements Unit{
         Integer yPosition = Math.abs(actualCell.getYPosition() - nextCell.getYPosition());
 
         return xPosition + yPosition;
-    }
-
-    public void type() {
-        return self.type;
     }
 
 
