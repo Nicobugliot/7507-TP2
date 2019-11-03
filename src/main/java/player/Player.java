@@ -1,6 +1,8 @@
 package player;
 
+import board.Board;
 import cell.Cell;
+import exceptions.OccupiedCellException;
 import unity.Unity;
 
 import java.util.List;
@@ -20,6 +22,12 @@ public class Player {
     }
 
     public void moveUnity(Unity unity, Cell cell){
+        Board board = Board.getBoard();
+
+        if (!cell.isEmpty()) {
+            throw new OccupiedCellException("La casilla esta ocupada");
+        }
+
         unity.moveTo(cell);
     }
 

@@ -49,9 +49,8 @@ public class InfantrySoldier implements Unity{
     }
 
     private Boolean unityCanMove(Cell actualCell, Cell nextCell){
-        if (!nextCell.isEmpty()){
-            throw new OccupiedCellException("La casilla esta ocupada");
-        }else if(!(getDistance(actualCell, nextCell) == 1)){
+
+        if(!(getDistance(actualCell, nextCell) == 1)){
             throw new MovementException("No puedo moverme hasta ahi");
         }
         return true;
