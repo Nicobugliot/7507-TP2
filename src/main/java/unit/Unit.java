@@ -8,15 +8,17 @@ public interface Unit {
 
     void moveTo(Cell cell);
 
-    void appplyDamage(Integer damage);
+    void applyDamage(Integer damage);
 
     void setCell(Cell cell);
 
-    void getCell(Cell cell);
+    Cell getCell(Cell cell);
 
-    void isAlive();
+    //void isAlive();
 
-
+    Integer getCost();
 
     Cell getCell();
+
+    void die();
 }

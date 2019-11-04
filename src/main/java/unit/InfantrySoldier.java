@@ -13,9 +13,10 @@ public class InfantrySoldier implements Unit{
     private Integer meleeDamage = 10;
     private Integer rangedDamage = 0;
     private String type = "Infantry";
+    private Boolean dead = false;
 
     @Override
-    public void ability(Unit unit) {
+    public void useAbility(Unit unit) {
         unit.applyDamage(meleeDamage);
     }
 
@@ -33,12 +34,14 @@ public class InfantrySoldier implements Unit{
             nextCell.setUnit(this);
             this.setCell(nextCell);
         }
-
     }
 
     @Override
     public void applyDamage(Integer damage) {
         this.hp -= damage;
+        if (this.hp <= 0){
+            this.die();
+        }
     }
 
     @Override
@@ -49,8 +52,13 @@ public class InfantrySoldier implements Unit{
     }
 
     @Override
+    public Cell getCell(Cell cell) {
+        return this.cell;
+    }
+
+    @Override
     public Cell getCell() {
-        return cell;
+        return this.cell;
     }
 
     private Boolean unitCanMove(Cell actualCell, Cell nextCell){
@@ -68,9 +76,17 @@ public class InfantrySoldier implements Unit{
         return xPosition + yPosition;
     }
 
-    public void type() {
-        return self.type;
+    public String type() {
+        return this.type;
     }
 
+    @Override
+    public Integer getCost() {
+        return cost;
+    }
 
+    @Override
+    public void die() {
+        this.dead = true;
+    }
 }

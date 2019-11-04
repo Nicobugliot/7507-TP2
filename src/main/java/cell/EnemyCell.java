@@ -2,16 +2,16 @@ package cell;
 
 import cellState.EmptyCell;
 import cellState.State;
-import unity.Unity;
+import unit.Unit;
 
 public class EnemyCell implements Cell{
 
-    private Unity unity;
+    private Unit unit;
     private State state;
     private Integer xPosition;
     private Integer yPosition;
 
-    public EnemyCell(Integer xPosition, Integer yPosition, Unity unity){
+    public EnemyCell(Integer xPosition, Integer yPosition, Unit unit){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.state = new EmptyCell();
@@ -48,12 +48,12 @@ public class EnemyCell implements Cell{
     }
 
     @Override
-    public void setUnity(Unity unity){
-        this.unity =  unity;
+    public void setUnit(Unit unit){
+        this.unit =  unit;
     }
 
     @Override
-    public Unity getUnity() {
-        return unity;
+    public Unit getUnit() {
+        return unit;
     }
 }

@@ -2,14 +2,14 @@ package cell;
 
 import cellState.EmptyCell;
 import cellState.State;
-import unity.Unity;
+import unit.Unit;
 
 public class AlliedCell implements Cell{
 
     private Integer xPosition;
     private Integer yPosition;
     private State state = new EmptyCell();
-    private Unity unity;
+    private Unit unit;
 
 
     public AlliedCell(Integer xPosition, Integer yPosition){
@@ -47,13 +47,13 @@ public class AlliedCell implements Cell{
         this.state = state;
     }
 
-    public void setUnity(Unity unity){
-        this.unity =  unity;
+    public void setUnit(Unit unit){
+        this.unit =  unit;
     }
 
     @Override
-    public Unity getUnity() {
-        return unity;
+    public Unit getUnit() {
+        return unit;
     }
 
 }

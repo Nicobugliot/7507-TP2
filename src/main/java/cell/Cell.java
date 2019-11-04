@@ -1,7 +1,7 @@
 package cell;
 
 import cellState.State;
-import unity.Unity;
+import unit.Unit;
 
 public interface Cell {
 
@@ -17,8 +17,8 @@ public interface Cell {
 
     void changeState(State state);
 
-    void setUnity(Unity unity);
+    void setUnit(Unit unit);
 
-    Unity getUnity();
+    Unit getUnit();
 
 }
