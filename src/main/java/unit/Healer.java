@@ -73,10 +73,6 @@ public class Rider implements Unit{
         return xPosition + yPosition;
     }
 
-    @Override
-    public void getRemainingHP() {
-        return this.hp;
-    }
 
     public void type() {
         return self.type;

@@ -1,13 +1,6 @@
 package test;
 
-import algoChess.AlgoChess;
-import cell.AlliedCell;
-import cell.AlliedCell;
-import cell.Cell;
-import exceptions.MovementException;
-import exceptions.OccupiedCellException;
 import org.junit.jupiter.api.Test;
-import player.Player;
 import unit.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +11,7 @@ class UnitSimpleCombatTest{
     @Test
     void Test00InfantrySoldierAttackHarmsUnitForExpectedDamage(){
         Unit attacker = new InfantrySoldier();
-        Unit defender = new InfantrySoldier();
+        Unit defender = new TestDummy();
         Integer HPBeforeAttack = damaged.getRemainingHP();
         Integer expectedHP = HPBeforeAttack - 10;
 
@@ -31,7 +24,7 @@ class UnitSimpleCombatTest{
     @Test
     void Test01IRiderMeleeAttackHarmsUnitForExpectedDamage(){
         Unit attacker = new Rider();
-        Unit defender = new Rider();
+        Unit defender = new TestDummy();
         Integer HPBeforeAttack = damaged.getRemainingHP();
         Integer expectedHP = HPBeforeAttack - 10;
 

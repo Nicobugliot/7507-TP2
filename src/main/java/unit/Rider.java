@@ -44,11 +44,6 @@ public class Rider implements Unit{
     }
 
     @Override
-    public void getRemainingHP() {
-        return this.hp;
-    }
-
-    @Override
     public void setCell(Cell cell) {
         this.cell = cell;
         cell.setUnit(this);

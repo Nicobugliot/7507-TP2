@@ -64,10 +64,6 @@ public class Catapult implements Unit{
         return affectedUnits;
     }
 
-    @Override
-    public void getRemainingHP() {
-        return this.hp;
-    }
 
     @Override
     public void moveTo(Cell nextCell) {

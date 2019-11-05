@@ -5,7 +5,7 @@ import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
 
-public class InfantrySoldier implements Unit{
+public class TestDummy implements Unit{
 
     private Integer hp = 100;
     private Integer cost = 1;
@@ -42,6 +42,11 @@ public class InfantrySoldier implements Unit{
         if (this.hp <= 0){
             this.die();
         }
+    }
+
+    @Override
+    public void getRemainingHP() {
+        return this.hp;
     }
 
     @Override
