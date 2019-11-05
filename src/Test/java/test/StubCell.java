@@ -6,12 +6,47 @@ import unit.Unit;
 public class StubCell implements Cell{
 
     private Unit unit;
+    private String behaviour = "undefined";
+    private boolean alliesNearby = false;
+    private boolean enemiesNearby = false;
 
     public void setUnit(Unit unit){
         this.unit =  unit;
     }
 
-    public void hasAllies
+    public void pretendAlone(){
+        this.behaviour = "alone";
+        this.alliesNearby = false;
+        this.enemiesNearby = false;
+    }
+
+    public void pretendAlliesNearby(){
+        this.behaviour = "alliesNearby";
+        this.alliesNearby = true;
+        this.enemiesNearby = false;
+    }
+
+    public void pretendEnemiesNearby(){
+        this.behaviour = "alliesNearby";
+        this.alliesNearby = true;
+        this.enemiesNearby = false;
+    }
+
+    public void pretendEnemies&AlliesNearby(){
+        this.behaviour = "alliesNearby";
+        this.alliesNearby = true;
+        this.enemiesNearby = false;
+    }
+
+    @Override
+    public boolean alliesNearby(){
+        return this.alliesNearby;
+    }
+
+    @Override
+    public boolean enemiesNearby(){
+        return this.enemiesNearby;
+    }
 
     @Override
     public Unit getUnit() {

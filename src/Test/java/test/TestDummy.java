@@ -7,13 +7,14 @@ import exceptions.MovementException;
 
 public class TestDummy implements Unit{
 
-    private Integer hp = 100;
-    private Integer cost = 1;
+    private Integer hp = 10000;
+    private Integer cost = 0;
     private Cell cell;
-    private Integer meleeDamage = 10;
+    private Integer meleeDamage = 0;
     private Integer rangedDamage = 0;
-    private String type = "Infantry";
+    private String type = "Dummy";
     private Boolean dead = false;
+    private Integer damageReceived = 0;
 
     @Override
     public void useAbility(Unit unit) {
@@ -42,10 +43,11 @@ public class TestDummy implements Unit{
         if (this.hp <= 0){
             this.die();
         }
+        this.damageReceived += damage;
     }
 
     @Override
-    public void getRemainingHP() {
+    public void damageReceived() {
         return this.hp;
     }
 
