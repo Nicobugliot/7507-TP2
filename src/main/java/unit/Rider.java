@@ -15,8 +15,11 @@ public class Rider implements Unit{
 
     @Override
     public void ability(Unit unit) {
-
-        unit.applyDamage(meleeDamage);
+        if(self.cell.alliesNearby() || !self.cell.enemiesNearby()){
+            unit.applyDamage(rangedDamage);
+        }else{
+            unit.applyDamage(meleeDamage);
+        }
     }
 
     @Override
@@ -33,12 +36,16 @@ public class Rider implements Unit{
             nextCell.setUnit(this);
             this.setCell(nextCell);
         }
-
     }
 
     @Override
     public void applyDamage(Integer damage) {
         this.hp -= damage;
+    }
+
+    @Override
+    public void getRemainingHP() {
+        return this.hp;
     }
 
     @Override
