@@ -80,8 +80,23 @@ class UnitSimpleCombatTest{
         Unit subject = new TestDummy();
 
         healer.useAbility(subject);
-        //verifico que el daño aplicado corresponda con el realizado por la espada
+        //verifico que la unidad fue curada por la cantidad esperada
         assertEquals(defender.damageReceived(), -15);
+    }
+
+    @Test
+    void Test06CatapultBlastDamagesTargetForExpectedAmount(){
+        Unit catapult = new Catapult();
+        Unit subject = new TestDummy();
+        Cell targetCell = new StubCell();
+
+        //configuro el stub para que diga que la única unidad cercana a la zona de impacto es la unidad objetivo
+        targetCell.addNearbyUnit(subject);
+        subject.setCell(targetCell);
+
+        catapult.useAbility(subject);
+        //verifico que el daño aplicado corresponda con el realizado por la catapulta
+        assertEquals(defender.damageReceived(), 20);
     }
 
 

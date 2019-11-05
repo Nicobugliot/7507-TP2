@@ -9,6 +9,7 @@ public class StubCell implements Cell{
     private String behaviour = "undefined";
     private boolean alliesNearby = false;
     private boolean enemiesNearby = false;
+    private Set<Unit> nearbyUnits = new Set<Unit>;
 
     public void setUnit(Unit unit){
         this.unit =  unit;
@@ -38,6 +39,10 @@ public class StubCell implements Cell{
         this.enemiesNearby = false;
     }
 
+    public void addNearbyUnit(Unit unit){
+        this.nearbyUnits.add(unit);
+    }
+
     @Override
     public boolean alliesNearby(){
         return this.alliesNearby;
@@ -46,6 +51,11 @@ public class StubCell implements Cell{
     @Override
     public boolean enemiesNearby(){
         return this.enemiesNearby;
+    }
+
+    @Override
+    public Set<Unit> getNearbyUnits(){
+        return this.nearbyUnits;
     }
 
     @Override
