@@ -2,6 +2,7 @@
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/unit/Catapult.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/unit/Rider.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/cellState/OccupiedCell.java
+/Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/unit/Healer.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/cellState/EmptyCell.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/player/Player.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/exceptions/OccupiedCellException.java

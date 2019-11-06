@@ -125,7 +125,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>Test.java.test.MovementTest</mainClass>
+                    <mainClass>Test.java.test</mainClass>
                 </configuration>
             </plugin>
 
@@ -149,7 +149,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Test.java.test.MovementTest</mainClass>
+                                    <mainClass>Test.java.test</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
