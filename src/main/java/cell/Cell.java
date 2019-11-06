@@ -30,4 +30,6 @@ public interface Cell {
 
     //Returns true if there are enemies surrounding the cell
     boolean enemiesNearby();
+
+    void deleteUnit();
 }

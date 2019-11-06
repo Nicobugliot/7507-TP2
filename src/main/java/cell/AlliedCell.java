@@ -51,7 +51,12 @@ public class AlliedCell implements Cell{
 
     public void setUnit(Unit unit){
         state.setUnit();
-        this.unit =  unit;
+        this.unit = unit;
+    }
+
+    @Override
+    public void deleteUnit(){
+        this.unit = null;
     }
 
     @Override

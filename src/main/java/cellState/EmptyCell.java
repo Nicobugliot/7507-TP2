@@ -9,5 +9,6 @@ public class EmptyCell implements State {
 
     @Override
     public void setUnit(){
+        System.out.println("ASD");
     }
 }

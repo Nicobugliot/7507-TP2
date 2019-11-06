@@ -11,6 +11,6 @@ public class OccupiedCell implements State{
 
     @Override
     public void setUnit(){
-        throw new OccupiedCellException("La celda esta ocupada");
+        throw new OccupiedCellException("La celda está ocupada");
     }
 }

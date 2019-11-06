@@ -35,10 +35,6 @@ public class Player {
         Board board = Board.getBoard();
 
         unit.moveTo(cell);
-
-        if (!cell.isEmpty()) {
-            throw new OccupiedCellException("La casilla esta ocupada");
-        }
     }
 
     public void useUnit(Unit unit, Cell cell){

@@ -46,8 +46,7 @@ public class TestDummy implements Unit{
         this.damageReceived += damage;
     }
 
-    @Override
-    public void damageReceived() {
+    public Integer damageReceived() {
         return this.hp;
     }
 
@@ -61,6 +60,11 @@ public class TestDummy implements Unit{
     @Override
     public Cell getCell(Cell cell) {
         return this.cell;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return false;
     }
 
     @Override

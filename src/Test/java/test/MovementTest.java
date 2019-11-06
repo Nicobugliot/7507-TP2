@@ -35,7 +35,7 @@ class MovementTest{
     }
 
     @Test
-    void Test02TryToMoveAUnitToAnOccupiedCell(){
+    void Test01TryToMoveAUnitToAnOccupiedCell(){
 
         AlgoChess algoChess = new AlgoChess();
         Player player = new Player("Jorge");

@@ -73,4 +73,9 @@ public class EnemyCell implements Cell{
     public boolean enemiesNearby() {
         return false;
     }
+
+    @Override
+    public void deleteUnit(){
+        this.unit = null;
+    }
 }
