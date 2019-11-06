@@ -1,11 +1,12 @@
-package unit;
+package test;
 
 import cell.Cell;
 import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
+import unit.Unit;
 
-public class TestDummy implements Unit{
+public class TestDummy implements Unit {
 
     private Integer hp = 10000;
     private Integer cost = 0;
@@ -47,7 +48,7 @@ public class TestDummy implements Unit{
     }
 
     public Integer damageReceived() {
-        return this.hp;
+        return this.damageReceived;
     }
 
     @Override

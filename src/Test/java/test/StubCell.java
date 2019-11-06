@@ -1,4 +1,4 @@
-package cell;
+package test;
 
 import cell.Cell;
 import cellState.State;
@@ -62,8 +62,8 @@ public class StubCell implements Cell{
 
     public void pretendEnemiesNearby(){
         this.behaviour = "alliesNearby";
-        this.alliesNearby = true;
-        this.enemiesNearby = false;
+        this.alliesNearby = false;
+        this.enemiesNearby = true;
     }
 
     public void pretendEnemiesAndAlliesNearby(){
