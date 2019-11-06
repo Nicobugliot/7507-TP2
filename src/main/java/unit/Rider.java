@@ -12,10 +12,11 @@ public class Rider implements Unit{
     private Cell cell;
     private Integer meleeDamage = 5;
     private Integer rangedDamage = 15;
+    private String type = "Rider";
 
     @Override
-    public void ability(Unit unit) {
-        if(self.cell.alliesNearby() || !self.cell.enemiesNearby()){
+    public void useAbility(Unit unit) {
+        if(this.cell.alliesNearby() || !this.cell.enemiesNearby()){
             unit.applyDamage(rangedDamage);
         }else{
             unit.applyDamage(meleeDamage);
@@ -51,8 +52,33 @@ public class Rider implements Unit{
     }
 
     @Override
+    public Cell getCell(Cell cell) {
+        return null;
+    }
+
+    @Override
+    public boolean isAlive() {
+        return false;
+    }
+
+    @Override
+    public Integer getCost() {
+        return null;
+    }
+
+    @Override
     public Cell getCell() {
         return cell;
+    }
+
+    @Override
+    public void die() {
+
+    }
+
+    @Override
+    public String type() {
+        return this.type;
     }
 
     private Boolean unitCanMove(Cell actualCell, Cell nextCell){

@@ -21,4 +21,6 @@ public interface Unit {
     Cell getCell();
 
     void die();
+
+    String type();
 }

@@ -4,6 +4,8 @@ import cellState.EmptyCell;
 import cellState.State;
 import unit.Unit;
 
+import java.util.Set;
+
 public class EnemyCell implements Cell{
 
     private Unit unit;
@@ -53,7 +55,22 @@ public class EnemyCell implements Cell{
     }
 
     @Override
+    public Set<Unit> getNearbyUnits() {
+        return null;
+    }
+
+    @Override
     public Unit getUnit() {
         return unit;
+    }
+
+    @Override
+    public boolean alliesNearby() {
+        return false;
+    }
+
+    @Override
+    public boolean enemiesNearby() {
+        return false;
     }
 }

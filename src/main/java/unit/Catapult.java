@@ -29,13 +29,15 @@ public class Catapult implements Unit{
         //creo el set de retorno
         Set<Unit> affectedUnits = new HashSet<Unit>();
         // Marco todas las casillas como no visitadas
-        boolean visited[] = new boolean[400];
+        //boolean visited[] = new boolean[400];
+        Set<Unit> visitedUnits = new HashSet<Unit>();
 
         // Creo una cola para recorrer
         LinkedList<Unit> queue = new LinkedList<>();
 
         // Marco la celda actual como visitada
-        visited[targetUnit]=true;
+        //visited[targetUnit]=true;
+        visitedUnits.add(targetUnit);
         queue.add(targetUnit);
 
         while (queue.size() != 0)
@@ -53,9 +55,9 @@ public class Catapult implements Unit{
             while (affectedCells.hasNext())
             {
                 Unit neighbourUnit = affectedCells.next();
-                if (!visited[neighbourUnit])
+                if (!visited.contains(neighbourUnit))
                 {
-                    visited[neighbourUnit] = true;
+                    visited.add(neighbourUnit) = true;
                     queue.add(neighbourUnit);
                 }
             }
