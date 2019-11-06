@@ -50,6 +50,7 @@ public class AlliedCell implements Cell{
     }
 
     public void setUnit(Unit unit){
+        state.setUnit();
         this.unit =  unit;
     }
 

@@ -25,14 +25,14 @@ public class InfantrySoldier implements Unit{
         Cell actualCell = this.getCell();
 
         if (this.unitCanMove(actualCell, nextCell)){
-            // Libero la celda
+            // Lleno la nueva celda
+            nextCell.setUnit(this);
+            nextCell.changeState(new OccupiedCell());
+            this.setCell(nextCell);
+
+            // Libero la celda anterior
             actualCell.changeState(new EmptyCell());
             actualCell.setUnit(null);
-
-            // Lleno la nueva celda
-            nextCell.changeState(new OccupiedCell());
-            nextCell.setUnit(this);
-            this.setCell(nextCell);
         }
     }
 

@@ -6,4 +6,8 @@ public class EmptyCell implements State {
     public Boolean isEmpty() {
         return true;
     }
+
+    @Override
+    public void setUnit(){
+    }
 }

@@ -136,8 +136,8 @@ public class Catapult implements Unit{
         return xPosition + yPosition;
     }
 
-    public void type() {
-        return self.type;
+    public String type() {
+        return type;
     }
 
 

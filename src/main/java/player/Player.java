@@ -34,11 +34,11 @@ public class Player {
     public void moveUnit(Unit unit, Cell cell){
         Board board = Board.getBoard();
 
+        unit.moveTo(cell);
+
         if (!cell.isEmpty()) {
             throw new OccupiedCellException("La casilla esta ocupada");
         }
-
-        unit.moveTo(cell);
     }
 
     public void useUnit(Unit unit, Cell cell){
