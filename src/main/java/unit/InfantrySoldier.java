@@ -57,6 +57,11 @@ public class InfantrySoldier implements Unit{
     }
 
     @Override
+    public boolean isAlive() {
+        return !this.dead;
+    }
+
+    @Override
     public Cell getCell() {
         return this.cell;
     }

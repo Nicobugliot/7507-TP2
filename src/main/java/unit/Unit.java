@@ -14,7 +14,7 @@ public interface Unit {
 
     Cell getCell(Cell cell);
 
-    void isAlive();
+    boolean isAlive();
 
     Integer getCost();
 

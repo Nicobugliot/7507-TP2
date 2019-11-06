@@ -16,7 +16,7 @@ public class Catapult implements Unit{
     private String type = "Artillery";
 
     @Override
-    public void ability(Unit unit) {
+    public void useAbility(Unit unit) {
         Set<Unit> affectedUnits = getAfectedUnitsByProjectile(unit);
         for (Unit affectedUnit: affectedUnits) {
             affectedUnit.applyDamage(rangedDamage); //ataca al objetivo
@@ -26,14 +26,13 @@ public class Catapult implements Unit{
     //algortimo bfs para calcular los casilleros afectados por el impacto de la catapulta
     //devuelve un set de unidades afectadas
     private Set<Unit> getAfectedUnitsByProjectile(Unit targetUnit){
-    {
         //creo el set de retorno
-        Set<Unit> affectedUnits = new Set<Unit>();
+        Set<Unit> affectedUnits = new HashSet<Unit>();
         // Marco todas las casillas como no visitadas
-        boolean visited[] = new boolean[V];
+        boolean visited[] = new boolean[400];
 
         // Creo una cola para recorrer
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        LinkedList<Unit> queue = new LinkedList<>();
 
         // Marco la celda actual como visitada
         visited[targetUnit]=true;
@@ -95,8 +94,29 @@ public class Catapult implements Unit{
     }
 
     @Override
+    public Cell getCell(Cell cell) {
+        return null;
+    }
+
+    @Override
+    public boolean isAlive() {
+
+        return false;
+    }
+
+    @Override
+    public Integer getCost() {
+        return null;
+    }
+
+    @Override
     public Cell getCell() {
         return cell;
+    }
+
+    @Override
+    public void die() {
+
     }
 
     private Boolean unitCanMove(Cell actualCell, Cell nextCell){
