@@ -4,6 +4,7 @@ import cell.Cell;
 import cellState.State;
 import unit.Unit;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class StubCell implements Cell{
@@ -12,7 +13,7 @@ public class StubCell implements Cell{
     private String behaviour = "undefined";
     private boolean alliesNearby = false;
     private boolean enemiesNearby = false;
-    private Set<Unit> nearbyUnits;
+    private Set<Unit> nearbyUnits = new HashSet<Unit>();
 
     @Override
     public Boolean isEmpty() {

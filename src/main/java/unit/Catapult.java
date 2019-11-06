@@ -54,12 +54,12 @@ public class Catapult implements Unit{
             Iterator affectedCells = targetCell.getNearbyUnits().iterator(); //HACER MÉTODO getNearbyUnits() para las celdas, que devuelva un set con las unidades que rodean a esa celda
             while (affectedCells.hasNext())
             {
-                //Unit neighbourUnit = affectedCells.next();
-                //if (!visited.contains(neighbourUnit))
-                //{
-                //    visited.add(neighbourUnit) = true;
-                //    queue.add(neighbourUnit);
-                //}
+                Unit neighbourUnit = (Unit) affectedCells.next();
+                if (!visitedUnits.contains(neighbourUnit))
+                {
+                    visitedUnits.add(neighbourUnit);
+                    queue.add(neighbourUnit);
+                }
             }
         }
         return affectedUnits;
