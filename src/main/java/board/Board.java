@@ -1,7 +1,8 @@
 package board;
 
+import cell.BoardCell;
 import cell.Cell;
-import cell.AlliedCell;
+import player.Player;
 
 public class Board {
 
@@ -17,7 +18,7 @@ public class Board {
 
         for(int i = 0; i < boardCells.length; i++){
             for(int j = 0; j < boardCells.length; j++){
-                boardCells[i][j] = new AlliedCell(i, j);
+                boardCells[i][j] = new BoardCell(i, j);
             }
         }
         return board;
@@ -26,6 +27,15 @@ public class Board {
     public Cell getCell(Integer positionX, Integer positionY){
         Cell cell = boardCells[positionX][positionY];
         return cell;
+    }
+
+    public void setBoardCells(Player firstPlayer, Player secondPlayer) {
+        for(int i = 0; i < boardCells.length / 2; i++){
+            for(int j = 0; j < boardCells.length; j++){
+                boardCells[i][j].setPlayer(firstPlayer);
+                boardCells[i + (boardCells.length / 2)][j].setPlayer(secondPlayer);
+            }
+        }
     }
 
 }

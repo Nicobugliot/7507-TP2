@@ -1,6 +1,7 @@
 package cell;
 
 import cellState.State;
+import player.Player;
 import unit.Unit;
 
 import java.util.Set;
@@ -12,10 +13,6 @@ public interface Cell {
     Integer getXPosition();
 
     Integer getYPosition();
-
-    void setXPosition(Integer xPosition);
-
-    void setYPosition(Integer yPosition);
 
     void changeState(State state);
 
@@ -32,4 +29,8 @@ public interface Cell {
     boolean enemiesNearby();
 
     void deleteUnit();
+
+    void setPlayer(Player player);
+
+    void initializeUnit(Unit unit, Player player);
 }

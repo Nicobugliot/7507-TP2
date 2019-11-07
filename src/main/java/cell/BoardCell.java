@@ -1,19 +1,23 @@
 package cell;
 
 import cellState.EmptyCell;
+import cellState.OccupiedCell;
 import cellState.State;
+import exceptions.MovementException;
+import player.Player;
 import unit.Unit;
 
 import java.util.Set;
 
-public class EnemyCell implements Cell{
+public class BoardCell implements Cell{
 
     private Unit unit;
     private State state;
     private Integer xPosition;
     private Integer yPosition;
+    private Player player;
 
-    public EnemyCell(Integer xPosition, Integer yPosition, Unit unit){
+    public BoardCell(Integer xPosition, Integer yPosition){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.state = new EmptyCell();
@@ -35,22 +39,14 @@ public class EnemyCell implements Cell{
     }
 
     @Override
-    public void setXPosition(Integer xPosition) {
-        this.xPosition = xPosition;
-    }
-
-    @Override
-    public void setYPosition(Integer yPosition) {
-        this.yPosition = yPosition;
-    }
-
-    @Override
     public void changeState(State state){
         this.state = state;
     }
 
     @Override
     public void setUnit(Unit unit){
+        state.setUnit();
+        //this.changeState(new OccupiedCell());
         this.unit =  unit;
     }
 
@@ -77,5 +73,18 @@ public class EnemyCell implements Cell{
     @Override
     public void deleteUnit(){
         this.unit = null;
+    }
+
+    @Override
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    @Override
+    public void initializeUnit(Unit unit, Player player) {
+        if (this.player != player) {
+            throw new MovementException("Estas intentando inicializar una unidad en campo enemigo");
+        }
+        this.setUnit(unit);
     }
 }

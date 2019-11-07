@@ -5,6 +5,7 @@ import cellState.State;
 import unit.Unit;
 
 import java.util.Set;
+/*
 
 public class AlliedCell implements Cell{
 
@@ -80,3 +81,4 @@ public class AlliedCell implements Cell{
     }
 
 }
+*/

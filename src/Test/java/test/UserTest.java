@@ -1,7 +1,6 @@
 package test;
 
 import algoChess.AlgoChess;
-import cell.AlliedCell;
 import cell.Cell;
 import exceptions.GameOverException;
 import exceptions.InsufficientPointsException;

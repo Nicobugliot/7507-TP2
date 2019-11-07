@@ -16,6 +16,7 @@ public class Player {
     private String playerName;
     private Integer points = 20;
     private List<Unit> playerUnity;
+    private Board board = Board.getBoard();
 
     public Player(String name){
         this.playerName = name;
@@ -32,9 +33,12 @@ public class Player {
     }
 
     public void moveUnit(Unit unit, Cell cell){
-        Board board = Board.getBoard();
-
         unit.moveTo(cell);
+    }
+
+    public void initializeUnit(Unit unit, Cell cell) {
+        cell.initializeUnit(unit, this);
+        unit.setCell(cell);
     }
 
     public void useUnit(Unit unit, Cell cell){

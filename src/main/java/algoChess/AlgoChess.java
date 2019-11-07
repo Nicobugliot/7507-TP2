@@ -26,4 +26,8 @@ public class AlgoChess {
     public Cell getCell(Integer positionX, Integer positionY){
         return board.getCell(positionX, positionY);
     }
+
+    public void setBoard(Player firstPlayer, Player secondPlayer) {
+        board.setBoardCells(firstPlayer, secondPlayer);
+    }
 }
