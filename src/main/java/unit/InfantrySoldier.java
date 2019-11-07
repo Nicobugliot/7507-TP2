@@ -4,6 +4,7 @@ import cell.Cell;
 import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
+import utils.UtilMovement;
 
 public class InfantrySoldier implements Unit{
 
@@ -24,7 +25,7 @@ public class InfantrySoldier implements Unit{
     public void moveTo(Cell nextCell) {
         Cell actualCell = this.getCell();
 
-        if (this.unitCanMove(actualCell, nextCell)){
+        if (UtilMovement.unitCanMove(actualCell, nextCell)){
             // Lleno la nueva celda
             this.setCell(nextCell);
 
@@ -62,21 +63,6 @@ public class InfantrySoldier implements Unit{
     @Override
     public Cell getCell() {
         return this.cell;
-    }
-
-    private Boolean unitCanMove(Cell actualCell, Cell nextCell){
-
-        if(!(getDistance(actualCell, nextCell) == 1)){
-            throw new MovementException("No puedo moverme hasta ahi");
-        }
-        return true;
-    }
-
-    private Integer getDistance(Cell actualCell, Cell nextCell){
-        Integer xPosition = Math.abs(actualCell.getXPosition() - nextCell.getXPosition());
-        Integer yPosition = Math.abs(actualCell.getYPosition() - nextCell.getYPosition());
-
-        return xPosition + yPosition;
     }
 
     public String type() {
