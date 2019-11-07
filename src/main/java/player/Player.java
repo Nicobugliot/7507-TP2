@@ -52,4 +52,8 @@ public class Player {
             throw new GameOverException("El usuario "+ playerName +" ha perdido");
         }
     }
+
+    public Integer getUnitsAmount() {
+        return this.playerUnity.size();
+    }
 }

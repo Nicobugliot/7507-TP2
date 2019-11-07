@@ -31,9 +31,20 @@ class UserTest {
         });
     }
 
+    @Test
+    void Test01UserWithEnoughPointsCanAffordANewUnit(){
+
+        Player player = new Player("Jorge");
+
+        for (int i = 0; i < 20; ++i){
+            player.addUnit(new InfantrySoldier());
+        }
+
+        assertEquals(player.getUnitsAmount(), 20);
+    }
 
     @Test
-    void Test01UserWithoutUnitiesLoseTheGame(){
+    void Test02UserWithoutUnitiesLoseTheGame(){
 
         Unit soldierA = new InfantrySoldier();
         Unit soldierB = new InfantrySoldier();

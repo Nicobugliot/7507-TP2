@@ -11,4 +11,5 @@ notifications:
   email:
     recipients:
       - nicobugliot@gmail.com
+      - santiago.m.martinez@hotmail.com
     on_failure: always
