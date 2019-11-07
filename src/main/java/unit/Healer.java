@@ -5,13 +5,13 @@ import cellState.EmptyCell;
 import cellState.OccupiedCell;
 import exceptions.MovementException;
 
-public class Healer implements Unit{
-
-    private Integer hp = 75;
-    private Integer cost = 2;
-    private Cell cell;
+public class Healer extends Unit {
+    {
+        hp = 75;
+        cost = 2;
+        type = "Healer";
+    }
     private Integer healingAmount = 15;
-    private String type = "Healer";
 
     @Override
     public void useAbility(Unit unit) {
@@ -20,28 +20,6 @@ public class Healer implements Unit{
         }else{
             //throw new AbilityException("Can't heal artilley units");
         }
-    }
-
-    @Override
-    public void moveTo(Cell nextCell) {
-        Cell actualCell = this.getCell();
-
-        if (this.unitCanMove(actualCell, nextCell)){
-            // Libero la celda
-            actualCell.changeState(new EmptyCell());
-            actualCell.setUnit(null);
-
-            // Lleno la nueva celda
-            nextCell.changeState(new OccupiedCell());
-            nextCell.setUnit(this);
-            this.setCell(nextCell);
-        }
-
-    }
-
-    @Override
-    public void applyDamage(Integer damage) {
-        this.hp -= damage;
     }
 
     @Override

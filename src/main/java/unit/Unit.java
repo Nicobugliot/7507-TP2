@@ -1,24 +1,62 @@
 package unit;
 
 import cell.Cell;
+import cellState.EmptyCell;
+import cellState.OccupiedCell;
+import utils.UtilMovement;
 
-public interface Unit {
+public abstract class Unit {
 
-    void useAbility(Unit unit);
+    protected Cell cell;
+    protected Integer hp;
+    protected Integer cost;
+    protected String type;
 
-    void moveTo(Cell cell);
+    public abstract void useAbility(Unit unit);
 
-    void applyDamage(Integer damage);
+    public void moveTo(Cell nextCell) {
+        Cell actualCell = this.getCell();
 
-    void setCell(Cell cell);
+        if (UtilMovement.unitCanMove(actualCell, nextCell)){
+            // Lleno la nueva celda
+            this.setCell(nextCell);
 
-    boolean isAlive();
+            // Libero la celda anterior
+            actualCell.changeState(new EmptyCell());
+            actualCell.deleteUnit();
+        }
+    }
 
-    Integer getCost();
+    public void applyDamage(Integer damage) {
+        this.hp -= damage;
+        if (this.hp <= 0){
+            this.die();
+        }
+    }
 
-    Cell getCell();
+    public void setCell(Cell cell) {
+        this.cell = cell;
+        cell.setUnit(this);
+        cell.changeState(new OccupiedCell());
+    }
 
-    void die();
+    boolean isAlive(){
+        return (hp > 0);
+    }
 
-    String type();
+    public Integer getCost(){
+        return  this.cost;
+    }
+
+    public Cell getCell() {
+        return this.cell;
+    }
+
+    public void die() {
+
+    }
+
+    public String type() {
+        return this.type;
+    }
 }
