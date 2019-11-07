@@ -12,7 +12,6 @@ public class InfantrySoldier implements Unit{
     private Integer cost = 1;
     private Cell cell;
     private Integer meleeDamage = 10;
-    private Integer rangedDamage = 0;
     private String type = "Infantry";
     private Boolean dead = false;
 
@@ -48,11 +47,6 @@ public class InfantrySoldier implements Unit{
         this.cell = cell;
         cell.setUnit(this);
         cell.changeState(new OccupiedCell());
-    }
-
-    @Override
-    public Cell getCell(Cell cell) {
-        return this.cell;
     }
 
     @Override

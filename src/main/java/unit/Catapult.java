@@ -96,11 +96,6 @@ public class Catapult implements Unit{
     }
 
     @Override
-    public Cell getCell(Cell cell) {
-        return null;
-    }
-
-    @Override
     public boolean isAlive() {
 
         return false;

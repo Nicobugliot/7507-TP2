@@ -12,8 +12,6 @@ public interface Unit {
 
     void setCell(Cell cell);
 
-    Cell getCell(Cell cell);
-
     boolean isAlive();
 
     Integer getCost();

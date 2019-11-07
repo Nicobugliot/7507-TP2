@@ -59,11 +59,6 @@ public class TestDummy implements Unit {
     }
 
     @Override
-    public Cell getCell(Cell cell) {
-        return this.cell;
-    }
-
-    @Override
     public boolean isAlive() {
         return false;
     }

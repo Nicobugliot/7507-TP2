@@ -10,8 +10,6 @@ public class Healer implements Unit{
     private Integer hp = 75;
     private Integer cost = 2;
     private Cell cell;
-    private Integer meleeDamage = 0;
-    private Integer rangedDamage = 0;
     private Integer healingAmount = 15;
     private String type = "Healer";
 
@@ -53,10 +51,6 @@ public class Healer implements Unit{
         cell.changeState(new OccupiedCell());
     }
 
-    @Override
-    public Cell getCell(Cell cell) {
-        return null;
-    }
 
     @Override
     public boolean isAlive() {
