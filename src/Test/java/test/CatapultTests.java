@@ -1,6 +1,7 @@
 package test;
 
 import cell.Cell;
+import exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
 import unit.*;
 
@@ -19,7 +20,11 @@ class CatapultTests {
         ((StubCell) targetCell).addNearbyUnit(subject);
         subject.setCell(targetCell);
 
-        catapult.useAbility(subject);
+        try {
+            catapult.useAbility(subject);
+        } catch (AbilityException e) {
+            e.printStackTrace();
+        }
         //verifico que el daño aplicado corresponda con el realizado por la catapulta
         assertEquals(((TestDummy) subject).damageReceived(), 20);
     }

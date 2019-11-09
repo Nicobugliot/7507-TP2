@@ -1,6 +1,7 @@
 package test;
 
 import cell.Cell;
+import exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
 import unit.*;
 
@@ -19,7 +20,11 @@ class RiderTests {
         ((StubCell) attackerCell).pretendAlone();
         attacker.setCell(attackerCell);
 
-        attacker.useAbility(defender);
+        try {
+            attacker.useAbility(defender);
+        } catch (AbilityException e) {
+            e.printStackTrace();
+        }
         //verifico que el daño aplicado corresponda con el realizado por el arco
         assertEquals(((TestDummy) defender).damageReceived(), 15);
     }
@@ -33,7 +38,11 @@ class RiderTests {
         ((StubCell) attackerCell).pretendAlliesNearby();
         attacker.setCell(attackerCell);
 
-        attacker.useAbility(defender);
+        try {
+            attacker.useAbility(defender);
+        } catch (AbilityException e) {
+            e.printStackTrace();
+        }
         //verifico que el daño aplicado corresponda con el realizado por el arco
         assertEquals(((TestDummy) defender).damageReceived(), 15);
     }
@@ -47,7 +56,11 @@ class RiderTests {
         ((StubCell) attackerCell).pretendEnemiesAndAlliesNearby();
         attacker.setCell(attackerCell);
 
-        attacker.useAbility(defender);
+        try {
+            attacker.useAbility(defender);
+        } catch (AbilityException e) {
+            e.printStackTrace();
+        }
         //verifico que el daño aplicado corresponda con el realizado por el arco
         assertEquals(((TestDummy) defender).damageReceived(), 15);
     }
@@ -61,7 +74,11 @@ class RiderTests {
         ((StubCell) attackerCell).pretendEnemiesNearby();
         attacker.setCell(attackerCell);
 
-        attacker.useAbility(defender);
+        try {
+            attacker.useAbility(defender);
+        } catch (AbilityException e) {
+            e.printStackTrace();
+        }
         //verifico que el daño aplicado corresponda con el realizado por la espada
         assertEquals(((TestDummy) defender).damageReceived(), 5);
     }

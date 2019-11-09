@@ -1,8 +1,10 @@
 package unit;
 
+import board.Board;
 import cell.Cell;
 import cellState.EmptyCell;
 import cellState.OccupiedCell;
+import exceptions.AbilityException;
 import utils.UtilMovement;
 
 public abstract class Unit {
@@ -10,8 +12,10 @@ public abstract class Unit {
     protected Cell cell;
     protected Integer hp;
     protected Integer cost;
+    protected Board board;
+    protected Integer team;
 
-    public abstract void useAbility(Unit unit);
+    public abstract void useAbility(Unit unit) throws AbilityException;
 
     public void moveTo(Cell nextCell) {
         Cell actualCell = this.getCell();
@@ -52,10 +56,19 @@ public abstract class Unit {
     }
 
     public void die() {
-
+        this.hp = 0;
     }
 
     public Boolean canBeHealed() {
         return true;
     }
+
+    public void setTeam(Integer team){
+        this.team = team;
+    }
+
+    public boolean isAllyOf(Integer team) {
+        return (this.team == team);
+    }
+
 }

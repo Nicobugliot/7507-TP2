@@ -51,23 +51,8 @@ public class BoardCell implements Cell{
     }
 
     @Override
-    public Set<Unit> getNearbyUnits() {
-        return null;
-    }
-
-    @Override
     public Unit getUnit() {
         return unit;
-    }
-
-    @Override
-    public boolean alliesNearby() {
-        return false;
-    }
-
-    @Override
-    public boolean enemiesNearby() {
-        return false;
     }
 
     @Override
@@ -86,5 +71,10 @@ public class BoardCell implements Cell{
             throw new MovementException("Estas intentando inicializar una unidad en campo enemigo");
         }
         this.setUnit(unit);
+    }
+
+    @Override
+    public boolean containsAllyOf(Integer team){
+        return ( this.unit.isAllyOf(team));
     }
 }

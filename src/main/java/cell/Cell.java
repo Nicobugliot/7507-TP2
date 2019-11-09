@@ -18,19 +18,13 @@ public interface Cell {
 
     void setUnit(Unit unit);
 
-    Set<Unit> getNearbyUnits();
-
     Unit getUnit();
-
-    //Returns true if there are allies surrounding the cell
-    boolean alliesNearby();
-
-    //Returns true if there are enemies surrounding the cell
-    boolean enemiesNearby();
 
     void deleteUnit();
 
     void setPlayer(Player player);
 
     void initializeUnit(Unit unit, Player player);
+
+    boolean containsAllyOf(Integer team);
 }

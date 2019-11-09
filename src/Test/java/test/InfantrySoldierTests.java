@@ -1,6 +1,7 @@
 package test;
 
 import cell.Cell;
+import exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
 import unit.*;
 
@@ -14,7 +15,11 @@ class InfantrySoldierTests {
         Unit attacker = new InfantrySoldier();
         Unit defender = new TestDummy();
 
-        attacker.useAbility(defender);
+        try {
+            attacker.useAbility(defender);
+        } catch (AbilityException e) {
+            e.printStackTrace();
+        }
 
         assertEquals(((TestDummy) defender).damageReceived(), 10);
     }

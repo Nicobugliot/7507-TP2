@@ -14,7 +14,7 @@ public class StubCell implements Cell{
     private String behaviour = "undefined";
     private boolean alliesNearby = false;
     private boolean enemiesNearby = false;
-    private Set<Unit> nearbyUnits = new HashSet<Unit>();
+    private Set<Unit> nearbyUnits = new HashSet<>();
 
     @Override
     public Boolean isEmpty() {
@@ -68,15 +68,6 @@ public class StubCell implements Cell{
         this.nearbyUnits.add(unit);
     }
 
-    @Override
-    public boolean alliesNearby(){
-        return this.alliesNearby;
-    }
-
-    @Override
-    public boolean enemiesNearby(){
-        return this.enemiesNearby;
-    }
 
     @Override
     public void deleteUnit() {
@@ -94,8 +85,8 @@ public class StubCell implements Cell{
     }
 
     @Override
-    public Set<Unit> getNearbyUnits(){
-        return this.nearbyUnits;
+    public boolean containsAllyOf(Integer team) {
+        return ( this.unit.isAllyOf(team));
     }
 
     @Override

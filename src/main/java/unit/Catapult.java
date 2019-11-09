@@ -32,7 +32,6 @@ public class Catapult extends Unit {
         LinkedList<Unit> queue = new LinkedList<>();
 
         // Marco la celda actual como visitada
-        //visited[targetUnit]=true;
         visitedUnits.add(targetUnit);
         queue.add(targetUnit);
 
@@ -47,7 +46,7 @@ public class Catapult extends Unit {
 
             // Tomo las celdas que rodean a la celda objetivo
             // Si alguna de estas no fué visitada la marco como visitadas y la encolo
-            Iterator affectedCells = targetCell.getNearbyUnits().iterator(); //HACER MÉTODO getNearbyUnits() para las celdas, que devuelva un set con las unidades que rodean a esa celda
+            Iterator affectedCells = board.getNearbyUnits(targetCell).iterator(); //HACER MÉTODO getNearbyUnits() para las celdas, que devuelva un set con las unidades que rodean a esa celda
             while (affectedCells.hasNext())
             {
                 Unit neighbourUnit = (Unit) affectedCells.next();

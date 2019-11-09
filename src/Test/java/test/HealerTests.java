@@ -1,6 +1,7 @@
 package test;
 
 import cell.Cell;
+import exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
 import unit.*;
 
@@ -14,7 +15,11 @@ class HealerTests {
         Unit healer = new Healer();
         Unit subject = new TestDummy();
 
-        healer.useAbility(subject);
+        try {
+            healer.useAbility(subject);
+        } catch (AbilityException e) {
+            e.printStackTrace();
+        }
         //verifico que la unidad fue curada por la cantidad esperada
         assertEquals(((TestDummy) subject).damageReceived(), -15);
     }

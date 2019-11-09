@@ -10,4 +10,5 @@ public class EmptyCell implements State {
     @Override
     public void setUnit(){
     }
+
 }

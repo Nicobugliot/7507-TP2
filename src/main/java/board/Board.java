@@ -3,6 +3,10 @@ package board;
 import cell.BoardCell;
 import cell.Cell;
 import player.Player;
+import unit.Unit;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Board {
 
@@ -38,4 +42,73 @@ public class Board {
         }
     }
 
+    /*Returns a boolean indicating the presence of allies in the neighbor cells*/
+    public boolean alliesNearby(Cell cell, Integer team) {
+        int xPos = cell.getXPosition();
+        int yPos = cell.getYPosition();
+        Set<Cell> neighbourCells = findNeighborCells(xPos, yPos);
+
+        for (Cell neighbourCell : neighbourCells){
+            if (!neighbourCell.isEmpty() && neighbourCell.containsAllyOf(team)) return true;
+        }
+        return false;
+    }
+
+    /*Returns a boolean indicating the presence of enemies in the neighbor cells*/
+    public boolean enemiesNearby(Cell cell, Integer team) {
+        int xPos = cell.getXPosition();
+        int yPos = cell.getYPosition();
+        Set<Cell> neighbourCells = findNeighborCells(xPos, yPos);
+
+        for (Cell neighbourCell : neighbourCells){
+            if (!neighbourCell.isEmpty() && !neighbourCell.containsAllyOf(team)) return true;
+        }
+        return false;
+    }
+
+    public Set<Unit> getNearbyUnits(Cell cell) {
+        int xPos = cell.getXPosition();
+        int yPos = cell.getYPosition();
+        Set<Cell> neighbourCells = findNeighborCells(xPos, yPos);
+        Set<Unit> neighbourUnits = new HashSet<>();
+
+        for (Cell neighbourCell : neighbourCells){
+            if (!neighbourCell.isEmpty()) neighbourUnits.add(neighbourCell.getUnit());
+        }
+
+        return neighbourUnits;
+    }
+
+    /*Finds the neighbour cells if possible surrrounding a given position*/
+    private Set<Cell> findNeighborCells(int x, int y)
+    {
+        Set<Cell> neighbourCells = new HashSet<>();
+        try
+        {
+            try { neighbourCells.add(boardCells[x][y - 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x - 1][y - 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x - 1][y]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x - 1][y + 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x][y + 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x + 1][y + 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x + 1][y]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x + 1][y - 1]); }
+            catch (Exception e) {}
+        }
+        catch (Exception e)
+        {
+            // exception caused due to position non-existing in matrix.
+        }
+        finally
+        {
+            return neighbourCells;
+        }
+    }
 }

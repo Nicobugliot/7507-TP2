@@ -2,6 +2,7 @@ package unit;
 
 import cell.Cell;
 import cellState.OccupiedCell;
+import exceptions.AbilityException;
 import exceptions.MovementException;
 
 public class Healer extends Unit {
@@ -12,11 +13,11 @@ public class Healer extends Unit {
     private Integer healingAmount = 15;
 
     @Override
-    public void useAbility(Unit unit) {
-        if (unit.canBeHealed()) {//si no es una catapulta
+    public void useAbility(Unit unit) throws AbilityException {
+        if (unit.canBeHealed()) {
             unit.applyDamage((-1)*healingAmount);
         }else{
-            //throw new AbilityException("Can't heal artilley units");
+            throw new AbilityException("Can't heal artilley units");
         }
     }
 
