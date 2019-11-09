@@ -15,12 +15,12 @@ public class Player {
 
     private String playerName;
     private Integer points = 20;
-    private List<Unit> playerUnits;
+    private List<Unit> playerUnity;
     private Board board = Board.getBoard();
 
     public Player(String name){
         this.playerName = name;
-        playerUnits = new ArrayList<>();
+        playerUnity = new ArrayList<>();
     }
 
     public void addUnit(Unit unit){
@@ -29,7 +29,7 @@ public class Player {
             throw new InsufficientPointsException("No dispone los puntos necesarios para hacer la compra");
         }
         this.points -= price;
-        this.playerUnits.add(unit);
+        this.playerUnity.add(unit);
     }
 
     public void moveUnit(Unit unit, Cell cell){
@@ -51,13 +51,13 @@ public class Player {
     }
 
     public void looseUnit(Unit unit){
-        playerUnits.remove(unit);
-        if (playerUnits.size() == 0){
+        playerUnity.remove(unit);
+        if (playerUnity.size() == 0){
             throw new GameOverException("El usuario "+ playerName +" ha perdido");
         }
     }
 
     public Integer getUnitsAmount() {
-        return this.playerUnits.size();
+        return this.playerUnity.size();
     }
 }

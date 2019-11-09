@@ -10,7 +10,6 @@ public class InfantrySoldier extends Unit {
     {
         hp = 100;
         cost = 1;
-        type = "Infantry";
     }
     private Integer meleeDamage = 10;
     private Boolean dead = false;

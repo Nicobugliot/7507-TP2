@@ -10,7 +10,6 @@ public abstract class Unit {
     protected Cell cell;
     protected Integer hp;
     protected Integer cost;
-    protected String type;
 
     public abstract void useAbility(Unit unit);
 
@@ -56,7 +55,7 @@ public abstract class Unit {
 
     }
 
-    public String type() {
-        return this.type;
+    public Boolean canBeHealed() {
+        return true;
     }
 }

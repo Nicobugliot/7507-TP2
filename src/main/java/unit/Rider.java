@@ -10,7 +10,6 @@ public class Rider extends Unit {
     {
         hp = 100;
         cost = 3;
-        String type = "Rider";
     }
 
     private Integer meleeDamage = 5;

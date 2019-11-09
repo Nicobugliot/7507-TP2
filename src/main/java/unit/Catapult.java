@@ -7,7 +7,6 @@ public class Catapult extends Unit {
     {
         hp = 50;
         cost = 5;
-        type = "Artillery";
     }
     private Integer meleeDamage = 0;
     private Integer rangedDamage = 20;
@@ -60,5 +59,10 @@ public class Catapult extends Unit {
             }
         }
         return affectedUnits;
+    }
+
+    @Override
+    public Boolean canBeHealed(){
+        return false;
     }
 }
