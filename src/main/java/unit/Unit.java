@@ -75,4 +75,7 @@ public abstract class Unit {
         this.board = board;
     }
 
+    public boolean canFormBattalions(){
+        return false;
+    }
 }

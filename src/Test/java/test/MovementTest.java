@@ -1,6 +1,7 @@
 package test;
 
 import algoChess.AlgoChess;
+import board.Board;
 import cell.Cell;
 import exceptions.MovementException;
 import exceptions.OccupiedCellException;
@@ -9,8 +10,11 @@ import player.Player;
 import unit.InfantrySoldier;
 import unit.Unit;
 
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 /**
  * Pruebas de todos los movimientos que puede realizar una unidad
@@ -21,6 +25,7 @@ class MovementTest{
     private Player player = new Player("Jorge");
     private Player secondPlayer = new Player("secondPlayer");
     private Unit infantrySoldier = new InfantrySoldier();
+    private Board boardMock = mock(Board.class);
     private Unit secondInfantrySoldier = new InfantrySoldier();
 
     @Test
@@ -35,7 +40,12 @@ class MovementTest{
         algoChess.setBoard(player, secondPlayer);
 
         player.initializeUnit(infantrySoldier, actualCell);
+
+        infantrySoldier.setBoard(boardMock);
+        when(boardMock.getNearbyUnits(nextCell)).thenReturn(new HashSet<>());
+
         player.moveUnit(infantrySoldier, nextCell);
+
 
         assertEquals(infantrySoldier.getCell(), nextCell);
         assertEquals(actualCell.getUnit(), null);
@@ -53,6 +63,9 @@ class MovementTest{
 
         player.initializeUnit(infantrySoldier, actualCell);
         player.initializeUnit(secondInfantrySoldier, nextCell);
+
+        infantrySoldier.setBoard(boardMock);
+        when(boardMock.getNearbyUnits(nextCell)).thenReturn(new HashSet<>());
 
         assertThrows(OccupiedCellException.class, () -> {
             player.moveUnit(infantrySoldier, nextCell);
@@ -73,6 +86,10 @@ class MovementTest{
         algoChess.setBoard(player, secondPlayer);
 
         player.initializeUnit(infantrySoldier, actualCell);
+
+        infantrySoldier.setBoard(boardMock);
+        when(boardMock.getNearbyUnits(nextCell)).thenReturn(new HashSet<>());
+
         player.moveUnit(infantrySoldier, nextCell);
 
         assertEquals(infantrySoldier.getCell(), nextCell);
@@ -93,6 +110,9 @@ class MovementTest{
 
         player.initializeUnit(infantrySoldier, actualCell);
 
+        infantrySoldier.setBoard(boardMock);
+        when(boardMock.getNearbyUnits(nextCell)).thenReturn(new HashSet<>());
+
         assertThrows(MovementException.class, () -> {
             player.moveUnit(infantrySoldier, nextCell);
         });
@@ -111,6 +131,9 @@ class MovementTest{
         algoChess.setBoard(player, secondPlayer);
 
         player.initializeUnit(infantrySoldier, actualCell);
+
+        infantrySoldier.setBoard(boardMock);
+        when(boardMock.getNearbyUnits(nextCell)).thenReturn(new HashSet<>());
 
         assertThrows(MovementException.class, () -> {
             player.moveUnit(infantrySoldier, nextCell);
