@@ -46,7 +46,7 @@ public class Catapult extends Unit {
 
             // Tomo las celdas que rodean a la celda objetivo
             // Si alguna de estas no fué visitada la marco como visitadas y la encolo
-            Iterator affectedCells = board.getNearbyUnits(targetCell).iterator(); //HACER MÉTODO getNearbyUnits() para las celdas, que devuelva un set con las unidades que rodean a esa celda
+            Iterator affectedCells = board.getNearbyUnits(targetCell).iterator();
             while (affectedCells.hasNext())
             {
                 Unit neighbourUnit = (Unit) affectedCells.next();

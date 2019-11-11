@@ -1,11 +1,13 @@
 package test;
 
+import board.Board;
 import cell.Cell;
 import exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
 import unit.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class RiderTests {
 
@@ -13,12 +15,19 @@ class RiderTests {
 
     @Test
     void Test01RiderUsesBowWhenAlone(){
+        //Creo un mock del tablero
+        Board boardMock = mock(Board.class);
+
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
         Cell attackerCell = new StubCell();
-        //seteo el comportamiento del stub para que haga de cuenta que no hay nadie alrededor de la unidad
-        ((StubCell) attackerCell).pretendAlone();
-        attacker.setCell(attackerCell);
+        attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
+        attacker.setTeam(1); //Le asigno el equipo 1 al jinete
+        attacker.setCell(attackerCell);//Le asigno una celda al atacante
+
+        //seteo el comportamiento del mock para que haga de cuenta que no hay nadie cerca
+        when(boardMock.alliesNearby(attackerCell,1)).thenReturn(false);
+        when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(false);
 
         try {
             attacker.useAbility(defender);
@@ -31,12 +40,19 @@ class RiderTests {
 
     @Test
     void Test02RiderUsesBowWhenNextToAlliedInfantry(){
+        //Creo un mock del tablero
+        Board boardMock = mock(Board.class);
+
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
         Cell attackerCell = new StubCell();
-        //seteo el comportamiento del stub para que haga de cuenta que hay aliados cerca y no enemigos
-        ((StubCell) attackerCell).pretendAlliesNearby();
-        attacker.setCell(attackerCell);
+        attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
+        attacker.setTeam(1); //Le asigno el equipo 1 al jinete
+        attacker.setCell(attackerCell);//Le asigno una celda al atacante
+
+        //seteo el comportamiento del mock para que haga de cuenta que hay aliados cerca y no enemigos
+        when(boardMock.alliesNearby(attackerCell,1)).thenReturn(true);
+        when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(false);
 
         try {
             attacker.useAbility(defender);
@@ -49,12 +65,19 @@ class RiderTests {
 
     @Test
     void Test03RiderUsesBowWhenNextToAlliedInfantryAndEnemies(){
+        //Creo un mock del tablero
+        Board boardMock = mock(Board.class);
+
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
         Cell attackerCell = new StubCell();
-        //seteo el comportamiento del stub para que haga de cuenta que hay aliados cerca y enemigos
-        ((StubCell) attackerCell).pretendEnemiesAndAlliesNearby();
-        attacker.setCell(attackerCell);
+        attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
+        attacker.setTeam(1); //Le asigno el equipo 1 al jinete
+        attacker.setCell(attackerCell);//Le asigno una celda al atacante
+
+        //seteo el comportamiento del mock para que haga de cuenta que hay aliados cerca y enemigos
+        when(boardMock.alliesNearby(attackerCell,1)).thenReturn(true);
+        when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(true);
 
         try {
             attacker.useAbility(defender);
@@ -67,12 +90,19 @@ class RiderTests {
 
     @Test
     void Test04RiderUsesSwordWhenNoAlliesAndEnemiesArround(){
+        //Creo un mock del tablero
+        Board boardMock = mock(Board.class);
+
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
         Cell attackerCell = new StubCell();
-        //seteo el comportamiento del stub para que haga de cuenta que hay enemigos cerca y no aliados
-        ((StubCell) attackerCell).pretendEnemiesNearby();
-        attacker.setCell(attackerCell);
+        attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
+        attacker.setTeam(1); //Le asigno el equipo 1 al jinete
+        attacker.setCell(attackerCell);//Le asigno una celda al atacante
+
+        //seteo el comportamiento del mock para que haga de cuenta que hay enemigos cerca y no aliados
+        when(boardMock.alliesNearby(attackerCell,1)).thenReturn(false);
+        when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(true);
 
         try {
             attacker.useAbility(defender);

@@ -71,4 +71,8 @@ public abstract class Unit {
         return (this.team == team);
     }
 
+    public void setBoard(Board board){
+        this.board = board;
+    }
+
 }
