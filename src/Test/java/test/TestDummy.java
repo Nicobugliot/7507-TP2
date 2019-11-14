@@ -1,9 +1,6 @@
 package test;
 
 import cell.Cell;
-import cellState.EmptyCell;
-import cellState.OccupiedCell;
-import exceptions.MovementException;
 import unit.Unit;
 
 public class TestDummy extends Unit {

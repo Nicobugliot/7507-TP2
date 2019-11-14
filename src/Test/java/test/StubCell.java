@@ -1,14 +1,14 @@
 package test;
 
 import cell.Cell;
-import cellState.State;
 import player.Player;
 import unit.Unit;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class StubCell implements Cell{
+
+public class StubCell{
 
     private Unit unit;
     private String behaviour = "undefined";
@@ -16,24 +16,16 @@ public class StubCell implements Cell{
     private boolean enemiesNearby = false;
     private Set<Unit> nearbyUnits = new HashSet<>();
 
-    @Override
     public Boolean isEmpty() {
         return null;
     }
 
-    @Override
     public Integer getXPosition() {
         return null;
     }
 
-    @Override
     public Integer getYPosition() {
         return null;
-    }
-
-    @Override
-    public void changeState(State state) {
-
     }
 
     public void setUnit(Unit unit){
@@ -69,30 +61,20 @@ public class StubCell implements Cell{
     }
 
 
-    @Override
     public void deleteUnit() {
 
     }
 
-    @Override
     public void setPlayer(Player player) {
 
     }
 
-    @Override
-    public void initializeUnit(Unit unit, Player player) {
-
-    }
-
-    @Override
     public boolean containsAllyOf(Integer team) {
         return ( this.unit.isAllyOf(team));
     }
 
-    @Override
     public Unit getUnit() {
         return unit;
     }
-
 
 }

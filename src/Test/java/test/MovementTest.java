@@ -1,25 +1,14 @@
 package test;
 
-import algoChess.AlgoChess;
-import board.Board;
-import cell.Cell;
-import exceptions.MovementException;
-import exceptions.OccupiedCellException;
-import org.junit.jupiter.api.Test;
-import player.Player;
-import unit.InfantrySoldier;
-import unit.Unit;
-
-import java.util.HashSet;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
 
 /**
  * Pruebas de todos los movimientos que puede realizar una unidad
  */
 class MovementTest{
+
+    /*
 
     private AlgoChess algoChess = new AlgoChess();
     private Player player = new Player("Jorge");
@@ -140,5 +129,7 @@ class MovementTest{
         });
         assertEquals(actualCell.getUnit(), infantrySoldier);
     }
+
+     */
 
 }

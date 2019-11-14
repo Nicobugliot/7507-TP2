@@ -1,30 +1,54 @@
 package cell;
 
-import cellState.State;
+import exceptions.OccupiedCellException;
 import player.Player;
 import unit.Unit;
 
-import java.util.Set;
+public class Cell {
 
-public interface Cell {
+    private Unit unit;
+    private Integer xPosition;
+    private Integer yPosition;
+    private Player player;
 
-    Boolean isEmpty();
+    public Cell(Integer xPosition, Integer yPosition){
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+    }
 
-    Integer getXPosition();
+    public Boolean isEmpty() {
+        return (this.unit == null);
+    }
 
-    Integer getYPosition();
+    public Integer getXPosition() {
+        return xPosition;
+    }
 
-    void changeState(State state);
+    public Integer getYPosition() {
+        return yPosition;
+    }
 
-    void setUnit(Unit unit);
+    public void setUnit(Unit unit) throws OccupiedCellException{
+        if (this.isEmpty()) {
+            this.unit =  unit;
+        }else {
+            throw new OccupiedCellException("La celda está ocupada");
+        }
+    }
 
-    Unit getUnit();
+    public Unit getUnit() {
+        return unit;
+    }
 
-    void deleteUnit();
+    public void deleteUnit(){
+        this.unit = null;
+    }
 
-    void setPlayer(Player player);
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
-    void initializeUnit(Unit unit, Player player);
-
-    boolean containsAllyOf(Integer team);
+    public boolean containsAllyOf(Integer team){
+        return ( this.unit.isAllyOf(team));
+    }
 }

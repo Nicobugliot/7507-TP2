@@ -1,9 +1,7 @@
 package unit;
 
 import cell.Cell;
-import cellState.EmptyCell;
 import exceptions.AbilityException;
-import utils.UtilMovement;
 import exceptions.BattalionException;
 
 import java.util.Set;

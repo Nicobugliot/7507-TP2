@@ -2,8 +2,6 @@ package unit;
 
 import board.Board;
 import cell.Cell;
-import cellState.EmptyCell;
-import cellState.OccupiedCell;
 import exceptions.AbilityException;
 import utils.UtilMovement;
 
@@ -25,7 +23,6 @@ public abstract class Unit {
             this.setCell(nextCell);
 
             // Libero la celda anterior
-            actualCell.changeState(new EmptyCell());
             actualCell.deleteUnit();
         }
     }
@@ -39,8 +36,6 @@ public abstract class Unit {
 
     public void setCell(Cell cell) {
         this.cell = cell;
-        cell.setUnit(this);
-        cell.changeState(new OccupiedCell());
     }
 
     boolean isAlive(){

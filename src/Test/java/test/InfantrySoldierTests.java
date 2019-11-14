@@ -1,6 +1,5 @@
 package test;
 
-import cell.Cell;
 import exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
 import unit.*;

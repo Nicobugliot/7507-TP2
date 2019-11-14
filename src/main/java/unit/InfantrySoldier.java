@@ -1,9 +1,6 @@
 package unit;
 
 import cell.Cell;
-import cellState.EmptyCell;
-import cellState.OccupiedCell;
-import exceptions.MovementException;
 import utils.UtilMovement;
 
 import java.util.HashSet;
@@ -31,7 +28,6 @@ public class InfantrySoldier extends Unit {
             this.setCell(nextCell);
 
             // Libero la celda anterior
-            actualCell.changeState(new EmptyCell());
             actualCell.deleteUnit();
             formBattalionIfPossible();//si es posible crea un batallón
         }

@@ -1,11 +1,7 @@
 package test;
 
-import algoChess.AlgoChess;
-import cell.Cell;
 import exceptions.GameOverException;
 import exceptions.InsufficientPointsException;
-import exceptions.MovementException;
-import exceptions.OccupiedCellException;
 import org.junit.jupiter.api.Test;
 import player.Player;
 import unit.InfantrySoldier;

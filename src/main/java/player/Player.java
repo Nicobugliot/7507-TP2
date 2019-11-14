@@ -36,15 +36,6 @@ public class Player {
         this.playerUnits.add(unit);
     }
 
-    public void moveUnit(Unit unit, Cell cell){
-        unit.moveTo(cell);
-    }
-
-    public void initializeUnit(Unit unit, Cell cell) {
-        cell.initializeUnit(unit, this);
-        unit.setCell(cell);
-    }
-
     public void useUnit(Unit unit, Cell cell){
 
         if (!cell.isEmpty()) {

@@ -1,9 +1,6 @@
 package unit;
 
-import cell.Cell;
-import cellState.OccupiedCell;
 import exceptions.AbilityException;
-import exceptions.MovementException;
 
 public class Healer extends Unit {
     {

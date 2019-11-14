@@ -1,9 +1,6 @@
 package unit;
 
 import cell.Cell;
-import cellState.EmptyCell;
-import cellState.OccupiedCell;
-import exceptions.MovementException;
 
 public class Rider extends Unit {
 

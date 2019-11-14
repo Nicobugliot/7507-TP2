@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 class RiderTests {
 
 
-
+    /*
     @Test
     void Test01RiderUsesBowWhenAlone(){
         //Creo un mock del tablero
@@ -113,5 +113,7 @@ class RiderTests {
         assertEquals(((TestDummy) defender).damageReceived(), 5);
     }
 
+
+     */
 
 }
