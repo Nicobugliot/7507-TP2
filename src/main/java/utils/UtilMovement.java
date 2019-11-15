@@ -23,7 +23,7 @@ public class UtilMovement {
                 }
             }
         }
-        throw new MovementException("No puedo moverme hasta ahi");
+        return false;
     }
 
 

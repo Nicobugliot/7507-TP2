@@ -3,7 +3,6 @@ package unit;
 import board.Board;
 import cell.Cell;
 import exceptions.AbilityException;
-import utils.UtilMovement;
 
 public abstract class Unit {
 
@@ -14,18 +13,6 @@ public abstract class Unit {
     protected Integer team;
 
     public abstract void useAbility(Unit unit) throws AbilityException;
-
-    public void moveTo(Cell nextCell) {
-        Cell actualCell = this.getCell();
-
-        if (UtilMovement.unitCanMove(actualCell, nextCell)){
-            // Lleno la nueva celda
-            this.setCell(nextCell);
-
-            // Libero la celda anterior
-            actualCell.deleteUnit();
-        }
-    }
 
     public void applyDamage(Integer damage) {
         this.hp -= damage;

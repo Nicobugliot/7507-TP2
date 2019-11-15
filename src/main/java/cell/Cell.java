@@ -1,5 +1,6 @@
 package cell;
 
+import exceptions.MovementException;
 import exceptions.OccupiedCellException;
 import player.Player;
 import unit.Unit;
@@ -32,7 +33,7 @@ public class Cell {
         if (this.isEmpty()) {
             this.unit =  unit;
         }else {
-            throw new OccupiedCellException("La celda está ocupada");
+            throw new MovementException("La celda está ocupada");
         }
     }
 

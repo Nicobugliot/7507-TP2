@@ -12,7 +12,6 @@ import static org.mockito.Mockito.*;
 
 public class BoardUnitTest {
 
-    private MasterHand masterHand = mock(MasterHand.class);
     private Cell cell = mock(Cell.class);
 
     @Test
