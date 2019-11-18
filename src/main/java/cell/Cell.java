@@ -10,7 +10,6 @@ public class Cell {
     private Unit unit;
     private Integer xPosition;
     private Integer yPosition;
-    private Player player;
     private Integer team;
 
     public Cell(Integer xPosition, Integer yPosition){

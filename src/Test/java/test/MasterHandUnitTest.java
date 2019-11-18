@@ -1,6 +1,5 @@
 package test;
 
-import board.Board;
 import cell.Cell;
 import exceptions.OccupiedCellException;
 import masterhand.MasterHand;

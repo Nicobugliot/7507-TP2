@@ -2,7 +2,6 @@ package masterhand;
 
 import cell.Cell;
 import exceptions.MovementException;
-import player.Player;
 import unit.Unit;
 import utils.UtilMovement;
 
