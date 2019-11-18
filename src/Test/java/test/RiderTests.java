@@ -12,7 +12,6 @@ import static org.mockito.Mockito.*;
 class RiderTests {
 
 
-    /*
     @Test
     void Test01RiderUsesBowWhenAlone(){
         //Creo un mock del tablero
@@ -20,7 +19,7 @@ class RiderTests {
 
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
-        Cell attackerCell = new StubCell();
+        Cell attackerCell = new Cell(any(), any());
         attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
         attacker.setTeam(1); //Le asigno el equipo 1 al jinete
         attacker.setCell(attackerCell);//Le asigno una celda al atacante
@@ -45,7 +44,7 @@ class RiderTests {
 
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
-        Cell attackerCell = new StubCell();
+        Cell attackerCell = new Cell(any(), any());
         attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
         attacker.setTeam(1); //Le asigno el equipo 1 al jinete
         attacker.setCell(attackerCell);//Le asigno una celda al atacante
@@ -70,7 +69,7 @@ class RiderTests {
 
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
-        Cell attackerCell = new StubCell();
+        Cell attackerCell = new Cell(any(), any());
         attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
         attacker.setTeam(1); //Le asigno el equipo 1 al jinete
         attacker.setCell(attackerCell);//Le asigno una celda al atacante
@@ -95,7 +94,7 @@ class RiderTests {
 
         Unit attacker = new Rider();
         Unit defender = new TestDummy();
-        Cell attackerCell = new StubCell();
+        Cell attackerCell = new Cell(any(), any());
         attacker.setBoard(boardMock);//asigno el tablero mockeado a la unidad atacante que es la que le va a preguntar cosas al tablero
         attacker.setTeam(1); //Le asigno el equipo 1 al jinete
         attacker.setCell(attackerCell);//Le asigno una celda al atacante
@@ -112,8 +111,5 @@ class RiderTests {
         //verifico que el daño aplicado corresponda con el realizado por la espada
         assertEquals(((TestDummy) defender).damageReceived(), 5);
     }
-
-
-     */
 
 }

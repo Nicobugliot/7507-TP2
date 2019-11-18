@@ -14,7 +14,6 @@ public class Player {
     private String playerName;
     private Integer points = 20;
     private List<Unit> playerUnits;
-    private Board board = Board.getBoard();
     private Integer team;
     private MasterHand masterHand;
 

@@ -9,6 +9,7 @@ public class Catapult extends Unit {
         hp = 50;
         cost = 5;
     }
+
     private Integer meleeDamage = 0;
     private Integer rangedDamage = 20;
 
