@@ -4,11 +4,12 @@ import cell.Cell;
 import exceptions.AbilityException;
 import exceptions.BattalionException;
 
+import java.util.List;
 import java.util.Set;
 
 public class Battalion extends Unit {
 
-    private Set<Unit> units;
+    private List<Unit> units;
 
     public void addUnit(Unit unit){
         units.add(unit);

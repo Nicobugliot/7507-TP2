@@ -2,8 +2,6 @@ exceptions/EmptyCellException.class
 unit/InfantrySoldier.class
 algoChess/AlgoChess.class
 exceptions/InsufficientPointsException.class
-cellState/EmptyCell.class
-cellState/OccupiedCell.class
 board/Board.class
 unit/Healer.class
 player/Player.class
@@ -13,5 +11,4 @@ cell/Cell.class
 exceptions/GameOverException.class
 unit/Rider.class
 unit/Catapult.class
-cellState/State.class
 exceptions/OccupiedCellException.class

@@ -11,6 +11,7 @@ public class Cell {
     private Integer xPosition;
     private Integer yPosition;
     private Player player;
+    private Integer team;
 
     public Cell(Integer xPosition, Integer yPosition){
         this.xPosition = xPosition;
@@ -46,7 +47,14 @@ public class Cell {
     }
 
     public void setPlayer(Player player) {
-        this.player = player;
+        this.team = player.getTeam();
+    }
+
+    public void initializeUnit(Integer team, Unit unit) {
+        if (this.team != team) {
+            throw new MovementException("No se puede inicializar una unidad en campo enemigo");
+        }
+        this.setUnit(unit);
     }
 
     public boolean containsAllyOf(Integer team){

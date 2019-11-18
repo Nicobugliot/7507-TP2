@@ -3,6 +3,7 @@ package player;
 import board.Board;
 import cell.Cell;
 import exceptions.*;
+import masterhand.MasterHand;
 import unit.Unit;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Player {
     private List<Unit> playerUnits;
     private Board board = Board.getBoard();
     private Integer team;
+    private MasterHand masterHand;
 
     public Player(String name){
         this.playerName = name;
@@ -24,6 +26,10 @@ public class Player {
 
     public void setTeam(Integer team){
         this.team = team;
+    }
+
+    public Integer getTeam() {
+        return this.team;
     }
 
     public void addUnit(Unit unit){
@@ -44,7 +50,7 @@ public class Player {
 
         try {
             unit.useAbility(cell.getUnit());
-        } catch (AbilityException e) {//definir un comportamiento para cuando no se pudo utilizar la habilidad
+        } catch (AbilityException e) {//TODO Definir un comportamiento para cuando no se pudo utilizar la habilidad
             e.printStackTrace();
         }
     }
@@ -54,6 +60,14 @@ public class Player {
         if (playerUnits.size() == 0){
             throw new GameOverException("El usuario "+ playerName +" ha perdido");
         }
+    }
+
+    public void initializeUnit(Unit unit, Cell cell) {
+        masterHand.initializeUnit(this.team, unit, cell);
+    }
+
+    public void moveUnit(Unit unit, Cell nextCell) {
+        masterHand.moveUnit(unit, nextCell);
     }
 
     public Integer getUnitsAmount() {

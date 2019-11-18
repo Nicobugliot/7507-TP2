@@ -12,7 +12,6 @@ public class Board {
 
     private static Board board;
     private static Cell[][] boardCells = new Cell[20][20];
-    private MasterHand masterHand = new MasterHand();
 
     private Board() { }
 
@@ -41,14 +40,6 @@ public class Board {
                 boardCells[i + (boardCells.length / 2)][j].setPlayer(secondPlayer);
             }
         }
-    }
-
-    public void moveUnit(Unit unit, Cell nextCell) {
-        masterHand.moveUnit(unit, nextCell);
-    }
-
-    public void initializeUnit(Unit unit, Cell cell) {
-        masterHand.initializeUnit(unit, cell);
     }
 
     /*Returns a boolean indicating the presence of allies in the neighbor cells*/

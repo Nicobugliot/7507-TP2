@@ -2,6 +2,7 @@ package masterhand;
 
 import cell.Cell;
 import exceptions.MovementException;
+import player.Player;
 import unit.Unit;
 import utils.UtilMovement;
 
@@ -20,9 +21,9 @@ public class MasterHand {
         }
     }
 
-    public void initializeUnit(Unit unit, Cell cell) {
+    public void initializeUnit(Integer team, Unit unit, Cell cell) {
         try {
-            cell.setUnit(unit);
+            cell.initializeUnit(team, unit);
         } catch (MovementException err) {
             //TODO Se tiene que mostrar un mensaje de error en la pantalla del usuario.
         }
