@@ -29,6 +29,4 @@ public class Battalion extends Unit {
     public void useAbility(Unit unit) throws AbilityException {
         throw new AbilityException("Los batallones no tienen habilidad");
     }
-
-
 }

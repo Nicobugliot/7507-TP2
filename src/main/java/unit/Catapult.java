@@ -1,6 +1,9 @@
 package unit;
 
 import cell.Cell;
+import exceptions.AbilityException;
+import exceptions.MovementException;
+import utils.UtilBoard;
 
 import java.util.*;
 
@@ -12,17 +15,24 @@ public class Catapult extends Unit {
 
     private Integer meleeDamage = 0;
     private Integer rangedDamage = 20;
+    private static Integer MIN_DISTANCE_ATACK = 6;
 
     @Override
-    public void useAbility(Unit unit) {
-        Set<Unit> affectedUnits = getAfectedUnitsByProjectile(unit);
-        for (Unit affectedUnit: affectedUnits) {
-            affectedUnit.applyDamage(rangedDamage); //ataca al objetivo
+    public void useAbility(Unit unit) throws AbilityException {
+        if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) >= MIN_DISTANCE_ATACK) {
+            Set<Unit> affectedUnits = getAfectedUnitsByProjectile(unit);
+            for (Unit affectedUnit: affectedUnits) {
+                affectedUnit.applyDamage(rangedDamage);
+            }
+        }else {
+            throw new AbilityException("No puedo atacar a esa distancia");
         }
     }
 
-    //algortimo bfs para calcular los casilleros afectados por el impacto de la catapulta
-    //devuelve un set de unidades afectadas
+    /*
+    Algortimo BFS para calcular los casilleros afectados por el impacto de la catapulta
+    devuelve un set de unidades afectadas
+    */
     private Set<Unit> getAfectedUnitsByProjectile(Unit targetUnit){
         //creo el set de retorno
         Set<Unit> affectedUnits = new HashSet<Unit>();
@@ -65,5 +75,10 @@ public class Catapult extends Unit {
     @Override
     public Boolean canBeHealed(){
         return false;
+    }
+
+    @Override
+    public void moveTo(Cell nextCell) {
+        throw new MovementException("No me puedo mover, soy una catapulta");
     }
 }

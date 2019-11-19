@@ -66,7 +66,11 @@ public class Player {
     }
 
     public void moveUnit(Unit unit, Cell nextCell) {
-        masterHand.moveUnit(unit, nextCell);
+        // Verifico que la unidad seleccionada esté dentro de sus unidades.
+        if (this.playerUnits.contains(unit)) {
+            unit.moveTo(nextCell);
+        }
+        throw new MovementException("Esa unidad no te corresponde");
     }
 
     public Integer getUnitsAmount() {

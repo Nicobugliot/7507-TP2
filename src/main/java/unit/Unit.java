@@ -3,6 +3,7 @@ package unit;
 import board.Board;
 import cell.Cell;
 import exceptions.AbilityException;
+import masterhand.MasterHand;
 
 public abstract class Unit {
 
@@ -11,6 +12,7 @@ public abstract class Unit {
     protected Integer cost;
     protected Board board;
     protected Integer team;
+    protected MasterHand masterHand;
 
     public abstract void useAbility(Unit unit) throws AbilityException;
 
@@ -59,5 +61,9 @@ public abstract class Unit {
 
     public boolean canFormBattalions(){
         return false;
+    }
+
+    public void moveTo(Cell nextCell) {
+        masterHand.moveUnit(this, nextCell);
     }
 }

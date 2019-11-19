@@ -21,6 +21,4 @@ public class Rider extends Unit {
             unit.applyDamage(meleeDamage);
         }
     }
-
-
 }
