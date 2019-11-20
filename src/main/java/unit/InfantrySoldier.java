@@ -1,5 +1,6 @@
 package unit;
 
+import cell.Cell;
 import exceptions.AbilityException;
 import utils.UtilBoard;
 
@@ -13,6 +14,7 @@ public class InfantrySoldier extends Unit {
     }
     private Integer meleeDamage = 10;
     private Boolean dead = false;
+    private Battalion battalion;
     private static Integer MIN_DISTANCE_ATACK = 1;
 
     @Override
@@ -24,34 +26,25 @@ public class InfantrySoldier extends Unit {
         }
     }
 
-    private void formBattalionIfPossible() {
-        Set<Unit> nearbyUnits = board.getNearbyUnits(this.cell);
-        Set<Unit> battalionCandidates = new HashSet<>();
+    private void formBattalionIfPossible(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
 
-        for (Unit nearbyUnit : nearbyUnits){
-            if (nearbyUnit.canFormBattalions()){
-                battalionCandidates.add(nearbyUnit);
-            }
-        }
-
-        Set<Unit> alignedCandidates = alignedUnits(battalionCandidates);
-        if (alignedCandidates.size() == 2){
-            Battalion formedBattalion = new Battalion();
-            for(Unit alignedCandidate : alignedCandidates){
-                formedBattalion.addUnit(alignedCandidate);
-            }
-        }else if (alignedCandidates.size() >= 3) {
-            //TODO Hacer que pueda elegir qué soldados puedan conformar su batallón.
-        }
-    }
-
-    private Set<Unit> alignedUnits(Set<Unit> battalionCandidates) {
-        Set<Unit> alignedUnits = new HashSet<>();
-        return alignedUnits;
+        if (unitA.canFormBattalions() && unitB.canFormBattalions()){        //se corrobora que las ingresadas puedan formar batallon
+            this.battalion = new Battalion();
+            this.battalion.addUnit(this);
+            this.battalion.addUnit(unitA);
+            this.battalion.addUnit(unitB);
+        }                                                         //habria que lanzar una excepcion si no cumplen
+        
+        //al mover hay que hacer un for de 3 intentando mover cada unidad que no se haya movido
+        //en cuanto se logra mover una unidad, la removemos del batallon y se siguen tratando de mover los miembros restantes
     }
 
     @Override
     public boolean canFormBattalions(){
         return true;
+    }
+
+    public void moveBattalion(Cell nextCellA , Cell nextCellB , Cell nextCellC) {
+        this.battalion.moveTo(nextCellA , nextCellB , nextCellC);
     }
 }

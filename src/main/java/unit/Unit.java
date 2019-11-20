@@ -66,4 +66,6 @@ public abstract class Unit {
     public void moveTo(Cell nextCell) {
         masterHand.moveUnit(this, nextCell);
     }
+
+
 }
