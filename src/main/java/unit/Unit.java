@@ -4,6 +4,9 @@ import board.Board;
 import cell.Cell;
 import exceptions.AbilityException;
 import masterhand.MasterHand;
+import utils.UtilBoard;
+
+import static utils.UtilBoard.distanceBetweenCells;
 
 public abstract class Unit {
 
@@ -65,5 +68,9 @@ public abstract class Unit {
 
     public void moveTo(Cell nextCell) {
         masterHand.moveUnit(this, nextCell);
+    }
+
+    public int distanceTo(Cell targetCell){
+        return distanceBetweenCells(this.cell, targetCell);
     }
 }
