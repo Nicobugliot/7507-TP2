@@ -15,7 +15,7 @@ public abstract class Unit {
     protected Integer cost;
     protected Board board;
     protected Integer team;
-    protected MasterHand masterHand;
+    protected MasterHand masterHand = new MasterHand();
 
     public abstract void useAbility(Unit unit) throws AbilityException;
 
