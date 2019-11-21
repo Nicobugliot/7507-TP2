@@ -4,6 +4,7 @@ import cell.Cell;
 import exceptions.AbilityException;
 import exceptions.BattalionException;
 import exceptions.MovementException;
+import utils.UtilBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Set;
 public class Battalion extends Unit {
 
     private List<Unit> units;
+    private UtilBoard utilBoard;
 
     public Battalion(){
         units = new ArrayList<>();
@@ -46,6 +48,29 @@ public class Battalion extends Unit {
                 // Agarro el error de movimiento ya que se debe quedar en su lugar
             }
         }
+        this.checkBattalionStatus();
+    }
+
+    private void checkBattalionStatus() {
+        if((utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(1).getCell()) == 1
+        || utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(2).getCell()) == 1)
+        && (utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(0).getCell()) == 1
+        || utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(2).getCell()) == 1)
+        && (utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(0).getCell()) == 1
+        || utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(1).getCell()) == 1)){
+            dissolveBattalion();
+        }
+    }
+
+    private void dissolveBattalion() {
+        //for (Integer i = 0; i < units.size(); i++){
+       //     this.units.remove(i);
+       // }
+        units = new ArrayList<>();
+    }
+
+    public Boolean isNotEmpty(){
+        return (units.size() == 3);
     }
 }
 
