@@ -16,12 +16,18 @@ public class Rider extends Unit {
     @Override
     public void useAbility(Unit unit) throws AbilityException {
         Cell myCell = this.cell;
-        if(this.board.alliesInShortRange(myCell, this.team) || !this.board.enemiesInShortRange(myCell, this.team)){
+        boolean alliesInShortRange = this.board.alliesInShortRange(myCell, this.team);
+        boolean enemiesInShortRange = this.board.enemiesInShortRange(myCell, this.team);
+        Integer distance = unit.distanceTo(myCell);
+        if ( alliesInShortRange || !enemiesInShortRange){
             unit.applyDamage(rangedDamage);
-        }else{
-            if(unit.distanceTo(myCell) <= 2) unit.applyDamage(meleeDamage);
-            else throw new AbilityException("Objetivo fuera de rango");
+            return;
         }
+        else if ( distance <= 2){
+            unit.applyDamage(meleeDamage);
+            return;
+        }
+        else throw new AbilityException("Objetivo fuera de rango");
     }
 
 }
