@@ -15,10 +15,11 @@ public class Rider extends Unit {
     @Override
     public void useAbility(Unit unit) {
         Cell myCell = this.cell;
-        if(this.board.alliesNearby(myCell, this.team) || !this.board.enemiesNearby(myCell, this.team)){
+        if(this.board.alliesInShortRange(myCell, this.team) || !this.board.enemiesInShortRange(myCell, this.team)){
             unit.applyDamage(rangedDamage);
         }else{
             unit.applyDamage(meleeDamage);
         }
     }
+
 }

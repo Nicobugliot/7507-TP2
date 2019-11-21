@@ -1,8 +1,6 @@
 package utils;
 
-import board.Board;
 import cell.Cell;
-import unit.Unit;
 
 public class UtilBoard {
 

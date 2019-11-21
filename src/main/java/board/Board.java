@@ -4,9 +4,12 @@ import cell.Cell;
 import masterhand.MasterHand;
 import player.Player;
 import unit.Unit;
+import utils.UtilMovement;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static utils.UtilBoard.distanceBetweenCells;
 
 public class Board {
 
@@ -110,5 +113,33 @@ public class Board {
         {
             return neighbourCells;
         }
+    }
+
+    public boolean alliesInShortRange(Cell cell, Integer team) {
+        Set<Cell> shortRangeCells = findCellsInRangeFromCell(2, cell);
+
+        for (Cell shortRangeCell : shortRangeCells){
+            if (!shortRangeCell.isEmpty() && shortRangeCell.containsAllyOf(team)) return true;
+        }
+        return false;
+    }
+
+    public boolean enemiesInShortRange(Cell cell, Integer team) {
+        Set<Cell> shortRangeCells = findCellsInRangeFromCell(2, cell);
+
+        for (Cell shortRangeCell : shortRangeCells){
+            if (!shortRangeCell.isEmpty() && !shortRangeCell.containsAllyOf(team)) return true;
+        }
+        return false;
+    }
+
+    private Set<Cell> findCellsInRangeFromCell(int range, Cell centralCell) {
+        Set<Cell> cellsInRange = new HashSet<>();
+        for (Cell[] column: boardCells) {
+            for (Cell cell: column){
+                if (distanceBetweenCells(centralCell, cell) <= range) cellsInRange.add(cell);
+            }
+        }
+        return cellsInRange;
     }
 }

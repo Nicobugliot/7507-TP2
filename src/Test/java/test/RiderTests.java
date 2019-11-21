@@ -100,8 +100,8 @@ class RiderTests {
         attacker.setCell(attackerCell);//Le asigno una celda al atacante
 
         //seteo el comportamiento del mock para que haga de cuenta que hay enemigos cerca y no aliados
-        when(boardMock.alliesNearby(attackerCell,1)).thenReturn(false);
-        when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(true);
+        when(boardMock.alliesInShortRange(attackerCell,1)).thenReturn(false);
+        when(boardMock.enemiesInShortRange(attackerCell,1)).thenReturn(true);
 
         try {
             attacker.useAbility(defender);
