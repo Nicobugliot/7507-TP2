@@ -1,7 +1,7 @@
 package test;
 
-import cell.Cell;
-import unit.Unit;
+import Modelo.Cell;
+import Modelo.unit.Unit;
 
 public class TestDummy extends Unit {
 

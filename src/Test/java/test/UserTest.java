@@ -1,11 +1,11 @@
 package test;
 
-import exceptions.GameOverException;
-import exceptions.InsufficientPointsException;
+import Modelo.exceptions.GameOverException;
+import Modelo.exceptions.InsufficientPointsException;
 import org.junit.jupiter.api.Test;
-import player.Player;
-import unit.InfantrySoldier;
-import unit.Unit ;
+import Modelo.Player;
+import Modelo.unit.InfantrySoldier;
+import Modelo.unit.Unit ;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

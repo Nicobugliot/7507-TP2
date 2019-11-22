@@ -1,9 +1,9 @@
 package test;
 
-import cell.Cell;
-import exceptions.AbilityException;
+import Modelo.Cell;
+import Modelo.exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
-import unit.*;
+import Modelo.unit.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

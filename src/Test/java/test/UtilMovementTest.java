@@ -1,8 +1,8 @@
 package test;
 
-import cell.Cell;
+import Modelo.Cell;
 import org.junit.jupiter.api.Test;
-import utils.UtilMovement;
+import Modelo.utils.UtilMovement;
 
 import static org.junit.jupiter.api.Assertions.*;
 

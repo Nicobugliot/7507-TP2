@@ -1,10 +1,10 @@
 package test;
 
-import cell.Cell;
-import exceptions.MovementException;
+import Modelo.Cell;
+import Modelo.exceptions.MovementException;
 import org.junit.jupiter.api.Test;
-import player.Player;
-import unit.Unit;
+import Modelo.Player;
+import Modelo.unit.Unit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

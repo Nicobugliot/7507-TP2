@@ -1,1 +1,11 @@
+test/CatapultTests.class
 test/UserTest.class
+test/StubCell.class
+test/BattalionTests.class
+test/MasterHandUnitTest.class
+test/TestDummy.class
+test/HealerTests.class
+test/CellUnitTest.class
+test/UtilMovementTest.class
+test/RiderTests.class
+test/InfantrySoldierTests.class

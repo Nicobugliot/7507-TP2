@@ -1,8 +1,8 @@
 package test;
 
-import cell.Cell;
-import exceptions.OccupiedCellException;
-import masterhand.MasterHand;
+import Modelo.Cell;
+import Modelo.exceptions.OccupiedCellException;
+import Modelo.MasterHand;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

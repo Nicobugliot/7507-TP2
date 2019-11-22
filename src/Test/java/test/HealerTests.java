@@ -1,8 +1,8 @@
 package test;
 
-import exceptions.AbilityException;
+import Modelo.exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
-import unit.*;
+import Modelo.unit.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

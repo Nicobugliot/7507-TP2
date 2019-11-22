@@ -1,11 +1,10 @@
 package test;
 
-import cell.Cell;
-import exceptions.AbilityException;
+import Modelo.Cell;
 import org.junit.jupiter.api.Test;
-import unit.Battalion;
-import unit.InfantrySoldier;
-import unit.Unit;
+import Modelo.unit.Battalion;
+import Modelo.unit.InfantrySoldier;
+import Modelo.unit.Unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
