@@ -32,6 +32,10 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("AlgoChess v1.0 - Alpha");
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+            closeConfirmation();
+        });
 
         Scene menuScene = generateMenuScene();
 
@@ -51,16 +55,9 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
             primaryStage.setScene(generateGameScene());
             primaryStage.show();
 
-        }else if(actionEvent.getSource() == exitButton){
+        }else if(actionEvent.getSource() == exitButton ){
             //le hicieron clic a exitButton
-            /*primaryStage.setScene(generateExitScene());
-            primaryStage.show();*/
-            ConfirmationPopUpWindow confirmExit = new ConfirmationPopUpWindow();
-            boolean wantedToCLose = confirmExit.display(
-                    "Exit", "Are you sure you want to exit the game?",
-                    "I can't take it anymore, the game is too hard",
-                    "I want to keep playing");
-            if (wantedToCLose) primaryStage.close();
+            closeConfirmation();
 
         }else if(actionEvent.getSource() == menuButton){
             //le hicieron clic a exitButton
@@ -86,7 +83,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         VBox menuLayout = new VBox(20);
         menuLayout.getChildren().addAll(menuTitle,settingsButton,startGameButton,exitButton);
 
-        Scene menuScene = new Scene(menuLayout, 200, 200);
+        Scene menuScene = new Scene(menuLayout, 1000, 1000);
 
         return menuScene;
     }
@@ -131,5 +128,14 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
 
         return settingsScene;
 
+    }
+
+    private void closeConfirmation(){
+        ConfirmationPopUpWindow confirmExit = new ConfirmationPopUpWindow();
+        boolean wantedToCLose = confirmExit.display(
+                "Exit", "Are you sure you want to exit the game?",
+                "I can't take it anymore, the game is too hard",
+                "I want to keep playing");
+        if (wantedToCLose) primaryStage.close();
     }
 }
