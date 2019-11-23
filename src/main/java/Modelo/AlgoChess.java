@@ -11,6 +11,7 @@ public class AlgoChess {
     private Player[] players = new Player[MAX_PLAYERS+1];
     private Integer playersAdded = 0;
     private Integer actingTeam;
+    private Integer nextTeam;
     private Boolean GAME_OVER = false;
 
     public AlgoChess() {
@@ -40,10 +41,11 @@ public class AlgoChess {
         Integer startingTeam = (new Random()).nextInt(MAX_PLAYERS) + 1;//un número al azar de 0 a MAX_PLAYERS, le sumo uno para que represente los equipos 1 y 2
         this.actingTeam  = startingTeam;
         Integer nextTeam = ++startingTeam % (MAX_PLAYERS+1);
-        while(!GAME_OVER){
-            this.actingTeam  = nextTeam;
-            nextTeam = ++actingTeam % (MAX_PLAYERS+1);
-            actingTeam = (actingTeam != 0 ? actingTeam : ++actingTeam); //no hay jugador 0
-        }
+    }
+
+    public void advanceTurn(){
+        this.actingTeam  = this.nextTeam;
+        this.nextTeam = ++actingTeam % (MAX_PLAYERS+1);
+        actingTeam = (actingTeam != 0 ? actingTeam : ++actingTeam); //no hay jugador 0
     }
 }
