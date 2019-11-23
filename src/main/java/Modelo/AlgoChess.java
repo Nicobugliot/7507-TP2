@@ -37,7 +37,7 @@ public class AlgoChess {
     }
 
     public void startGame(){
-        Integer startingTeam = (new Random()).nextInt(2) + 1;//un número al azar de 0 a 2, le sumo uno para que represente los equipos 1 y 2
+        Integer startingTeam = (new Random()).nextInt(MAX_PLAYERS) + 1;//un número al azar de 0 a MAX_PLAYERS, le sumo uno para que represente los equipos 1 y 2
         this.actingTeam  = startingTeam;
         Integer nextTeam = ++startingTeam % (MAX_PLAYERS+1);
         while(!GAME_OVER){
