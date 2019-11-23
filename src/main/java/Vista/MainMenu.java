@@ -10,9 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.InputStream;
 
 
 public class MainMenu extends Application implements EventHandler<ActionEvent> {
@@ -22,7 +25,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     private Button startGameButton;
     private Button exitButton;
     private Button menuButton;
-
+    private Background backgroundImageObject;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,10 +35,32 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("AlgoChess v1.0 - Alpha");
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setOnCloseRequest(e -> {
             e.consume();
             closeConfirmation();
         });
+
+        //file path
+        String path = "/assets/soldado rojo.png";
+
+        // create a input stream
+        //FileInputStream imageStream = new FileInputStream(path);
+        InputStream imageStream = getClass().getResourceAsStream(path);
+
+        // create a image
+        Image image = new Image(imageStream);
+
+        // create a background image
+        BackgroundImage backgroundImage = new BackgroundImage(image,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+        // create Background
+        backgroundImageObject = new Background(backgroundImage);
+
 
         Scene menuScene = generateMenuScene();
 
@@ -52,7 +77,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
 
         }else if(actionEvent.getSource() == startGameButton){
             //le hicieron clic a startGameButton
-            primaryStage.setScene(generateGameScene());
+            primaryStage.setScene(generatePreGameScene());
             primaryStage.show();
 
         }else if(actionEvent.getSource() == exitButton ){
@@ -82,13 +107,15 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         //Layout vertical
         VBox menuLayout = new VBox(20);
         menuLayout.getChildren().addAll(menuTitle,settingsButton,startGameButton,exitButton);
+        //Agregando el fondo
+        menuLayout.setBackground(backgroundImageObject);
 
-        Scene menuScene = new Scene(menuLayout, 1000, 1000);
+        Scene menuScene = new Scene(menuLayout, 1000, 500);
 
         return menuScene;
     }
 
-    private Scene generateGameScene(){
+    private Scene generatePreGameScene(){
         TextField playerName = new TextField();
         playerName.setPromptText("Insert Player Name");
 
