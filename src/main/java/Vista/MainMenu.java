@@ -1,7 +1,7 @@
 package Vista;
 
-import Controladores.SendButtonEventHandler;
 import Controladores.NameInputEventHandler;
+import Controladores.SendButtonEventHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -45,14 +45,23 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
             //le hicieron clic a settingsButton
             primaryStage.setScene(generateSettingsScene());
             primaryStage.show();
+
         }else if(actionEvent.getSource() == startGameButton){
             //le hicieron clic a startGameButton
             primaryStage.setScene(generateGameScene());
             primaryStage.show();
+
         }else if(actionEvent.getSource() == exitButton){
             //le hicieron clic a exitButton
-            primaryStage.setScene(generateExitScene());
-            primaryStage.show();
+            /*primaryStage.setScene(generateExitScene());
+            primaryStage.show();*/
+            ConfirmationPopUpWindow confirmExit = new ConfirmationPopUpWindow();
+            boolean wantedToCLose = confirmExit.display(
+                    "Exit", "Are you sure you want to exit the game?",
+                    "I can't take it anymore, the game is too hard",
+                    "I want to keep playing");
+            if (wantedToCLose) primaryStage.close();
+
         }else if(actionEvent.getSource() == menuButton){
             //le hicieron clic a exitButton
             primaryStage.setScene(generateMenuScene());
@@ -108,19 +117,6 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         Scene menuScene = new Scene(mainContainer, 300, 250);
 
         return menuScene;
-    }
-
-    private Scene generateExitScene() {
-        Label exitTitle = new Label("Are you sure you want to exit?");
-        menuButton = new Button("Main Menu");
-        menuButton.setOnAction(this);
-        //Layout vertical
-        VBox exitLayout = new VBox(20);
-        exitLayout.getChildren().addAll(exitTitle,menuButton);
-
-        Scene exitScene = new Scene(exitLayout, 200, 200);
-
-        return exitScene;
     }
 
     private Scene generateSettingsScene() {
