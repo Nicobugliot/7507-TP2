@@ -116,7 +116,6 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
 
     private Scene generatePreGameScene(){
         String[] playerNames = new String[MAX_PLAYERS+1];
-        playerNames[0] = "FILLER";
         for (Integer i = 1; i <= 2 ; i++) {
             playerNames[i] = askPLayerName(i.toString());
         }

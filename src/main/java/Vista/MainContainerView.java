@@ -1,31 +1,27 @@
 package Vista;
 
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
 
-public class MainContainerView extends VBox{
+public class MainContainerView extends StackPane{
 
     public MainContainerView(String[] players) {
-        super();
-        this.setAlignment(Pos.CENTER);
-        this.setMaxHeight(700);
-        this.setMaxWidth(500);
+        // Load your Image
+        ImageView backgroundImageView = new ImageView(new Image(getClass().getResourceAsStream("/tablero.png")));
 
-        PlayerView firstPlayerView = new PlayerView(players[0]);
-        PlayerView secondPlayerView = new PlayerView(players[1]);
+        PlayerView firstPlayerView = new PlayerView(players[0], Color.RED);
+        PlayerView secondPlayerView = new PlayerView(players[1], Color.BLUE);
+
         BoardView boardView = new BoardView();
 
-        Label title = new Label("AlgoChess");
-        title.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
-        title.setTextAlignment(TextAlignment.CENTER);
-        title.setTextFill(Color.web("000000"));
+        this.setMinWidth(500);
+        this.setMinHeight(600);
 
-        this.getChildren().addAll(firstPlayerView, boardView.setBoardView(), secondPlayerView);
+        this.getChildren().addAll(backgroundImageView, boardView, firstPlayerView, secondPlayerView);
+        this.setAlignment(firstPlayerView, Pos.TOP_CENTER);
+        this.setAlignment(secondPlayerView, Pos.BOTTOM_CENTER);
     }
 }
