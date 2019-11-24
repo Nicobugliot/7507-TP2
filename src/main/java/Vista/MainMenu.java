@@ -15,6 +15,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 
@@ -43,24 +45,25 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         });
 
         //file path
-        String path = "/assets/soldado rojo.png";
+        String path = "/Resources/soldado_rojo.png";
 
         // create a input stream
         //FileInputStream imageStream = new FileInputStream(path);
-        InputStream imageStream = getClass().getResourceAsStream(path);
+        //InputStream imageStream = getClass().getResourceAsStream(path);
 
         // create a image
-        //Image image = new Image(imageStream);
+        //Image image = new Image("/Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Resources/caballo_azul.png");
+        Image image = new Image(new File("/Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Resources/caballo_azul.png").toURI().toString());
 
         // create a background image
-        /*BackgroundImage backgroundImage = new BackgroundImage(image,
+        BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);*/
+                BackgroundSize.DEFAULT);
 
         // create Background
-        //backgroundImageObject = new Background(backgroundImage);
+        backgroundImageObject = new Background(backgroundImage);
 
         Scene menuScene = generateMenuScene();
 
@@ -108,9 +111,9 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         VBox menuLayout = new VBox(20);
         menuLayout.getChildren().addAll(menuTitle,settingsButton,startGameButton,exitButton);
         //Agregando el fondo
-        //menuLayout.setBackground(backgroundImageObject);
+        menuLayout.setBackground(backgroundImageObject);
 
-        Scene menuScene = new Scene(menuLayout, 1000, 500);
+        Scene menuScene = new Scene(menuLayout, 417, 417);
 
         return menuScene;
     }

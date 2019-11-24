@@ -118,7 +118,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <mainClass>App</mainClass>
+                    <mainClass>Vista.MainMenu</mainClass>
                 </configuration>
             </plugin>
 
@@ -126,7 +126,7 @@
 
         <resources>
             <resource>
-                <directory>src/main/java/resources</directory>
+                <directory>src/main/java/Resources</directory>
             </resource>
         </resources>
     </build>
