@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,15 +46,10 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         });
 
         //file path
-        String path = "/Resources/soldado_rojo.png";
-
-        // create a input stream
-        //FileInputStream imageStream = new FileInputStream(path);
-        //InputStream imageStream = getClass().getResourceAsStream(path);
+        String path = "/caballo_rojo.png";
 
         // create a image
-        //Image image = new Image("/Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Resources/caballo_azul.png");
-        Image image = new Image(new File("/Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Resources/caballo_azul.png").toURI().toString());
+        Image image = new Image(getClass().getResourceAsStream(path));
 
         // create a background image
         BackgroundImage backgroundImage = new BackgroundImage(image,
@@ -110,6 +106,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         //Layout vertical
         VBox menuLayout = new VBox(20);
         menuLayout.getChildren().addAll(menuTitle,settingsButton,startGameButton,exitButton);
+        menuLayout.setAlignment(Pos.CENTER);
         //Agregando el fondo
         menuLayout.setBackground(backgroundImageObject);
 
