@@ -21,6 +21,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     private Button exitButton;
     private Button menuButton;
     private Integer MAX_PLAYERS = 2;
+    private String[] playerNames;
     private Background backgroundImageObject;
 
     public static void main(String[] args) {
@@ -68,14 +69,14 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
 
         }else if(actionEvent.getSource() == startGameButton){
             //le hicieron clic a startGameButton
-            //primaryStage.setScene(generatePreGameScene());
-            //primaryStage.show();
-            BoardView boardView = new BoardView();
-            try {
-                boardView.startGame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            primaryStage.setScene(generatePreGameScene());
+            primaryStage.show();
+
+            // Arranca el juego
+            MainContainerView gameContainer = new MainContainerView(this.playerNames);
+            Scene gameScene = new Scene(gameContainer);
+            primaryStage.setScene(gameScene);
+            primaryStage.show();
 
         }else if(actionEvent.getSource() == exitButton ){
             //le hicieron clic a exitButton
@@ -119,6 +120,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         for (Integer i = 1; i <= 2 ; i++) {
             playerNames[i] = askPLayerName(i.toString());
         }
+        this.playerNames = playerNames;
         return generateMenuScene();
     }
 

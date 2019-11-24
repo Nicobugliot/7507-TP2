@@ -1,3 +1,6 @@
 Controladores/CellController.class
-Vista/BoardView$Tile.class
 Vista/BoardView.class
+Vista/CellView.class
+Controladores/AddUnitController.class
+Vista/PlayerView.class
+Vista/MainContainerView.class
