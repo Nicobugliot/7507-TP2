@@ -52,15 +52,14 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         Image image = new Image(imageStream);
 
         // create a background image
-        BackgroundImage backgroundImage = new BackgroundImage(image,
+        /*BackgroundImage backgroundImage = new BackgroundImage(image,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
+                BackgroundSize.DEFAULT);*/
 
         // create Background
-        backgroundImageObject = new Background(backgroundImage);
-
+        //backgroundImageObject = new Background(backgroundImage);
 
         Scene menuScene = generateMenuScene();
 
@@ -108,7 +107,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         VBox menuLayout = new VBox(20);
         menuLayout.getChildren().addAll(menuTitle,settingsButton,startGameButton,exitButton);
         //Agregando el fondo
-        menuLayout.setBackground(backgroundImageObject);
+        //menuLayout.setBackground(backgroundImageObject);
 
         Scene menuScene = new Scene(menuLayout, 1000, 500);
 
