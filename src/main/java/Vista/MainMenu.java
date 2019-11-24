@@ -1,24 +1,16 @@
 package Vista;
 
-import Controladores.NameInputEventHandler;
-import Controladores.SendNameButtonEventHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 
 public class MainMenu extends Application implements EventHandler<ActionEvent> {
@@ -76,8 +68,14 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
 
         }else if(actionEvent.getSource() == startGameButton){
             //le hicieron clic a startGameButton
-            primaryStage.setScene(generatePreGameScene());
-            primaryStage.show();
+            //primaryStage.setScene(generatePreGameScene());
+            //primaryStage.show();
+            BoardView boardView = new BoardView();
+            try {
+                boardView.startGame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }else if(actionEvent.getSource() == exitButton ){
             //le hicieron clic a exitButton
