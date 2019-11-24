@@ -33,7 +33,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("AlgoChess v1.0 - Alpha");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
