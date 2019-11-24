@@ -1,7 +1,7 @@
 package Vista;
 
 import Controladores.NameInputEventHandler;
-import Controladores.SendButtonEventHandler;
+import Controladores.SendNameButtonEventHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +25,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     private Button startGameButton;
     private Button exitButton;
     private Button menuButton;
+    private Integer MAX_PLAYERS = 2;
     private Background backgroundImageObject;
 
     public static void main(String[] args) {
@@ -49,7 +50,7 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
         InputStream imageStream = getClass().getResourceAsStream(path);
 
         // create a image
-        Image image = new Image(imageStream);
+        //Image image = new Image(imageStream);
 
         // create a background image
         /*BackgroundImage backgroundImage = new BackgroundImage(image,
@@ -115,31 +116,22 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     }
 
     private Scene generatePreGameScene(){
-        TextField playerName = new TextField();
-        playerName.setPromptText("Insert Player Name");
+        String[] playerNames = new String[MAX_PLAYERS+1];
+        playerNames[0] = "FILLER";
+        for (Integer i = 1; i <= 2 ; i++) {
+            playerNames[i] = askPLayerName(i.toString());
+        }
+        return generateMenuScene();
+    }
 
-        Button sendButton = new Button();
-        sendButton.setText("Ok");
+    private String askPLayerName( String playerNumber){
+        InputNamePopUpWindow askPlayerForName = new InputNamePopUpWindow();
+        String selectedName = askPlayerForName.display(
+                "Waiting for name", "Player "+playerNumber+" what's your name?",
+                "Accept",
+                "playerNumber");
 
-        HBox horizontalContainer = new HBox(sendButton);
-        horizontalContainer.setSpacing(10);
-
-        Label aLabel = new Label();
-        aLabel.setText(playerName.getText());
-
-        VBox mainContainer = new VBox(playerName, horizontalContainer, aLabel);
-        mainContainer.setSpacing(10);
-        mainContainer.setPadding(new Insets(20));
-
-        SendButtonEventHandler SendButtonEventHandler = new SendButtonEventHandler(playerName, aLabel);
-        sendButton.setOnAction(SendButtonEventHandler);
-
-        NameInputEventHandler NameInputEventHandler = new NameInputEventHandler(sendButton);
-        playerName.setOnKeyPressed(NameInputEventHandler);
-
-        Scene menuScene = new Scene(mainContainer, 300, 250);
-
-        return menuScene;
+        return selectedName;
     }
 
     private Scene generateSettingsScene() {

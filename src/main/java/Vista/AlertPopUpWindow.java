@@ -8,7 +8,7 @@ import javafx.scene.layout.*;
 import javafx.stage.*;
 import javafx.geometry.*;
 
-public class AlerPopUpWindow implements EventHandler<ActionEvent> {
+public class AlertPopUpWindow implements EventHandler<ActionEvent> {
 
     private Button closeButton;
     private Stage window;

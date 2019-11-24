@@ -6,12 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-public class SendButtonEventHandler implements EventHandler<ActionEvent> {
+public class SendNameButtonEventHandler implements EventHandler<ActionEvent> {
 
     private TextField textField;
     private Label label;
 
-    public SendButtonEventHandler(TextField textField, Label label) {
+    public SendNameButtonEventHandler(TextField textField, Label label) {
         this.textField = textField;
         this.label = label;
     }
@@ -25,7 +25,6 @@ public class SendButtonEventHandler implements EventHandler<ActionEvent> {
             this.label.setTextFill(Color.web("#FF0000"));
 
         } else {
-
             this.label.setText(this.textField.getText());
             this.label.setTextFill(Color.web("#336600"));
         }
