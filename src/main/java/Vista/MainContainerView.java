@@ -12,8 +12,9 @@ public class MainContainerView extends StackPane{
         // Load your Image
         ImageView backgroundImageView = new ImageView(new Image(getClass().getResourceAsStream("/tablero.png")));
 
-        PlayerView firstPlayerView = new PlayerView(players[0], Color.RED);
-        PlayerView secondPlayerView = new PlayerView(players[1], Color.BLUE);
+        PlayerView firstPlayerView = new PlayerView(players[1], Color.RED);
+        
+        PlayerView secondPlayerView = new PlayerView(players[2], Color.BLUE);
 
         BoardView boardView = new BoardView();
 
