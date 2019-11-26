@@ -1,5 +1,6 @@
 package Modelo;
 
+import Modelo.exceptions.InsufficientPointsException;
 import Modelo.unit.*;
 
 import java.util.HashSet;
@@ -14,28 +15,52 @@ public class Store {
     private Store() {
     }
 
+    public Boolean playerHasEnoughPoints(Integer unitCost, Integer playerPoints){
+        return ( unitCost <= playerPoints );
+    }
+
     public Unit buyInfantrySoldier(Player player) {
         Unit unit = new InfantrySoldier();
-        player.addUnit(unit);
-        return unit;
+        if (playerHasEnoughPoints( unit.getCost() , player.getPoints())){
+            player.addUnit(unit);
+            return unit;
+        }
+        else {
+            throw new InsufficientPointsException("El jugador no tiene los puntos necesarios para la compra");
+        }
     }
 
     public Unit buyCatapult(Player player) {
         Unit unit = new Catapult();
-        player.addUnit(unit);
-        return unit;
+        if (playerHasEnoughPoints( unit.getCost() , player.getPoints())){
+            player.addUnit(unit);
+            return unit;
+        }
+        else {
+            throw new InsufficientPointsException("El jugador no tiene los puntos necesarios para la compra");
+        }
     }
 
     public Unit buyHealer(Player player) {
         Unit unit = new Healer();
-        player.addUnit(unit);
-        return unit;
+        if (playerHasEnoughPoints( unit.getCost() , player.getPoints())){
+            player.addUnit(unit);
+            return unit;
+        }
+        else {
+            throw new InsufficientPointsException("El jugador no tiene los puntos necesarios para la compra");
+        }
     }
 
     public Unit buyRider(Player player) {
         Unit unit = new Rider();
-        player.addUnit(unit);
-        return unit;
+        if (playerHasEnoughPoints( unit.getCost() , player.getPoints())){
+            player.addUnit(unit);
+            return unit;
+        }
+        else {
+            throw new InsufficientPointsException("El jugador no tiene los puntos necesarios para la compra");
+        }
     }
 
 
