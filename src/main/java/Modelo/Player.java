@@ -73,4 +73,8 @@ public class Player {
     public Integer getUnitsAmount() {
         return this.playerUnits.size();
     }
+
+    public Integer getPoints(){
+        return this.points;
+    }
 }

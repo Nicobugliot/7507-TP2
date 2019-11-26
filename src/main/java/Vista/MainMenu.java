@@ -117,13 +117,13 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
     private Scene generatePreGameScene(){
         String[] playerNames = new String[MAX_PLAYERS+1];
         for (Integer i = 1; i <= 2 ; i++) {
-            playerNames[i] = askPLayerName(i.toString());
+            playerNames[i] = askPlayerName(i.toString());
         }
         this.playerNames = playerNames;
         return generateMenuScene();
     }
 
-    private String askPLayerName( String playerNumber){
+    private String askPlayerName( String playerNumber){
         InputNamePopUpWindow askPlayerForName = new InputNamePopUpWindow();
         String selectedName = askPlayerForName.display(
                 "Waiting for name", "Player "+playerNumber+" what's your name?",

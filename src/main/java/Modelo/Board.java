@@ -79,8 +79,7 @@ public class Board {
     }
 
     /*Finds the neighbour cells if possible surrrounding a given position*/
-    private Set<Cell> findNeighborCells(int x, int y)
-    {
+    private Set<Cell> findNeighborCells(int x, int y) {
         Set<Cell> neighbourCells = new HashSet<>();
         try
         {

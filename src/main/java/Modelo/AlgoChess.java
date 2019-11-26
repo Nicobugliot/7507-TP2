@@ -37,7 +37,7 @@ public class AlgoChess {
         board.setBoardCells(firstPlayer, secondPlayer);
     }
 
-    public void startGame(){
+    public void initializeTeams(){
         Integer startingTeam = (new Random()).nextInt(MAX_PLAYERS) + 1;//un número al azar de 0 a MAX_PLAYERS, le sumo uno para que represente los equipos 1 y 2
         this.actingTeam  = startingTeam;
         Integer nextTeam = ++startingTeam % (MAX_PLAYERS+1);
@@ -47,5 +47,21 @@ public class AlgoChess {
         this.actingTeam  = this.nextTeam;
         this.nextTeam = ++actingTeam % (MAX_PLAYERS+1);
         actingTeam = (actingTeam != 0 ? actingTeam : ++actingTeam); //no hay jugador 0
+    }
+
+    public void startInitialPhase(){
+        for (Integer i = 0; i < MAX_PLAYERS; i++){
+            while (0 < players[actingTeam].getPoints()){
+                //buyAndPlaceUnit(players[actingTeam]);
+            }
+            this.advanceTurn();
+        }
+    }
+
+    public void startGame(){
+        while( ! GAME_OVER ){
+            //playTurn(players[actingTeam]);
+            this.advanceTurn();
+        }
     }
 }
