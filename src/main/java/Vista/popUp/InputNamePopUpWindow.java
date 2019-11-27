@@ -1,4 +1,4 @@
-package Vista;
+package Vista.popUp;
 
 import Controladores.NameInputEventHandler;
 import javafx.event.ActionEvent;

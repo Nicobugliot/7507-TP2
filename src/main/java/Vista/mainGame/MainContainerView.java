@@ -1,20 +1,34 @@
-package Vista;
+package Vista.mainGame;
 
+import Controladores.TurnController;
+import Modelo.Player;
+import Vista.mainGame.BoardView;
+import Vista.mainGame.PlayerView;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class MainContainerView extends StackPane{
 
-    public MainContainerView(String[] players) {
+    private ArrayList<Player> players;
+    private Stage stage;
+
+    public MainContainerView() {
+
+        // Load player
+        this.players = TurnController.getInstance().getPlayers();
+
         // Load your Image
         ImageView backgroundImageView = new ImageView(new Image(getClass().getResourceAsStream("/tablero.png")));
 
-        PlayerView firstPlayerView = new PlayerView(players[1], Color.RED);
+        PlayerView firstPlayerView = new PlayerView(players.get(0).getName(), Color.RED);
         
-        PlayerView secondPlayerView = new PlayerView(players[2], Color.BLUE);
+        PlayerView secondPlayerView = new PlayerView(players.get(1).getName(), Color.BLUE);
 
         BoardView boardView = new BoardView();
 

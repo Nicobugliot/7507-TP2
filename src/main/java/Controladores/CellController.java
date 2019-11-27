@@ -1,9 +1,6 @@
 package Controladores;
 
 import Modelo.Board;
-import Modelo.Cell;
-import Vista.BoardView;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

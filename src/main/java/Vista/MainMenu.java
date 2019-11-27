@@ -1,27 +1,26 @@
 package Vista;
 
+import Modelo.Player;
+import Vista.popUp.ConfirmationPopUpWindow;
+import Vista.scene.MenuScene;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.ArrayList;
 
-public class MainMenu extends Application implements EventHandler<ActionEvent> {
+
+public class MainMenu extends Application{
 
     private Stage primaryStage;
-    private Button settingsButton;
     private Button startGameButton;
     private Button exitButton;
     private Button menuButton;
     private Integer MAX_PLAYERS = 2;
-    private String[] playerNames;
+    private ArrayList<Player> players;
     private Background backgroundImageObject;
 
     public static void main(String[] args) {
@@ -38,113 +37,10 @@ public class MainMenu extends Application implements EventHandler<ActionEvent> {
             closeConfirmation();
         });
 
-        //file path
-        String path = "/caballo_rojo.png";
-
-        // create a image
-        Image image = new Image(getClass().getResourceAsStream(path));
-
-        // create a background image
-        BackgroundImage backgroundImage = new BackgroundImage(image,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-
-        // create Background
-        backgroundImageObject = new Background(backgroundImage);
-
-        Scene menuScene = generateMenuScene();
-
+        // Se inicia el menu principal
+        Scene menuScene = new Scene(new MenuScene(primaryStage));
         primaryStage.setScene(menuScene);
         primaryStage.show();
-    }
-
-    @Override
-    public void handle(ActionEvent actionEvent) { //para que maneje algunos eventos desde esta clase, a esos objectos hay que pasarles .setOnAction(this)
-        if(actionEvent.getSource() == settingsButton){
-            //le hicieron clic a settingsButton
-            primaryStage.setScene(generateSettingsScene());
-            primaryStage.show();
-
-        }else if(actionEvent.getSource() == startGameButton){
-            //le hicieron clic a startGameButton
-            primaryStage.setScene(generatePreGameScene());
-            primaryStage.show();
-
-            // Arranca el juego
-            MainContainerView gameContainer = new MainContainerView(this.playerNames);
-            Scene gameScene = new Scene(gameContainer);
-            primaryStage.setScene(gameScene);
-            primaryStage.show();
-
-        }else if(actionEvent.getSource() == exitButton ){
-            //le hicieron clic a exitButton
-            closeConfirmation();
-
-        }else if(actionEvent.getSource() == menuButton){
-            //le hicieron clic a exitButton
-            primaryStage.setScene(generateMenuScene());
-            primaryStage.show();
-        }
-    }
-
-    private Scene generateMenuScene(){
-
-        Label menuTitle = new Label("Main Menu");
-
-        settingsButton = new Button("Settings");
-        settingsButton.setOnAction(this);
-
-        startGameButton = new Button( "Play");
-        startGameButton.setOnAction(this);
-
-        exitButton = new Button("Exit");
-        exitButton.setOnAction(this);
-
-        //Layout vertical
-        VBox menuLayout = new VBox(20);
-        menuLayout.getChildren().addAll(menuTitle,settingsButton,startGameButton,exitButton);
-        menuLayout.setAlignment(Pos.CENTER);
-        //Agregando el fondo
-        menuLayout.setBackground(backgroundImageObject);
-
-        Scene menuScene = new Scene(menuLayout, 417, 417);
-
-        return menuScene;
-    }
-
-    private Scene generatePreGameScene(){
-        String[] playerNames = new String[MAX_PLAYERS+1];
-        for (Integer i = 1; i <= 2 ; i++) {
-            playerNames[i] = askPlayerName(i.toString());
-        }
-        this.playerNames = playerNames;
-        return generateMenuScene();
-    }
-
-    private String askPlayerName( String playerNumber){
-        InputNamePopUpWindow askPlayerForName = new InputNamePopUpWindow();
-        String selectedName = askPlayerForName.display(
-                "Waiting for name", "Player "+playerNumber+" what's your name?",
-                "Accept",
-                "playerNumber");
-
-        return selectedName;
-    }
-
-    private Scene generateSettingsScene() {
-        Label settingsTitle = new Label("Settings");
-        menuButton = new Button("Main Menu");
-        menuButton.setOnAction(this);
-        //Layout vertical
-        VBox settingsLayout = new VBox(20);
-        settingsLayout.getChildren().addAll(settingsTitle,menuButton);
-
-        Scene settingsScene = new Scene(settingsLayout, 200, 200);
-
-        return settingsScene;
-
     }
 
     private void closeConfirmation(){

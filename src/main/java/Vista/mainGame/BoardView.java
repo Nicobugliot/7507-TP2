@@ -1,4 +1,4 @@
-package Vista;
+package Vista.mainGame;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 

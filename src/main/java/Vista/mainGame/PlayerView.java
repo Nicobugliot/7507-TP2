@@ -1,4 +1,4 @@
-package Vista;
+package Vista.mainGame;
 
 import Controladores.Botones.AddUnitController;
 import javafx.geometry.Insets;

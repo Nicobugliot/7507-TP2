@@ -77,4 +77,6 @@ public class Player {
     public Integer getPoints(){
         return this.points;
     }
+
+    public String getName() { return this.playerName; }
 }

@@ -1,4 +1,4 @@
-package Vista;
+package Vista.mainGame;
 
 import Controladores.CellController;
 import javafx.scene.layout.Pane;
