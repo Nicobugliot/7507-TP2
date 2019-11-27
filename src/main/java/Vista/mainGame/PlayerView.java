@@ -1,6 +1,7 @@
 package Vista.mainGame;
 
 import Controladores.Botones.AddUnitController;
+import Controladores.TurnController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,6 +18,7 @@ public class PlayerView extends HBox {
 
     private final String name;
     private final Color color;
+    private static TurnController turnController = TurnController.getInstance();
 
     public PlayerView(String name, Color color) {
         //super();
@@ -34,12 +36,17 @@ public class PlayerView extends HBox {
         /**
          * Configuración de los botones
          * */
-        Button addUnitButton = new Button();
-        addUnitButton.setText("Add Unit");
+        Button addUnitButton = new Button("Add unit");
         addUnitButton.setAlignment(Pos.CENTER);
 
-        // Le indico qué controlador tiene asignado
+        Button changeTurn = new Button("Finish turn");
+        changeTurn.setAlignment(Pos.CENTER_RIGHT);
+
+        /**
+         * Asigno controladores para los botones
+         */
         addUnitButton.setOnAction(new AddUnitController());
+        changeTurn.setOnAction(turnController);
 
 
         /**
@@ -52,7 +59,7 @@ public class PlayerView extends HBox {
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY)));
 
-        this.getChildren().addAll(nameText, addUnitButton);
+        this.getChildren().addAll(nameText, addUnitButton, changeTurn);
     }
 
 

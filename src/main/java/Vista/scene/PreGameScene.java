@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class PreGameScene extends VBox {
 
     private ArrayList<Player> players = new ArrayList<>();
+    private static TurnController turnController = TurnController.getInstance();
 
     public PreGameScene() {
         super();
@@ -27,7 +28,8 @@ public class PreGameScene extends VBox {
         }
 
         // Le doy los players a TurnController
-        TurnController.getInstance().setPlayers(players);
+        turnController.setPlayers(players);
+        System.out.println("Se agregaron los players");
     }
 
     private String askPlayerName( String playerNumber){

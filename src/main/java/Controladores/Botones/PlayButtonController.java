@@ -19,6 +19,7 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
     private Button startGameButton;
     private Stage stage;
     private static Board board = Board.getBoard();
+    private static TurnController turnController = TurnController.getInstance();
 
     public PlayButtonController(Stage stage) {
         this.stage = stage;
@@ -34,6 +35,9 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
         // Seteo el tablero
         ArrayList<Player> players = TurnController.getInstance().getPlayers();
         board.setBoardCells(players.get(0), players.get(1));
+
+        // Seteo el turno
+        turnController.startGame();
 
         // Arranca el juego
         MainContainerView gameContainer = new MainContainerView();
