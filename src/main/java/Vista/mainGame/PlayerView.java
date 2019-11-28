@@ -42,12 +42,28 @@ public class PlayerView extends HBox {
         Button changeTurn = new Button("Finish turn");
         changeTurn.setAlignment(Pos.CENTER_RIGHT);
 
+
+        Button soldierBuyButton = new Button("Soldier");
+        soldierBuyButton.setAlignment(Pos.CENTER_RIGHT);
+
+        Button riderButton = new Button("Rider");
+        riderButton.setAlignment(Pos.CENTER_RIGHT);
+
+        Button healerButton = new Button("Healer");
+        changeTurn.setAlignment(Pos.CENTER_RIGHT);
+
+        Button catapultButton = new Button("Catapult");
+        changeTurn.setAlignment(Pos.CENTER_RIGHT);
+
         /**
          * Asigno controladores para los botones
          */
-        addUnitButton.setOnAction(new AddUnitController());
+        addUnitButton.setOnAction(new AddUnitController("Add"));
         changeTurn.setOnAction(turnController);
-
+        soldierBuyButton.setOnAction(new AddUnitController("Soldier"));
+        riderButton.setOnAction(new AddUnitController("Rider"));
+        healerButton.setOnAction(new AddUnitController("Healer"));
+        catapultButton.setOnAction(new AddUnitController("Catapult"));
 
         /**
          * Configuración del container
@@ -59,7 +75,13 @@ public class PlayerView extends HBox {
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY)));
 
-        this.getChildren().addAll(nameText, addUnitButton, changeTurn);
+        this.getChildren().addAll(nameText,
+                addUnitButton,
+                changeTurn,
+                soldierBuyButton,
+                riderButton,
+                healerButton,
+                catapultButton);
     }
 
 

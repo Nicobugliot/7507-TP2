@@ -1,7 +1,10 @@
 package Vista.mainGame;
 
 import Controladores.CellController;
+import Modelo.Cell;
 import javafx.scene.layout.Pane;
+
+import java.awt.event.MouseEvent;
 
 public class CellView extends Pane {
     private int positionX;
@@ -11,8 +14,9 @@ public class CellView extends Pane {
     public CellView(int x, int y) {
         positionX = x;
         positionY = y;
-        setOnMouseClicked(e -> {
-            System.out.println(positionX + " " + positionY);
+        controller = new CellController(x, y);
+        this.setOnMouseClicked(e -> {
+            controller.handleClick();
         });
     }
 

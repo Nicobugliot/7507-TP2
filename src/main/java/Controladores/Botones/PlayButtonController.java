@@ -35,6 +35,7 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
         // Seteo el tablero
         ArrayList<Player> players = TurnController.getInstance().getPlayers();
         board.setBoardCells(players.get(0), players.get(1));
+        System.out.println(players.get(0).getTeam());
 
         // Seteo el turno
         turnController.startGame();

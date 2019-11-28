@@ -1,6 +1,7 @@
 package Controladores;
 
 import Modelo.Player;
+import Modelo.unit.Unit;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -12,6 +13,7 @@ public class TurnController implements EventHandler<ActionEvent> {
     private Player actualPlayer;
     private static TurnController controller;
     private Player nextPlayer;
+    private Unit setUnit;
 
     public static TurnController getInstance(){
         if (controller == null){
@@ -37,6 +39,18 @@ public class TurnController implements EventHandler<ActionEvent> {
         this.actualPlayer = players.get(0);
         this.nextPlayer = players.get(1);
         System.out.println("Es el turno de " + actualPlayer.getName());
+    }
+
+    public void setUnit(Unit unit) {
+        setUnit = unit;
+    }
+
+    public Unit getSetUnit() {
+        return setUnit;
+    }
+
+    public void unitHasBeenSet() {
+        setUnit = null;
     }
 
     @Override
