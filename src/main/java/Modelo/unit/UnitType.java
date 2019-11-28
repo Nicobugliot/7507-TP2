@@ -1,7 +1,7 @@
 package Modelo.unit;
 
 public enum UnitType {
-    BATTALION("caduceus"), CATAPULT("catapulta"), HEALER("ni puta idea"), INFRANTRY("soldado"), RIDER("caballo");
+    BATTALION("ni p*** idea"), CATAPULT("catapulta"), HEALER("curandero"), INFANTRY("soldado"), RIDER("caballo");
 
     private final String name;
     UnitType(String name) {

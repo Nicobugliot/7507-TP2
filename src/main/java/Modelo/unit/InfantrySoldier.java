@@ -15,7 +15,7 @@ public class InfantrySoldier extends Unit {
     private static Integer MIN_DISTANCE_ATACK = 1;
 
     public InfantrySoldier() {
-        super(UnitType.INFRANTRY);
+        super(UnitType.INFANTRY);
     }
 
     @Override
