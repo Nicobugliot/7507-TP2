@@ -15,16 +15,14 @@ public class CellView extends Pane {
     public CellView(int x, int y    ) {
         positionX = x;
         positionY = y;
-        controller = new CellController(x, y);
+        controller = new CellController(x, y, this);
         this.setOnMouseClicked(e -> {
             controller.handleClick();
-            updateImage();
         });
     }
 
-    private void updateImage() {
+    public void updateImage(String resource) {
         this.getChildren().removeAll();
-        String resource = controller.getResource();
         Image image = new Image(ASSET_DIR + resource);
         ImageView imageView = new ImageView(image);
         imageView.fitHeightProperty().bind(this.heightProperty());

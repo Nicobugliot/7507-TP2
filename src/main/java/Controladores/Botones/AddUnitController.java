@@ -22,25 +22,26 @@ public class AddUnitController implements EventHandler<ActionEvent> {
         this.actualPlayer = turnController.getActualPlayer();
         switch (unit){
             case "Soldier":
-                Unit soldier = new InfantrySoldier();
-                actualPlayer.addUnit(soldier);
-                turnController.setUnit(soldier);
-                System.out.println("Pone la unidad");
+                buyUnit(new InfantrySoldier());
+                break;
             case "Rider":
-                Unit rider = new Rider();
-                actualPlayer.addUnit(rider);
-                turnController.setUnit(rider);
+                buyUnit(new Rider());
                 break;
             case "Healer":
-                Unit healer = new Healer();
-                actualPlayer.addUnit(healer);
-                turnController.setUnit(healer);
+                buyUnit(new Healer());
                 break;
             case "Catapult":
-                Unit catapult = new Catapult();
-                actualPlayer.addUnit(catapult);
-                turnController.setUnit(catapult);
+                buyUnit(new Catapult());
                 break;
+        }
+    }
+
+    private void buyUnit(Unit unit) {
+        if (turnController.getSetUnit() == null) {
+            turnController.setUnit(unit);
+            actualPlayer.addUnit(unit);
+        } else {
+            System.out.println("Tenes que ubicar la pieza.");
         }
     }
 }
