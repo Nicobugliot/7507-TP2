@@ -25,21 +25,25 @@ public class AddUnitController implements EventHandler<ActionEvent> {
                 Unit soldier = new InfantrySoldier();
                 actualPlayer.addUnit(soldier);
                 turnController.setUnit(soldier);
-                System.out.println("Pone la unidad");
+                System.out.println("Pone la unidad...");
+                break;
             case "Rider":
                 Unit rider = new Rider();
                 actualPlayer.addUnit(rider);
                 turnController.setUnit(rider);
+                System.out.println("Pone la unidad...");
                 break;
             case "Healer":
                 Unit healer = new Healer();
                 actualPlayer.addUnit(healer);
                 turnController.setUnit(healer);
+                System.out.println("Pone la unidad...");
                 break;
             case "Catapult":
                 Unit catapult = new Catapult();
                 actualPlayer.addUnit(catapult);
                 turnController.setUnit(catapult);
+                System.out.println("Pone la unidad...");
                 break;
         }
     }

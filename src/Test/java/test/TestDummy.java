@@ -16,7 +16,7 @@ public class TestDummy extends Unit {
     private Integer damageReceived = 0;
 
     public TestDummy() {
-        super(UnitType.INFRANTRY);
+        super(UnitType.INFANTRY);
     }
 
     @Override

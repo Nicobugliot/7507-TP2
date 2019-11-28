@@ -2,6 +2,7 @@ package Vista.mainGame;
 
 import Controladores.Botones.AddUnitController;
 import Controladores.TurnController;
+import Modelo.Player;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -44,7 +45,9 @@ public class PlayerView extends HBox {
         pointText.setFont(new Font(20));
         pointText.setTextAlignment(TextAlignment.LEFT);
 
-        Text pointsText = new Text(Integer.toString(this.points));
+        //Text pointsText = new Text(Integer.toString(this.points));
+        Text pointsText = new Text();
+        pointsText.setText(Integer.toString(this.points));
         pointsText.setFont(new Font(20));
         pointsText.setTextAlignment(TextAlignment.LEFT);
 
@@ -63,24 +66,24 @@ public class PlayerView extends HBox {
         changeTurn.setAlignment(Pos.CENTER_RIGHT);
 
 
-        Button soldierBuyButton = new Button("Soldier");
-        soldierBuyButton.setAlignment(Pos.CENTER_RIGHT);
+        Button soldierButton = new Button("Soldier");
+        soldierButton.setAlignment(Pos.CENTER_RIGHT);
 
         Button riderButton = new Button("Rider");
         riderButton.setAlignment(Pos.CENTER_RIGHT);
 
         Button healerButton = new Button("Healer");
-        changeTurn.setAlignment(Pos.CENTER_RIGHT);
+        healerButton.setAlignment(Pos.CENTER_RIGHT);
 
         Button catapultButton = new Button("Catapult");
-        changeTurn.setAlignment(Pos.CENTER_RIGHT);
+        catapultButton.setAlignment(Pos.CENTER_RIGHT);
 
         /**
          * Asigno controladores para los botones
          */
         addUnitButton.setOnAction(new AddUnitController("Add"));
         changeTurn.setOnAction(turnController);
-        soldierBuyButton.setOnAction(new AddUnitController("Soldier"));
+        soldierButton.setOnAction(new AddUnitController("Soldier"));
         riderButton.setOnAction(new AddUnitController("Rider"));
         healerButton.setOnAction(new AddUnitController("Healer"));
         catapultButton.setOnAction(new AddUnitController("Catapult"));
@@ -102,7 +105,7 @@ public class PlayerView extends HBox {
                 pointsText,
                 addUnitButton,
                 changeTurn,
-                soldierBuyButton,
+                soldierButton,
                 riderButton,
                 healerButton,
                 catapultButton);
