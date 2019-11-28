@@ -15,7 +15,7 @@ public class Battalion extends Unit {
     private UtilBoard utilBoard;
 
     public Battalion(){
-        super(UnitType.BATTALION);
+        super(UnitType.INFANTRY);
         units = new ArrayList<>();
     }
 

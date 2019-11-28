@@ -28,7 +28,7 @@ public class Player {
         return this.team;
     }
 
-    public void addUnit(Unit unit){
+    public void addUnit(Unit unit) throws InsufficientPointsException{
         Integer price = unit.getCost();
         if(this.points < price){
             throw new InsufficientPointsException("No dispone los puntos necesarios para hacer la compra");

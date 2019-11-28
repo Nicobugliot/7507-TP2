@@ -27,14 +27,16 @@ public class CellController {
         Unit unit = turnController.getSetUnit();
         if (unit != null) {
             unit.setTeam(actualPlayer.getTeam());
-            board.getCell(xPosition, yPosition).setUnit(unit);
-            addUnit(unit.getType().toString(), actualPlayer.getTeam().toString());
+            System.out.println(board.getCell(xPosition, yPosition));
+            System.out.println(board.getCell(xPosition, yPosition).getTeam());
+            actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
+            addUnitToBoard(unit.getType().toString());
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
     }
 
-    public void addUnit(String unitName, String teamName) {
+    private void addUnitToBoard(String unitName) {
         Player actualPlayer = turnController.getActualPlayer();
         String color = actualPlayer.getTeam() == 0  ? "rojo" : "azul";
         System.out.println(unitName + "_" + color + ".png");

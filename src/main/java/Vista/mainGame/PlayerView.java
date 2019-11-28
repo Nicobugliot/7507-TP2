@@ -17,16 +17,14 @@ import javafx.scene.text.TextAlignment;
 
 public class PlayerView extends HBox {
 
-    private final String name;
+    private final Player player;
     private final Color color;
-    private final Integer points;
     private static TurnController turnController = TurnController.getInstance();
 
-    public PlayerView(String name, Color color, Integer points) {
+    public PlayerView(Player player, Color color) {
         //super();
-        this.name = name;
+        this.player = player;
         this.color = color;
-        this.points = points;
 
         /**
          * Configuración del texto
@@ -37,7 +35,7 @@ public class PlayerView extends HBox {
         playerText.setTextAlignment(TextAlignment.LEFT);
 
         Text nameText = new Text();
-        nameText.setText(this.name);
+        nameText.setText(player.getName());
         nameText.setFont(new Font(20));
 
         Text pointText = new Text();
@@ -47,7 +45,7 @@ public class PlayerView extends HBox {
 
         //Text pointsText = new Text(Integer.toString(this.points));
         Text pointsText = new Text();
-        pointsText.setText(Integer.toString(this.points));
+        pointsText.setText(Integer.toString(player.getPoints()));
         pointsText.setFont(new Font(20));
         pointsText.setTextAlignment(TextAlignment.LEFT);
 
@@ -110,6 +108,8 @@ public class PlayerView extends HBox {
                 healerButton,
                 catapultButton);
     }
+
+    public void refresh() {}
 
 
 }

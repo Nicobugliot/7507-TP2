@@ -32,11 +32,11 @@ public class Board {
         return cell;
     }
 
-    public void setBoardCells(Player firstPlayer, Player secondPlayer) {
+    public void setBoardCells() {
         for(int i = 0; i < boardCells.length / 2; i++){
             for(int j = 0; j < boardCells.length; j++){
-                boardCells[i][j].setPlayer(firstPlayer);
-                boardCells[i + (boardCells.length / 2)][j].setPlayer(secondPlayer);
+                boardCells[i][j].setTeam(0);
+                boardCells[i + (boardCells.length / 2)][j].setTeam(1);
             }
         }
     }

@@ -23,6 +23,7 @@
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Controladores/Botones/PlayButtonController.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Controladores/TurnController.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Controladores/NameInputEventHandler.java
+/Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Modelo/unit/UnitType.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Modelo/exceptions/GameOverException.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Vista/popUp/BuyUnitsPopUpWindow.java
 /Users/nbugliot/Documents/Facultad/Algoritmos-3/7507-TP2/src/main/java/Modelo/exceptions/InsufficientPointsException.java

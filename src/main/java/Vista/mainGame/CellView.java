@@ -8,13 +8,13 @@ import javafx.scene.layout.Pane;
 public class CellView extends Pane {
     private static final String ASSET_DIR = "File:src/main/resources/assets/";
 
-    private int positionX;
-    private int positionY;
+    private int xPosition;
+    private int yPosition;
     private CellController controller;
 
-    public CellView(int x, int y    ) {
-        positionX = x;
-        positionY = y;
+    public CellView(int x, int y) {
+        xPosition = x;
+        yPosition = y;
         controller = new CellController(x, y, this);
         this.setOnMouseClicked(e -> {
             controller.handleClick();

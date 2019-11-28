@@ -16,9 +16,8 @@ import java.util.ArrayList;
 
 public class PlayButtonController implements EventHandler<ActionEvent> {
 
-    private Button startGameButton;
     private Stage stage;
-    private static Board board = Board.getBoard();
+    private Board board = Board.getBoard();
     private static TurnController turnController = TurnController.getInstance();
 
     public PlayButtonController(Stage stage) {
@@ -33,9 +32,9 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
         preGameScene.start();
 
         // Seteo el tablero
-        ArrayList<Player> players = TurnController.getInstance().getPlayers();
-        board.setBoardCells(players.get(0), players.get(1));
-        System.out.println(players.get(0).getTeam());
+        board.setBoardCells();
+        System.out.println(board.getCell(0,0).getTeam());
+        System.out.println(board.getCell(19,19).getTeam());
 
         // Seteo el turno
         turnController.startGame();

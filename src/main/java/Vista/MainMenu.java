@@ -16,12 +16,6 @@ import java.util.ArrayList;
 public class MainMenu extends Application{
 
     private Stage primaryStage;
-    private Button startGameButton;
-    private Button exitButton;
-    private Button menuButton;
-    private Integer MAX_PLAYERS = 2;
-    private ArrayList<Player> players;
-    private Background backgroundImageObject;
 
     public static void main(String[] args) {
         launch(args);

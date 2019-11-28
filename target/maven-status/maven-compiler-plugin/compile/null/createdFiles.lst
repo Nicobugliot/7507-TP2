@@ -7,14 +7,9 @@ Vista/scene/MenuScene.class
 Vista/popUp/BuyUnitsPopUpWindow.class
 Vista/popUp/InputNamePopUpWindow.class
 Vista/popUp/ConfirmationPopUpWindow.class
-exceptions/MovementException.class
-exceptions/EmptyCellException.class
-exceptions/InsufficientPointsException.class
 Vista/popUp/AlertPopUpWindow.class
-exceptions/OccupiedCellException.class
 Vista/mainGame/BoardView.class
 Controladores/Botones/PlayButtonController.class
 Vista/mainGame/PlayerView.class
 Vista/scene/PreGameScene.class
-exceptions/GameOverException.class
 Vista/mainGame/MainContainerView.class

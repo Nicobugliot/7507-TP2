@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class AlgoChess {
 
-    private static Board board = Board.getBoard();
+    private Board board = Board.getBoard();
     private Integer MAX_PLAYERS = 2;
     private Player[] players = new Player[MAX_PLAYERS+1];
     private Integer playersAdded = 0;
@@ -34,7 +34,7 @@ public class AlgoChess {
     }
 
     public void setBoard(Player firstPlayer, Player secondPlayer) {
-        board.setBoardCells(firstPlayer, secondPlayer);
+        board.setBoardCells();
     }
 
     public void initializeTeams(){

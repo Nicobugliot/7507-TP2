@@ -16,6 +16,10 @@ public class Cell {
         this.yPosition = yPosition;
     }
 
+    public Integer getTeam() {
+        return this.team;
+    }
+
     public Boolean isEmpty() {
         return (this.unit == null);
     }
@@ -44,8 +48,8 @@ public class Cell {
         this.unit = null;
     }
 
-    public void setPlayer(Player player) {
-        this.team = player.getTeam();
+    public void setTeam(Integer team) {
+        this.team = team;
     }
 
     public void initializeUnit(Integer team, Unit unit) {

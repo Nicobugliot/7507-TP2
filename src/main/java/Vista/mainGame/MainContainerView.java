@@ -2,8 +2,6 @@ package Vista.mainGame;
 
 import Controladores.TurnController;
 import Modelo.Player;
-import Vista.mainGame.BoardView;
-import Vista.mainGame.PlayerView;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,9 +24,9 @@ public class MainContainerView extends StackPane{
         // Load your Image
         ImageView backgroundImageView = new ImageView(new Image(getClass().getResourceAsStream("/tablero.png")));
 
-        PlayerView firstPlayerView = new PlayerView(players.get(0).getName(), Color.RED, players.get(0).getPoints());
+        PlayerView firstPlayerView = new PlayerView(players.get(0), Color.RED);
         
-        PlayerView secondPlayerView = new PlayerView(players.get(1).getName(), Color.BLUE, players.get(1).getPoints());
+        PlayerView secondPlayerView = new PlayerView(players.get(1), Color.BLUE);
 
         BoardView boardView = new BoardView();
 

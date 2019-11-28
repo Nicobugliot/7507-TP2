@@ -2,7 +2,9 @@ package Controladores.Botones;
 
 import Controladores.TurnController;
 import Modelo.Player;
+import Modelo.exceptions.MovementException;
 import Modelo.unit.*;
+import Modelo.exceptions.InsufficientPointsException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -38,8 +40,12 @@ public class AddUnitController implements EventHandler<ActionEvent> {
 
     private void buyUnit(Unit unit) {
         if (turnController.getSetUnit() == null) {
-            turnController.setUnit(unit);
-            actualPlayer.addUnit(unit);
+            try {
+                actualPlayer.addUnit(unit);
+                turnController.setUnit(unit);
+            } catch (InsufficientPointsException err) {
+                System.out.println("No tenes mas guita man");
+            }
         } else {
             System.out.println("Tenes que ubicar la pieza.");
         }
