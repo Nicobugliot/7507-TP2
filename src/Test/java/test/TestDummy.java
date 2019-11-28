@@ -2,6 +2,7 @@ package test;
 
 import Modelo.Cell;
 import Modelo.unit.Unit;
+import Modelo.unit.UnitType;
 
 public class TestDummy extends Unit {
 
@@ -13,6 +14,10 @@ public class TestDummy extends Unit {
     private String type = "Dummy";
     private Boolean dead = false;
     private Integer damageReceived = 0;
+
+    public TestDummy() {
+        super(UnitType.INFRANTRY);
+    }
 
     @Override
     public void useAbility(Unit unit) {

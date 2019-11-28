@@ -16,6 +16,16 @@ public abstract class Unit {
     protected Integer team;
     protected MasterHand masterHand = new MasterHand();
 
+    public UnitType getType() {
+        return type;
+    }
+
+    protected final UnitType type;
+
+    protected Unit(UnitType type) {
+        this.type = type;
+    }
+
     public abstract void useAbility(Unit unit) throws AbilityException;
 
     public void applyDamage(Integer damage) {

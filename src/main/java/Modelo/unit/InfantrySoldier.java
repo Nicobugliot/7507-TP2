@@ -14,6 +14,10 @@ public class InfantrySoldier extends Unit {
     private Battalion battalion;
     private static Integer MIN_DISTANCE_ATACK = 1;
 
+    public InfantrySoldier() {
+        super(UnitType.INFRANTRY);
+    }
+
     @Override
     public void useAbility(Unit unit) throws AbilityException {
         if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) == MIN_DISTANCE_ATACK){

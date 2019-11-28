@@ -9,6 +9,10 @@ public class Healer extends Unit {
     }
     private Integer healingAmount = 15;
 
+    public Healer() {
+        super(UnitType.HEALER);
+    }
+
     @Override
     public void useAbility(Unit unit) throws AbilityException {
         if (unit.canBeHealed()) {

@@ -18,20 +18,40 @@ public class PlayerView extends HBox {
 
     private final String name;
     private final Color color;
+    private final Integer points;
     private static TurnController turnController = TurnController.getInstance();
 
-    public PlayerView(String name, Color color) {
+    public PlayerView(String name, Color color, Integer points) {
         //super();
         this.name = name;
         this.color = color;
+        this.points = points;
 
         /**
          * Configuración del texto
          * */
+        Text playerText = new Text();
+        playerText.setText("Player = ");
+        playerText.setFont(new Font(20));
+        playerText.setTextAlignment(TextAlignment.LEFT);
+
         Text nameText = new Text();
         nameText.setText(this.name);
         nameText.setFont(new Font(20));
-        nameText.setTextAlignment(TextAlignment.LEFT);
+
+        Text pointText = new Text();
+        pointText.setText("Points = ");
+        pointText.setFont(new Font(20));
+        pointText.setTextAlignment(TextAlignment.LEFT);
+
+        Text pointsText = new Text(Integer.toString(this.points));
+        pointsText.setFont(new Font(20));
+        pointsText.setTextAlignment(TextAlignment.LEFT);
+
+        Text spaceText = new Text();
+        spaceText.setText(" ");
+        spaceText.setFont(new Font(20));
+        spaceText.setTextAlignment(TextAlignment.LEFT);
 
         /**
          * Configuración de los botones
@@ -75,7 +95,11 @@ public class PlayerView extends HBox {
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY)));
 
-        this.getChildren().addAll(nameText,
+        this.getChildren().addAll(playerText,
+                nameText,
+                spaceText,
+                pointText,
+                pointsText,
                 addUnitButton,
                 changeTurn,
                 soldierBuyButton,

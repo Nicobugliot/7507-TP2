@@ -17,6 +17,10 @@ public class Catapult extends Unit {
     private Integer rangedDamage = 20;
     private static Integer MIN_DISTANCE_ATACK = 6;
 
+    public Catapult() {
+        super(UnitType.CATAPULT);
+    }
+
     @Override
     public void useAbility(Unit unit) throws AbilityException {
         if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) >= MIN_DISTANCE_ATACK) {

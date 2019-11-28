@@ -1,4 +1,4 @@
-package Modelo.exceptions;
+package exceptions;
 
 public class InsufficientPointsException extends RuntimeException {
 

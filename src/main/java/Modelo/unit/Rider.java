@@ -13,6 +13,10 @@ public class Rider extends Unit {
     private Integer meleeDamage = 5;
     private Integer rangedDamage = 15;
 
+    public Rider() {
+        super(UnitType.RIDER);
+    }
+
     @Override
     public void useAbility(Unit unit) throws AbilityException {
         Cell myCell = this.cell;

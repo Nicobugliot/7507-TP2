@@ -22,7 +22,7 @@ public class PreGameScene extends VBox {
             Player player = new Player(askPlayerName(i.toString()));
             // Agrego la clase jugador a la lista
             players.add(player);
-
+            player.setTeam(i);
             // Para debugger
             System.out.println(player.getName());
         }
