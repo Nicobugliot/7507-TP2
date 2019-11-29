@@ -2,6 +2,7 @@ package Controladores;
 
 import Modelo.Board;
 import Modelo.Player;
+import Modelo.exceptions.MovementException;
 import Modelo.unit.Unit;
 import Modelo.unit.UnitType;
 import Vista.mainGame.CellView;
@@ -12,7 +13,7 @@ public class CellController {
 
     private final Integer yPosition;
     private final Integer xPosition;
-    private Board board = Board.getBoard();
+    private static Board board = Board.getBoard();
     private TurnController turnController = TurnController.getInstance();
     private CellView cellView;
 
@@ -26,11 +27,13 @@ public class CellController {
         Player actualPlayer = turnController.getActualPlayer();
         Unit unit = turnController.getSetUnit();
         if (unit != null) {
-            unit.setTeam(actualPlayer.getTeam());
-            System.out.println(board.getCell(xPosition, yPosition));
-            System.out.println(board.getCell(xPosition, yPosition).getTeam());
-            actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
-            addUnitToBoard(unit.getType().toString());
+            try {
+                unit.setTeam(actualPlayer.getTeam());
+                actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
+                addUnitToBoard(unit.getType().toString());
+            } catch (MovementException err) {
+                System.out.println("No se puede iniciar una unidad en celda enemiga");
+            }
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
@@ -39,7 +42,6 @@ public class CellController {
     private void addUnitToBoard(String unitName) {
         Player actualPlayer = turnController.getActualPlayer();
         String color = actualPlayer.getTeam() == 0  ? "rojo" : "azul";
-        System.out.println(unitName + "_" + color + ".png");
         cellView.updateImage(unitName + "_" + color + ".png");
         turnController.unitHasBeenSet();
     }

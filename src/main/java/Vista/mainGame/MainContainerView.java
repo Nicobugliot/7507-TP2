@@ -14,19 +14,21 @@ import java.util.ArrayList;
 public class MainContainerView extends StackPane{
 
     private ArrayList<Player> players;
+    private TurnController turnController = TurnController.getInstance();
     private Stage stage;
 
     public MainContainerView() {
 
         // Load player
-        this.players = TurnController.getInstance().getPlayers();
+        this.players = turnController.getPlayers();
 
         // Load your Image
         ImageView backgroundImageView = new ImageView(new Image(getClass().getResourceAsStream("/tablero.png")));
 
         PlayerView firstPlayerView = new PlayerView(players.get(0), Color.RED);
-        
         PlayerView secondPlayerView = new PlayerView(players.get(1), Color.BLUE);
+
+        turnController.setPlayerViews(firstPlayerView, secondPlayerView);
 
         BoardView boardView = new BoardView();
 

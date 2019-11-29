@@ -72,7 +72,7 @@ public class CellUnitTest {
         Cell cell = new Cell(0, 0);
 
         when(player.getTeam()).thenReturn(0);
-        cell.setPlayer(player);
+        cell.setTeam(0);
 
         Unit unit = new TestDummy();
         cell.initializeUnit(0, unit);
@@ -85,7 +85,7 @@ public class CellUnitTest {
         Cell cell = new Cell(0, 0);
 
         when(player.getTeam()).thenReturn(1);
-        cell.setPlayer(player);
+        cell.setTeam(1);
 
         Unit unit = new TestDummy();
 

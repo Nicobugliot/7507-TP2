@@ -2,6 +2,7 @@ package Controladores;
 
 import Modelo.Player;
 import Modelo.unit.Unit;
+import Vista.mainGame.PlayerView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -10,9 +11,12 @@ import java.util.ArrayList;
 public class TurnController implements EventHandler<ActionEvent> {
 
     private ArrayList<Player> players;
+    private ArrayList<PlayerView> playerViews;
     private Player actualPlayer;
-    private static TurnController controller;
     private Player nextPlayer;
+    private PlayerView actualPlayerView;
+    private PlayerView nextPlayerView;
+    private static TurnController controller;
     private Unit setUnit;
 
     public static TurnController getInstance(){
@@ -53,10 +57,25 @@ public class TurnController implements EventHandler<ActionEvent> {
         setUnit = null;
     }
 
+    public void setPlayerViews(PlayerView firstPlayerView, PlayerView secondPlayerView) {
+        ArrayList<PlayerView> playerViews = new ArrayList<PlayerView>();
+        playerViews.add(firstPlayerView);
+        playerViews.add(secondPlayerView);
+
+        actualPlayerView = firstPlayerView;
+        actualPlayerView.turnView();
+        nextPlayerView = secondPlayerView;
+        nextPlayerView.notTurnView();git
+    }
+
     @Override
     public void handle(ActionEvent event) {
         this.changePlayer();
         System.out.println("Es el turno de: " + actualPlayer.getName());
+    }
+
+    public void refreshPlayerView() {
+        actualPlayerView.refreshPoints();
     }
 
     private void changePlayer() {
@@ -64,5 +83,12 @@ public class TurnController implements EventHandler<ActionEvent> {
         Player swap = actualPlayer;
         actualPlayer = nextPlayer;
         nextPlayer = swap;
+
+        PlayerView swapView = actualPlayerView;
+        actualPlayerView = nextPlayerView;
+        nextPlayerView = swapView;
+
+        actualPlayerView.turnView();
+        nextPlayerView.notTurnView();
     }
 }

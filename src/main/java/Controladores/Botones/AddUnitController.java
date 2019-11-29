@@ -43,6 +43,7 @@ public class AddUnitController implements EventHandler<ActionEvent> {
             try {
                 actualPlayer.addUnit(unit);
                 turnController.setUnit(unit);
+                turnController.refreshPlayerView();
             } catch (InsufficientPointsException err) {
                 System.out.println("No tenes mas guita man");
             }

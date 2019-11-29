@@ -24,6 +24,7 @@ public class Board {
                 boardCells[i][j] = new Cell(i, j);
             }
         }
+        setBoardCells();
         return board;
     }
 
@@ -32,7 +33,7 @@ public class Board {
         return cell;
     }
 
-    public void setBoardCells() {
+    public static void setBoardCells() {
         for(int i = 0; i < boardCells.length / 2; i++){
             for(int j = 0; j < boardCells.length; j++){
                 boardCells[i][j].setTeam(0);

@@ -23,13 +23,10 @@ public class PreGameScene extends VBox {
             // Agrego la clase jugador a la lista
             players.add(player);
             player.setTeam(i);
-            // Para debugger
-            System.out.println(player.getName());
         }
 
         // Le doy los players a TurnController
         turnController.setPlayers(players);
-        System.out.println("Se agregaron los players");
     }
 
     private String askPlayerName( String playerNumber){

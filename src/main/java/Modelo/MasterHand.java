@@ -20,11 +20,7 @@ public class MasterHand {
     }
 
     public void initializeUnit(Integer team, Unit unit, Cell cell) {
-        try {
-            cell.initializeUnit(team, unit);
-        } catch (MovementException err) {
-            //TODO Se tiene que mostrar un mensaje de error en la pantalla del usuario.
-        }
+        cell.initializeUnit(team, unit);
     }
 
 }

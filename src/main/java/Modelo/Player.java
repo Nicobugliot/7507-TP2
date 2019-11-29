@@ -12,7 +12,7 @@ public class Player {
     private Integer points = 20;
     private List<Unit> playerUnits;
     private Integer team;
-    private MasterHand masterHand;
+    private MasterHand masterHand = new MasterHand();
 
     public Player(String name){
         this.playerName = name;

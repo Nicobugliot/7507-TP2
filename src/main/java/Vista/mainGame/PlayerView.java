@@ -20,6 +20,17 @@ public class PlayerView extends HBox {
     private final Player player;
     private final Color color;
     private static TurnController turnController = TurnController.getInstance();
+    private Text playerText;
+    private Text nameText;
+    private Text spaceText;
+    private Text pointText;
+    private Text pointsText;
+    private Button addUnitButton;
+    private Button changeTurnButton;
+    private Button soldierButton;
+    private Button riderButton;
+    private Button healerButton;
+    private Button catapultButton;
 
     public PlayerView(Player player, Color color) {
         //super();
@@ -29,27 +40,26 @@ public class PlayerView extends HBox {
         /**
          * Configuración del texto
          * */
-        Text playerText = new Text();
+        playerText = new Text();
         playerText.setText("Player = ");
         playerText.setFont(new Font(20));
         playerText.setTextAlignment(TextAlignment.LEFT);
 
-        Text nameText = new Text();
+        nameText = new Text();
         nameText.setText(player.getName());
         nameText.setFont(new Font(20));
 
-        Text pointText = new Text();
+        pointText = new Text();
         pointText.setText("Points = ");
         pointText.setFont(new Font(20));
         pointText.setTextAlignment(TextAlignment.LEFT);
 
-        //Text pointsText = new Text(Integer.toString(this.points));
-        Text pointsText = new Text();
+        pointsText = new Text();
         pointsText.setText(Integer.toString(player.getPoints()));
         pointsText.setFont(new Font(20));
         pointsText.setTextAlignment(TextAlignment.LEFT);
 
-        Text spaceText = new Text();
+        spaceText = new Text();
         spaceText.setText(" ");
         spaceText.setFont(new Font(20));
         spaceText.setTextAlignment(TextAlignment.LEFT);
@@ -57,30 +67,29 @@ public class PlayerView extends HBox {
         /**
          * Configuración de los botones
          * */
-        Button addUnitButton = new Button("Add unit");
+        addUnitButton = new Button("Add unit");
         addUnitButton.setAlignment(Pos.CENTER);
 
-        Button changeTurn = new Button("Finish turn");
-        changeTurn.setAlignment(Pos.CENTER_RIGHT);
+        changeTurnButton = new Button("Finish turn");
+        changeTurnButton.setAlignment(Pos.CENTER_RIGHT);
 
-
-        Button soldierButton = new Button("Soldier");
+        soldierButton = new Button("Soldier");
         soldierButton.setAlignment(Pos.CENTER_RIGHT);
 
-        Button riderButton = new Button("Rider");
+        riderButton = new Button("Rider");
         riderButton.setAlignment(Pos.CENTER_RIGHT);
 
-        Button healerButton = new Button("Healer");
+        healerButton = new Button("Healer");
         healerButton.setAlignment(Pos.CENTER_RIGHT);
 
-        Button catapultButton = new Button("Catapult");
+        catapultButton = new Button("Catapult");
         catapultButton.setAlignment(Pos.CENTER_RIGHT);
 
         /**
          * Asigno controladores para los botones
          */
         addUnitButton.setOnAction(new AddUnitController("Add"));
-        changeTurn.setOnAction(turnController);
+        changeTurnButton.setOnAction(turnController);
         soldierButton.setOnAction(new AddUnitController("Soldier"));
         riderButton.setOnAction(new AddUnitController("Rider"));
         healerButton.setOnAction(new AddUnitController("Healer"));
@@ -102,14 +111,49 @@ public class PlayerView extends HBox {
                 pointText,
                 pointsText,
                 addUnitButton,
-                changeTurn,
+                changeTurnButton,
                 soldierButton,
                 riderButton,
                 healerButton,
                 catapultButton);
     }
 
-    public void refresh() {}
+    public void refreshPoints() {
+        int index = this.getChildren().indexOf(pointsText);
 
+        Text newPointsText = new Text();
+        newPointsText.setText(Integer.toString(player.getPoints()));
+        newPointsText.setFont(new Font(20));
+        newPointsText.setTextAlignment(TextAlignment.LEFT);
+        pointsText = newPointsText;
+
+        this.getChildren().set(index, pointsText);
+    }
+
+    public void turnView() {
+        this.getChildren().clear();
+
+        this.getChildren().addAll(playerText,
+                nameText,
+                spaceText,
+                pointText,
+                pointsText,
+                addUnitButton,
+                changeTurnButton,
+                soldierButton,
+                riderButton,
+                healerButton,
+                catapultButton);
+    }
+
+    public void notTurnView() {
+        this.getChildren().clear();
+
+        this.getChildren().addAll(playerText,
+                nameText,
+                spaceText,
+                pointText,
+                pointsText);
+    }
 
 }
