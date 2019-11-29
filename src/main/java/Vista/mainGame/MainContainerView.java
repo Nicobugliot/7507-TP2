@@ -18,7 +18,6 @@ public class MainContainerView extends StackPane{
     private Stage stage;
 
     public MainContainerView() {
-
         // Load player
         this.players = turnController.getPlayers();
 

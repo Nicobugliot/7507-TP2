@@ -58,7 +58,7 @@ public class TurnController implements EventHandler<ActionEvent> {
     }
 
     public void setPlayerViews(PlayerView firstPlayerView, PlayerView secondPlayerView) {
-        ArrayList<PlayerView> playerViews = new ArrayList<PlayerView>();
+        ArrayList<PlayerView> playerViews = new ArrayList<>();
         playerViews.add(firstPlayerView);
         playerViews.add(secondPlayerView);
 

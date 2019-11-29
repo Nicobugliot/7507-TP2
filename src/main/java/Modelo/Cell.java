@@ -36,7 +36,7 @@ public class Cell {
         if (this.isEmpty()) {
             this.unit =  unit;
         }else {
-            throw new MovementException("La celda está ocupada");
+            throw new OccupiedCellException("La celda está ocupada");
         }
     }
 

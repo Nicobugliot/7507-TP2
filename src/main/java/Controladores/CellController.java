@@ -3,13 +3,14 @@ package Controladores;
 import Modelo.Board;
 import Modelo.Player;
 import Modelo.exceptions.MovementException;
+import Modelo.exceptions.OccupiedCellException;
 import Modelo.unit.Unit;
 import Modelo.unit.UnitType;
 import Vista.mainGame.CellView;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
-public class CellController {
+public class CellController implements EventHandler<MouseEvent> {
 
     private final Integer yPosition;
     private final Integer xPosition;
@@ -23,7 +24,15 @@ public class CellController {
         this.cellView = cellView;
     }
 
-    public void handleClick() {
+    private void addUnitToBoard(String unitName) {
+        Player actualPlayer = turnController.getActualPlayer();
+        String color = actualPlayer.getTeam() == 0  ? "rojo" : "azul";
+        cellView.updateImage(unitName + "_" + color + ".png");
+        turnController.unitHasBeenSet();
+    }
+
+    @Override
+    public void handle(MouseEvent event) {
         Player actualPlayer = turnController.getActualPlayer();
         Unit unit = turnController.getSetUnit();
         if (unit != null) {
@@ -33,16 +42,11 @@ public class CellController {
                 addUnitToBoard(unit.getType().toString());
             } catch (MovementException err) {
                 System.out.println("No se puede iniciar una unidad en celda enemiga");
+            } catch (OccupiedCellException err) {
+                System.out.println("No se puede iniciar una unidad en una celda ocupada");
             }
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
-    }
-
-    private void addUnitToBoard(String unitName) {
-        Player actualPlayer = turnController.getActualPlayer();
-        String color = actualPlayer.getTeam() == 0  ? "rojo" : "azul";
-        cellView.updateImage(unitName + "_" + color + ".png");
-        turnController.unitHasBeenSet();
     }
 }

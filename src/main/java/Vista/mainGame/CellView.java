@@ -8,16 +8,15 @@ import javafx.scene.layout.Pane;
 public class CellView extends Pane {
     private static final String ASSET_DIR = "File:src/main/resources/assets/";
 
-    private int xPosition;
-    private int yPosition;
-    private CellController controller;
+    private Integer xPosition;
+    private Integer yPosition;
 
-    public CellView(int x, int y) {
+    public CellView(Integer x, Integer y) {
         xPosition = x;
         yPosition = y;
-        controller = new CellController(x, y, this);
-        this.setOnMouseClicked(e -> {
-            controller.handleClick();
+        this.setOnMouseClicked(new CellController(xPosition, yPosition, this));
+        this.setOnMouseExited(e -> {
+            //System.out.println(xPosition + " " + yPosition);
         });
     }
 
