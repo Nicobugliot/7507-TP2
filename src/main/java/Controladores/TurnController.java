@@ -65,7 +65,7 @@ public class TurnController implements EventHandler<ActionEvent> {
         actualPlayerView = firstPlayerView;
         actualPlayerView.turnView();
         nextPlayerView = secondPlayerView;
-        nextPlayerView.notTurnView();git
+        nextPlayerView.notTurnView();
     }
 
     @Override
