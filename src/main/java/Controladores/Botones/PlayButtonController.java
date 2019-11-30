@@ -3,16 +3,12 @@ package Controladores.Botones;
 
 import Controladores.TurnController;
 import Modelo.Board;
-import Modelo.Player;
 import Vista.mainGame.MainContainerView;
 import Vista.scene.PreGameScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 public class PlayButtonController implements EventHandler<ActionEvent> {
 
@@ -41,6 +37,7 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
         MainContainerView gameContainer = new MainContainerView();
         Scene gameScene = new Scene(gameContainer);
         stage.setScene(gameScene);
+        stage.setFullScreen(true);
         stage.show();
 
     }

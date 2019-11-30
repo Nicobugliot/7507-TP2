@@ -98,12 +98,13 @@ public class PlayerView extends HBox {
         /**
          * Configuración del container
          * */
-        this.setMaxWidth(500);
+        this.setMaxWidth(1000);
         this.setMaxHeight(50);
         this.setBackground(
                 new Background(new BackgroundFill(color,
                                 CornerRadii.EMPTY,
                                 Insets.EMPTY)));
+        this.setSpacing(5);
 
         this.getChildren().addAll(playerText,
                 nameText,

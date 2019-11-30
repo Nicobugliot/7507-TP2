@@ -23,6 +23,8 @@ public class MainContainerView extends StackPane{
 
         // Load your Image
         ImageView backgroundImageView = new ImageView(new Image(getClass().getResourceAsStream("/tablero.png")));
+        backgroundImageView.setPreserveRatio(true);
+        backgroundImageView.setFitHeight(800);
 
         PlayerView firstPlayerView = new PlayerView(players.get(0), Color.RED);
         PlayerView secondPlayerView = new PlayerView(players.get(1), Color.BLUE);
@@ -31,8 +33,8 @@ public class MainContainerView extends StackPane{
 
         BoardView boardView = new BoardView();
 
-        this.setMinWidth(500);
-        this.setMinHeight(600);
+        this.setMinWidth(1000);
+        this.setMinHeight(1200);
 
         this.getChildren().addAll(backgroundImageView, boardView, firstPlayerView, secondPlayerView);
         this.setAlignment(firstPlayerView, Pos.TOP_CENTER);

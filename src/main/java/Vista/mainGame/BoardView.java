@@ -5,8 +5,8 @@ import javafx.scene.layout.*;
 public class BoardView extends GridPane {
 
     // the dimensions of our background Image
-    private final int BORDER_WIDTH = 500;
-    private final int BORDER_HEIGHT = 500;
+    private final int BORDER_WIDTH = 800;
+    private final int BORDER_HEIGHT = 800;
 
     public BoardView() {
 
