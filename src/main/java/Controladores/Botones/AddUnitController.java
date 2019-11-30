@@ -1,5 +1,6 @@
 package Controladores.Botones;
 
+import Controladores.GameSystemController;
 import Controladores.TurnController;
 import Modelo.Player;
 import Modelo.exceptions.MovementException;
@@ -14,6 +15,7 @@ public class AddUnitController implements EventHandler<ActionEvent> {
     private String unit;
     private Player actualPlayer;
     private static TurnController turnController = TurnController.getInstance();
+    private static GameSystemController gameSystemController = GameSystemController.getInstance();
 
     public AddUnitController(String unit) {
         this.unit = unit;
@@ -43,7 +45,7 @@ public class AddUnitController implements EventHandler<ActionEvent> {
             try {
                 actualPlayer.addUnit(unit);
                 turnController.setUnit(unit);
-                turnController.refreshPlayerView();
+                gameSystemController.refreshPlayerView();
             } catch (InsufficientPointsException err) {
                 System.out.println("No tenes mas guita man");
             }

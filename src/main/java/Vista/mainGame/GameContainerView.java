@@ -1,5 +1,6 @@
 package Vista.mainGame;
 
+import Controladores.GameSystemController;
 import Controladores.TurnController;
 import Modelo.Player;
 import javafx.geometry.Pos;
@@ -11,13 +12,13 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class MainContainerView extends StackPane{
+public class GameContainerView extends StackPane{
 
     private ArrayList<Player> players;
     private TurnController turnController = TurnController.getInstance();
-    private Stage stage;
+    private GameSystemController gameSystemController = GameSystemController.getInstance();
 
-    public MainContainerView() {
+    public GameContainerView() {
         // Load player
         this.players = turnController.getPlayers();
 
@@ -26,17 +27,27 @@ public class MainContainerView extends StackPane{
         backgroundImageView.setPreserveRatio(true);
         backgroundImageView.setFitHeight(800);
 
+        /**
+         * Vista de los jugadores
+         */
         PlayerView firstPlayerView = new PlayerView(players.get(0), Color.RED);
         PlayerView secondPlayerView = new PlayerView(players.get(1), Color.BLUE);
 
-        turnController.setPlayerViews(firstPlayerView, secondPlayerView);
+        /**
+         * Vista de las unidades
+         */
+        UnitView unitView = new UnitView();
+
+        gameSystemController.setUnitView(unitView);
+        gameSystemController.setPlayerViews(firstPlayerView, secondPlayerView);
 
         BoardView boardView = new BoardView();
 
         this.setMinWidth(1000);
         this.setMinHeight(1200);
 
-        this.getChildren().addAll(backgroundImageView, boardView, firstPlayerView, secondPlayerView);
+        this.getChildren().addAll(backgroundImageView, boardView, firstPlayerView, secondPlayerView, unitView);
+        this.setAlignment(unitView, Pos.CENTER_RIGHT);
         this.setAlignment(firstPlayerView, Pos.TOP_CENTER);
         this.setAlignment(secondPlayerView, Pos.BOTTOM_CENTER);
     }

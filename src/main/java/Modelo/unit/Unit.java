@@ -82,4 +82,8 @@ public abstract class Unit {
     public int distanceTo(Cell targetCell){
         return distanceBetweenCells(this.cell, targetCell);
     }
+
+    public Integer getLife() {
+        return this.hp;
+    }
 }

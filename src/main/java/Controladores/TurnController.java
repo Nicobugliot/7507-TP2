@@ -3,6 +3,7 @@ package Controladores;
 import Modelo.Player;
 import Modelo.unit.Unit;
 import Vista.mainGame.PlayerView;
+import Vista.mainGame.UnitView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -11,13 +12,14 @@ import java.util.ArrayList;
 public class TurnController implements EventHandler<ActionEvent> {
 
     private ArrayList<Player> players;
-    private ArrayList<PlayerView> playerViews;
     private Player actualPlayer;
     private Player nextPlayer;
     private PlayerView actualPlayerView;
     private PlayerView nextPlayerView;
     private static TurnController controller;
     private Unit setUnit;
+    private UnitView unitView;
+    private static GameSystemController gameSystemController = GameSystemController.getInstance();
 
     public static TurnController getInstance(){
         if (controller == null){
@@ -57,25 +59,10 @@ public class TurnController implements EventHandler<ActionEvent> {
         setUnit = null;
     }
 
-    public void setPlayerViews(PlayerView firstPlayerView, PlayerView secondPlayerView) {
-        ArrayList<PlayerView> playerViews = new ArrayList<>();
-        playerViews.add(firstPlayerView);
-        playerViews.add(secondPlayerView);
-
-        actualPlayerView = firstPlayerView;
-        actualPlayerView.turnView();
-        nextPlayerView = secondPlayerView;
-        nextPlayerView.notTurnView();
-    }
-
     @Override
     public void handle(ActionEvent event) {
         this.changePlayer();
         System.out.println("Es el turno de: " + actualPlayer.getName());
-    }
-
-    public void refreshPlayerView() {
-        actualPlayerView.refreshPoints();
     }
 
     private void changePlayer() {
@@ -84,11 +71,6 @@ public class TurnController implements EventHandler<ActionEvent> {
         actualPlayer = nextPlayer;
         nextPlayer = swap;
 
-        PlayerView swapView = actualPlayerView;
-        actualPlayerView = nextPlayerView;
-        nextPlayerView = swapView;
-
-        actualPlayerView.turnView();
-        nextPlayerView.notTurnView();
+        gameSystemController.changeTurn();
     }
 }

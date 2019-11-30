@@ -3,7 +3,7 @@ package Controladores.Botones;
 
 import Controladores.TurnController;
 import Modelo.Board;
-import Vista.mainGame.MainContainerView;
+import Vista.mainGame.GameContainerView;
 import Vista.scene.PreGameScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -34,7 +34,7 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
         turnController.startGame();
 
         // Arranca el juego
-        MainContainerView gameContainer = new MainContainerView();
+        GameContainerView gameContainer = new GameContainerView();
         Scene gameScene = new Scene(gameContainer);
         stage.setScene(gameScene);
         stage.setFullScreen(true);
