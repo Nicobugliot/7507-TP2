@@ -101,6 +101,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         } catch (MovementException err) {
             new AlertPopUpWindow()
                     .display("Move Exception", "No podes moverte ahi");
+            gameSystemController.setUnitMoveTo(null);
         }
     }
 
@@ -118,21 +119,20 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         } catch (AbilityException err) {
             new AlertPopUpWindow()
                     .display("Attack Exception", "No podes atacar a esa distancia");
-            gameSystemController.unitAbilityHasBeenUsed();
+            gameSystemController.setUnitAbility(null);
         } catch (GameOverException err) {
             new AlertPopUpWindow()
                     .display("You loose", "Perdiste papu");
         } catch (EmptyCellException err) {
             new AlertPopUpWindow()
                     .display("Attack Exception", "La celda esta vacia");
-            gameSystemController.unitAbilityHasBeenUsed();
+            gameSystemController.setUnitAbility(null);
         }
     }
 
     @Override
     public void update(Unit unit) {
         System.out.println(unit.getType());
-        System.out.println("LIMPIA CELDA " + xPosition + " " + yPosition);
         cellView.clearImage();
     }
 }

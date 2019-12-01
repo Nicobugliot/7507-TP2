@@ -21,6 +21,9 @@ public class Battalion extends Unit {
     }
 
     public void addUnit(Unit unit){
+        if (units.size() == 3) {
+            throw new BattalionException("Ya son 3");
+        }
         units.add(unit);
     }
 
