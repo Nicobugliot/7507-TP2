@@ -30,7 +30,7 @@ public class Cell extends Observer{
 
     public void setUnit(Unit unit) {
         if (this.isEmpty()) {
-            this.unit =  unit;
+            this.unit = unit;
         }else {
             throw new OccupiedCellException("La celda está ocupada");
         }
@@ -41,8 +41,8 @@ public class Cell extends Observer{
     }
 
     public void deleteUnit(){
-        unit.deleteObserver(this);
         this.unit = null;
+        unit.deleteObserver(this);
     }
 
     public void setTeam(Integer team) {
@@ -66,6 +66,6 @@ public class Cell extends Observer{
 
     @Override
     public void update(Unit unit) {
-        this.unit = null;
+        deleteUnit();
     }
 }

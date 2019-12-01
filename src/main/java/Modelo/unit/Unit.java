@@ -15,7 +15,7 @@ public abstract class Unit {
     protected Cell cell;
     protected Integer hp;
     protected Integer cost;
-    protected Board board;
+    protected Board board = Board.getBoard();
     protected Integer team;
     protected MasterHand masterHand = new MasterHand();
     protected List<Observer> observers = new ArrayList<Observer>();

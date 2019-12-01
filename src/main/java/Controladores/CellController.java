@@ -4,10 +4,7 @@ import Modelo.Board;
 import Modelo.Cell;
 import Modelo.Observer;
 import Modelo.Player;
-import Modelo.exceptions.AbilityException;
-import Modelo.exceptions.GameOverException;
-import Modelo.exceptions.MovementException;
-import Modelo.exceptions.OccupiedCellException;
+import Modelo.exceptions.*;
 import Modelo.unit.Unit;
 import Vista.mainGame.CellView;
 import Vista.popUp.AlertPopUpWindow;
@@ -90,7 +87,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         Cell cellToMove = board.getCell(xPosition, yPosition);
         actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
         addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
-        turnController.getSetUnit().deleteObserver(this);
+        gameSystemController.getUnitToMove().deleteObserver(this);
         gameSystemController.unitHasBeenMoved(cellView);
         turnController.changeTurn();
     }
@@ -113,12 +110,15 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         } catch (GameOverException err) {
             new AlertPopUpWindow()
                     .display("You loose", "Perdiste papu");
+        } catch (EmptyCellException err) {
+            new AlertPopUpWindow()
+                    .display("Attack Exception", "La celda esta vacia");
+            gameSystemController.unitAbilityHasBeenUsed();
         }
     }
 
     @Override
     public void update(Unit unit) {
-        System.out.println("LIMPIA CELDA " + xPosition + " " + yPosition);
         cellView.clearImage();
     }
 }
