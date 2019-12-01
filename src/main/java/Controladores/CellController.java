@@ -72,10 +72,10 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             unit.attachObserver(this);
         } catch (MovementException err) {
             new AlertPopUpWindow()
-                    .display("Movement Exception", "No se puede iniciar una unidad en celda enemiga");
+                    .display("Movement Exception", err.getMessage());
         } catch (OccupiedCellException err) {
             new AlertPopUpWindow()
-                    .display("Movement Exception", "No se puede iniciar una unidad en una celda ocupada");
+                    .display("Movement Exception", err.getMessage());
         }
     }
 
@@ -100,7 +100,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             turnController.changeTurn();
         } catch (MovementException err) {
             new AlertPopUpWindow()
-                    .display("Move Exception", "No podes moverte ahi");
+                    .display("Move Exception", err.getMessage());
             gameSystemController.setUnitMoveTo(null);
         }
     }
@@ -118,14 +118,14 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             turnController.changeTurn();
         } catch (AbilityException err) {
             new AlertPopUpWindow()
-                    .display("Attack Exception", "No podes atacar a esa distancia");
+                    .display("Attack Exception", err.getMessage());
             gameSystemController.setUnitAbility(null);
         } catch (GameOverException err) {
             new AlertPopUpWindow()
-                    .display("You loose", "Perdiste papu");
+                    .display("You loose", err.getMessage());
         } catch (EmptyCellException err) {
             new AlertPopUpWindow()
-                    .display("Attack Exception", "La celda esta vacia");
+                    .display("Attack Exception", err.getMessage());
             gameSystemController.setUnitAbility(null);
         }
     }
