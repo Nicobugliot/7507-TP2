@@ -2,6 +2,7 @@ package Controladores;
 
 import Modelo.Player;
 import Modelo.unit.Unit;
+import Vista.mainGame.CellView;
 import Vista.mainGame.PlayerView;
 import Vista.mainGame.UnitView;
 import javafx.event.ActionEvent;
@@ -14,11 +15,10 @@ public class TurnController implements EventHandler<ActionEvent> {
     private ArrayList<Player> players;
     private Player actualPlayer;
     private Player nextPlayer;
-    private PlayerView actualPlayerView;
-    private PlayerView nextPlayerView;
     private static TurnController controller;
     private Unit setUnit;
-    private UnitView unitView;
+    private Unit setUnitAbility;
+    private Unit unitMoveTo;
     private static GameSystemController gameSystemController = GameSystemController.getInstance();
 
     public static TurnController getInstance(){
@@ -57,6 +57,18 @@ public class TurnController implements EventHandler<ActionEvent> {
 
     public void unitHasBeenSet() {
         setUnit = null;
+    }
+
+    public void setUnitAbility(Unit unit) {
+        this.setUnitAbility = unit;
+    }
+
+    public Unit getUnitAbility() {
+        return this.setUnitAbility;
+    }
+
+    public void unitAbilityHasBeenSet() {
+        this.setUnitAbility = null;
     }
 
     @Override

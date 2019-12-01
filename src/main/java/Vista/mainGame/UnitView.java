@@ -20,7 +20,7 @@ public class UnitView extends HBox {
         this.setStyle("-fx-background-color: grey");
     }
 
-    public void setUnitStats(Unit unit) {
+    public void setUnitStats(Unit unit, CellView cellView) {
 
         //TODO sacar el harcode a todo.
         Text unitType = new Text("Unidad");
@@ -35,8 +35,8 @@ public class UnitView extends HBox {
         /**
          * Controladores para los botones
          */
-        moveToButton.setOnAction(new MoveButtonController(unit));
-        moveToButton.setOnAction(new AbilityController(unit));
+        moveToButton.setOnAction(new MoveButtonController(unit, cellView));
+        abilityButton.setOnAction(new AbilityController(unit));
 
         /**
          * Limpio la caja y meto todas las cosas

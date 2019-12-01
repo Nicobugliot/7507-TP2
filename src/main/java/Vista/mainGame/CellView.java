@@ -29,4 +29,8 @@ public class CellView extends Pane {
         this.getChildren().addAll(imageView);
     }
 
+    public void clearImage() {
+        this.getChildren().clear();
+    }
+
 }

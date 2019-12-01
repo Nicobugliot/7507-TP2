@@ -1,6 +1,7 @@
 package Controladores;
 
 import Modelo.Board;
+import Modelo.Cell;
 import Modelo.Player;
 import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
@@ -37,8 +38,9 @@ public class CellController implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         Player actualPlayer = turnController.getActualPlayer();
-        Unit unit = turnController.getSetUnit();
-        if (unit != null) {
+
+        if (turnController.getSetUnit() != null) {
+            Unit unit = turnController.getSetUnit();
             try {
                 unit.setTeam(actualPlayer.getTeam());
                 actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
@@ -48,9 +50,23 @@ public class CellController implements EventHandler<MouseEvent> {
             } catch (OccupiedCellException err) {
                 System.out.println("No se puede iniciar una unidad en una celda ocupada");
             }
-        } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
-                Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
-                gameSystemController.refreshUnitView(cellUnit);
+        } else if (!board.getCell(xPosition, yPosition).isEmpty()) { //
+            Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
+
+            /**
+             * Seteo la celda y la unidad para ver que es lo que quiere hacer el jugador
+             */
+            gameSystemController.refreshUnitView(cellUnit, cellView);
+
+        } else if (turnController.getUnitAbility() != null) { // Caso de ataque
+            Cell cellToAttack = board.getCell(xPosition, yPosition);
+            actualPlayer.useUnit(turnController.getUnitAbility(), cellToAttack);
+
+        } else if (gameSystemController.getUnitToMove() != null) {
+            Cell cellToMove = board.getCell(xPosition, yPosition);
+            actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
+            addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
+            gameSystemController.unitHasBennMoved();
         } else {
             System.out.println(xPosition + " " + yPosition);
         }

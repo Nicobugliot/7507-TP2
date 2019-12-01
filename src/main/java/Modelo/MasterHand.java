@@ -11,6 +11,7 @@ public class MasterHand {
             try {
                 nextCell.setUnit(unit);
                 unit.getCell().deleteUnit();
+                unit.setCell(nextCell);
             } catch (MovementException err) {
                 //TODO Se tiene que mostrar un mensaje de error en la pantalla del usuario.
             }

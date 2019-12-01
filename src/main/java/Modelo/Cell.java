@@ -57,6 +57,7 @@ public class Cell {
             throw new MovementException("No se puede inicializar una unidad en campo enemigo");
         }
         this.setUnit(unit);
+        unit.setCell(this);
     }
 
     public boolean containsAllyOf(Integer team){

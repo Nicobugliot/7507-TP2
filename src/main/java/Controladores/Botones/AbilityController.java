@@ -10,6 +10,6 @@ public class AbilityController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-
+        System.out.println("ASDASD");
     }
 }

@@ -17,7 +17,7 @@ public class UtilMovement {
                         return true;
                     }
                 }catch (ArrayIndexOutOfBoundsException err) {
-                    System.out.println(err);
+
                 }
             }
         }

@@ -1,6 +1,7 @@
 package Controladores;
 
 import Modelo.unit.Unit;
+import Vista.mainGame.CellView;
 import Vista.mainGame.PlayerView;
 import Vista.mainGame.UnitView;
 
@@ -10,6 +11,8 @@ public class GameSystemController {
     private UnitView unitView;
     private PlayerView actualPlayerView;
     private PlayerView nextPlayerView;
+    private CellView lastCellView;
+    private Unit unitMoveTo;
 
     public static GameSystemController getInstance(){
         if (gameSystemController == null){
@@ -22,8 +25,8 @@ public class GameSystemController {
         this.unitView = unitView;
     }
 
-    public void refreshUnitView(Unit unit) {
-        unitView.setUnitStats(unit);
+    public void refreshUnitView(Unit unit, CellView cellView) {
+        unitView.setUnitStats(unit, cellView);
     }
 
     public void setPlayerViews(PlayerView firstPlayerView, PlayerView secondPlayerView) {
@@ -44,5 +47,27 @@ public class GameSystemController {
 
     public void refreshPlayerView() {
         actualPlayerView.refreshPoints();
+    }
+
+    public void setLastCellView(CellView cellView) {
+        this.lastCellView = cellView;
+    }
+
+    public void setUnitMoveTo(Unit unit) {
+        this.unitMoveTo = unit;
+    }
+
+    public Unit getUnitToMove() {
+        return this.unitMoveTo;
+    }
+
+    public void unitHasBennMoved() {
+        this.unitMoveTo = null;
+        lastCellView.clearImage();
+    }
+
+
+    public CellView getLastCellView() {
+        return this.lastCellView;
     }
 }

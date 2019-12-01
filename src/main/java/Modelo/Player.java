@@ -10,14 +10,13 @@ public class Player {
 
     private String playerName;
     private Integer points = 20;
-    private List<Unit> playerUnits;
+    private ArrayList<Unit> playerUnits = new ArrayList<>();
     private Integer team;
     private MasterHand masterHand = new MasterHand();
 
     public Player(String name){
         this.playerName = name;
         this.team = team;
-        playerUnits = new ArrayList<>();
     }
 
     public void setTeam(Integer team){
@@ -64,10 +63,11 @@ public class Player {
 
     public void moveUnit(Unit unit, Cell nextCell) {
         // Verifico que la unidad seleccionada esté dentro de sus unidades.
-        if (this.playerUnits.contains(unit)) {
+        if (playerUnits.contains(unit)) {
             unit.moveTo(nextCell);
+        } else {
+            throw new MovementException("Esa unidad no te corresponde");
         }
-        throw new MovementException("Esa unidad no te corresponde");
     }
 
     public Integer getUnitsAmount() {
