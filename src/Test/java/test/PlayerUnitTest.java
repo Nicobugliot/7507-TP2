@@ -7,10 +7,9 @@ import Modelo.Player;
 import Modelo.unit.InfantrySoldier;
 import Modelo.unit.Unit ;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
-class UserTest {
+class PlayerUnitTest {
 
     @Test
     void Test00UserTryToSpendMorePointsThanItHave(){
@@ -53,5 +52,28 @@ class UserTest {
         assertThrows(GameOverException.class, () -> {
             player.looseUnit(soldierA);
         });
+    }
+
+    @Test
+    void Test03UserLooseAnUnitWithObserver() {
+        Player player = new Player("Jorge");
+        Unit unit = new InfantrySoldier();
+        player.addUnit(unit);
+
+        assertEquals(player.getUnitsAmount(), 1);
+        assertThrows(GameOverException.class, () -> {
+            unit.applyDamage(100);
+        });
+    }
+
+    @Test
+    void Test04PlayersUnitAttackEnemyUnit() {
+        Player player = new Player("Jorge");
+        Player enemyPlayer = new Player("Jorge");
+
+        Unit soldier = new InfantrySoldier();
+        Unit enemySoldier = new InfantrySoldier();
+        player.addUnit(soldier);
+        enemyPlayer.addUnit(enemySoldier);
     }
 }

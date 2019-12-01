@@ -2,8 +2,10 @@ package Controladores;
 
 import Modelo.Board;
 import Modelo.Cell;
+import Modelo.Observer;
 import Modelo.Player;
 import Modelo.exceptions.AbilityException;
+import Modelo.exceptions.GameOverException;
 import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
 import Modelo.unit.Unit;
@@ -12,7 +14,7 @@ import Vista.popUp.AlertPopUpWindow;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
-public class CellController implements EventHandler<MouseEvent> {
+public class CellController extends Observer implements EventHandler<MouseEvent> {
 
     private final Integer yPosition;
     private final Integer xPosition;
@@ -69,6 +71,7 @@ public class CellController implements EventHandler<MouseEvent> {
             unit.setTeam(actualPlayer.getTeam());
             actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
             addUnitToBoard(unit.getType().toString());
+            unit.attachObserver(this);
         } catch (MovementException err) {
             new AlertPopUpWindow()
                     .display("Movement Exception", "No se puede iniciar una unidad en celda enemiga");
@@ -87,6 +90,7 @@ public class CellController implements EventHandler<MouseEvent> {
         Cell cellToMove = board.getCell(xPosition, yPosition);
         actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
         addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
+        turnController.getSetUnit().deleteObserver(this);
         gameSystemController.unitHasBeenMoved(cellView);
         turnController.changeTurn();
     }
@@ -106,6 +110,15 @@ public class CellController implements EventHandler<MouseEvent> {
             new AlertPopUpWindow()
                     .display("Attack Exception", "No podes atacar a esa distancia");
             gameSystemController.unitAbilityHasBeenUsed();
+        } catch (GameOverException err) {
+            new AlertPopUpWindow()
+                    .display("You loose", "Perdiste papu");
         }
+    }
+
+    @Override
+    public void update(Unit unit) {
+        System.out.println("LIMPIA CELDA " + xPosition + " " + yPosition);
+        cellView.clearImage();
     }
 }

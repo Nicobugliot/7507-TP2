@@ -16,7 +16,6 @@ public class Player extends Observer{
 
     public Player(String name){
         this.playerName = name;
-        this.team = team;
     }
 
     public void setTeam(Integer team){
@@ -39,7 +38,6 @@ public class Player extends Observer{
     }
 
     public void useUnit(Unit unit, Cell cell){
-
         if (cell.isEmpty()) {
             throw new EmptyCellException("La casilla esta vacia");
         }
@@ -78,6 +76,6 @@ public class Player extends Observer{
 
     @Override
     public void update(Unit unit) {
-        playerUnits.remove(unit);
+        looseUnit(unit);
     }
 }

@@ -47,7 +47,7 @@ public abstract class Unit {
         this.cell = cell;
     }
 
-    boolean isAlive(){
+    public boolean isAlive(){
         return (hp > 0);
     }
 

@@ -19,7 +19,7 @@ public class InfantrySoldier extends Unit {
     }
 
     @Override
-    public void useAbility(Unit unit) throws AbilityException {
+    public void useAbility(Unit unit) {
         if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) == MIN_DISTANCE_ATACK){
             unit.applyDamage(meleeDamage);
         }else {
