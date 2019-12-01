@@ -5,11 +5,8 @@ import Modelo.Cell;
 import Modelo.Player;
 import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
-import Modelo.unit.InfantrySoldier;
 import Modelo.unit.Unit;
-import Modelo.unit.UnitType;
 import Vista.mainGame.CellView;
-import Vista.mainGame.UnitView;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
@@ -41,21 +38,23 @@ public class CellController implements EventHandler<MouseEvent> {
 
         if (turnController.getSetUnit() != null) {
             initializeUnitController(actualPlayer);
-        } else if (!board.getCell(xPosition, yPosition).isEmpty()) { //
-            Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
-
-            /**
-             * Seteo la celda y la unidad para ver que es lo que quiere hacer el jugador
-             */
-            gameSystemController.refreshUnitView(cellUnit, cellView);
-
-        } else if (turnController.getUnitAbility() != null) { // Caso de ataque
+        } else if (gameSystemController.getUnitAbility() != null) { // Caso de ataque
             attackUnitController(actualPlayer);
         } else if (gameSystemController.getUnitToMove() != null) {
             moveUnitController(actualPlayer);
+        } else if (!board.getCell(xPosition, yPosition).isEmpty()) { //
+            showUnitController();
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
+    }
+
+    /**
+     * Funcion para mostrar las estadisticas de la unidad en la vista
+     */
+    private void showUnitController() {
+        Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
+        gameSystemController.refreshUnitView(cellUnit, cellView);
     }
 
     /**
@@ -94,7 +93,10 @@ public class CellController implements EventHandler<MouseEvent> {
      */
     private void attackUnitController(Player actualPlayer) {
         //TODO falta el manejo de excepciones
+        System.out.println("ATAQUE");
         Cell cellToAttack = board.getCell(xPosition, yPosition);
-        actualPlayer.useUnit(turnController.getUnitAbility(), cellToAttack);
+        actualPlayer.useUnit(gameSystemController.getUnitAbility(), cellToAttack);
+        gameSystemController.unitAbilityHasBeenUsed();
+        turnController.changeTurn();
     }
 }

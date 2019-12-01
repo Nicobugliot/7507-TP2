@@ -45,4 +45,8 @@ public class UnitView extends HBox {
         this.getChildren().addAll(unitType, unitLife, moveToButton, abilityButton);
     }
 
+    public void clearView() {
+        this.getChildren().clear();
+    }
+
 }

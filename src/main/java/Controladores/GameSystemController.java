@@ -13,6 +13,7 @@ public class GameSystemController {
     private PlayerView nextPlayerView;
     private CellView lastCellView;
     private Unit unitMoveTo;
+    private Unit setUnitAbility;
 
     public static GameSystemController getInstance(){
         if (gameSystemController == null){
@@ -43,6 +44,8 @@ public class GameSystemController {
 
         actualPlayerView.turnView();
         nextPlayerView.notTurnView();
+
+        unitView.clearView();
     }
 
     public void refreshPlayerView() {
@@ -66,8 +69,19 @@ public class GameSystemController {
         lastCellView.clearImage();
     }
 
-
     public CellView getLastCellView() {
         return this.lastCellView;
+    }
+
+    public void setUnitAbility(Unit unit) {
+        this.setUnitAbility = unit;
+    }
+
+    public Unit getUnitAbility() {
+        return this.setUnitAbility;
+    }
+
+    public void unitAbilityHasBeenUsed() {
+        this.setUnitAbility = null;
     }
 }

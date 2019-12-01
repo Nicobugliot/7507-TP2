@@ -15,7 +15,6 @@ public class TurnController implements EventHandler<ActionEvent> {
     private static TurnController controller;
     private Unit setUnit;
     private Unit setUnitAbility;
-    private Unit unitMoveTo;
     private static GameSystemController gameSystemController = GameSystemController.getInstance();
 
     public static TurnController getInstance(){
@@ -56,17 +55,6 @@ public class TurnController implements EventHandler<ActionEvent> {
         setUnit = null;
     }
 
-    public void setUnitAbility(Unit unit) {
-        this.setUnitAbility = unit;
-    }
-
-    public Unit getUnitAbility() {
-        return this.setUnitAbility;
-    }
-
-    public void unitAbilityHasBeenSet() {
-        this.setUnitAbility = null;
-    }
 
     @Override
     public void handle(ActionEvent event) {

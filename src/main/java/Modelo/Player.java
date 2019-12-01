@@ -39,7 +39,7 @@ public class Player {
 
     public void useUnit(Unit unit, Cell cell){
 
-        if (!cell.isEmpty()) {
+        if (cell.isEmpty()) {
             throw new EmptyCellException("La casilla esta vacia");
         }
 
