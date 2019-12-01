@@ -6,7 +6,7 @@ import Modelo.utils.UtilBoard;
 
 public class InfantrySoldier extends Unit {
     {
-        hp = 10;
+        hp = 100;
         cost = 1;
     }
     private Integer meleeDamage = 10;

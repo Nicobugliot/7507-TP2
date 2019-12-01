@@ -109,8 +109,4 @@ public abstract class Unit {
     public void deleteObservers() {
         observers.clear();
     }
-
-    public void deleteObserver(Observer observer) {
-        observers.remove(observer);
-    }
 }
