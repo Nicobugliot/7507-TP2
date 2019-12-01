@@ -40,6 +40,8 @@ public class Player extends Observer{
     public void useUnit(Unit unit, Cell cell){
         if (cell.isEmpty()) {
             throw new EmptyCellException("La casilla esta vacia");
+        } else if (!playerUnits.contains(unit)) {
+            throw new AbilityException("No podes atacar con una unidad enemiga");
         }
         unit.useAbility(cell.getUnit());
     }
