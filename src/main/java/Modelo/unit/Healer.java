@@ -15,11 +15,16 @@ public class Healer extends Unit {
 
     @Override
     public void useAbility(Unit unit) throws AbilityException {
-        if (unit.canBeHealed()) {
-            unit.applyDamage((-1)*healingAmount);
-        }else{
-            throw new AbilityException("Can't heal artilley units");
+        if (unit.isAllyOf(this.team)) {
+            if (unit.canBeHealed()) {
+                unit.applyDamage((-1)*healingAmount);
+            }else{
+                throw new AbilityException("Can't heal artilley units");
+            }
+        } else {
+            throw new AbilityException("No puedo curar unidades enemigas");
         }
+
     }
 
 

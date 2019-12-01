@@ -23,15 +23,17 @@ public class Rider extends Unit {
         boolean alliesInShortRange = this.board.alliesInShortRange(myCell, this.team);
         boolean enemiesInShortRange = this.board.enemiesInShortRange(myCell, this.team);
         Integer distance = unit.distanceTo(myCell);
-        if ( alliesInShortRange || !enemiesInShortRange){
-            unit.applyDamage(rangedDamage);
-            return;
+        if (!unit.isAllyOf(this.team)) {
+            if (alliesInShortRange || !enemiesInShortRange) {
+                unit.applyDamage(rangedDamage);
+                return;
+            } else if (distance <= 2) {
+                unit.applyDamage(meleeDamage);
+                return;
+            } else throw new AbilityException("Objetivo fuera de rango");
+        } else {
+            throw new AbilityException("No podes atacar a unidades aliadas");
         }
-        else if ( distance <= 2){
-            unit.applyDamage(meleeDamage);
-            return;
-        }
-        else throw new AbilityException("Objetivo fuera de rango");
     }
 
 }

@@ -29,6 +29,7 @@ class RiderTests {
         when(boardMock.alliesNearby(attackerCell,1)).thenReturn(false);
         when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(false);
         doReturn(10).when(defender).distanceTo(attackerCell);//devuelve que está lejos
+        doReturn(false).when(defender).isAllyOf(1);
 
         try {
             attacker.useAbility(defender);
@@ -55,6 +56,7 @@ class RiderTests {
         when(boardMock.alliesNearby(attackerCell,1)).thenReturn(true);
         when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(false);
         doReturn(10).when(defender).distanceTo(attackerCell);//devuelve que está lejos
+        doReturn(false).when(defender).isAllyOf(1);
 
         try {
             attacker.useAbility(defender);
@@ -81,6 +83,7 @@ class RiderTests {
         when(boardMock.alliesNearby(attackerCell,1)).thenReturn(true);
         when(boardMock.enemiesNearby(attackerCell,1)).thenReturn(true);
         doReturn(1).when(defender).distanceTo(attackerCell);//devuelve que está cerca
+        doReturn(false).when(defender).isAllyOf(1);
 
         try {
             attacker.useAbility(defender);
@@ -107,6 +110,7 @@ class RiderTests {
         when(boardMock.alliesInShortRange(attackerCell,1)).thenReturn(false);
         when(boardMock.enemiesInShortRange(attackerCell,1)).thenReturn(true);
         doReturn(1).when(defender).distanceTo(attackerCell);//devuelve que está cerca
+        doReturn(false).when(defender).isAllyOf(1);
 
         try {
             attacker.useAbility(defender);

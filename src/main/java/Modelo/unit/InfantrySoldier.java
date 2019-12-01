@@ -19,10 +19,14 @@ public class InfantrySoldier extends Unit {
 
     @Override
     public void useAbility(Unit unit) {
-        if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) == MIN_DISTANCE_ATACK){
-            unit.applyDamage(meleeDamage);
-        }else {
-            throw new AbilityException("No puedo atacar a esa distancia");
+        if (!unit.isAllyOf(this.team)) {
+            if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) == MIN_DISTANCE_ATACK){
+                unit.applyDamage(meleeDamage);
+            }else {
+                throw new AbilityException("No puedo atacar a esa distancia");
+            }
+        } else {
+            throw new AbilityException("No podes atacar a unidades aliadas");
         }
     }
 

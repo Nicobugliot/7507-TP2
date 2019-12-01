@@ -21,7 +21,9 @@ public class TestDummy extends Unit {
 
     @Override
     public void useAbility(Unit unit) {
-        unit.applyDamage(meleeDamage);
+        if (unit.isAllyOf(this.team)) {
+            unit.applyDamage(meleeDamage);
+        }
     }
 
     @Override
