@@ -1,5 +1,6 @@
 package Modelo.unit;
 
+import Modelo.Board;
 import Modelo.Cell;
 import Modelo.exceptions.AbilityException;
 import Modelo.exceptions.MovementException;
@@ -22,7 +23,7 @@ public class Catapult extends Unit {
     }
 
     @Override
-    public void useAbility(Unit unit) throws AbilityException {
+    public void useAbility(Unit unit) {
         if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) >= MIN_DISTANCE_ATACK) {
             Set<Unit> affectedUnits = getAfectedUnitsByProjectile(unit);
             for (Unit affectedUnit: affectedUnits) {

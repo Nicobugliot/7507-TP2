@@ -19,6 +19,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
     private TurnController turnController = TurnController.getInstance();
     private GameSystemController gameSystemController = GameSystemController.getInstance();
     private CellView cellView;
+    private CellView lastCellView;
 
     public CellController(Integer x, Integer y, CellView cellView) {
         this.xPosition = x;
@@ -84,12 +85,23 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
      */
     private void moveUnitController(Player actualPlayer) {
         //TODO falta el manejo de excepciones
-        Cell cellToMove = board.getCell(xPosition, yPosition);
-        actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
-        addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
-        gameSystemController.getUnitToMove().deleteObserver(this);
-        gameSystemController.unitHasBeenMoved(cellView);
-        turnController.changeTurn();
+        try {
+            Cell cellToMove = board.getCell(xPosition, yPosition);
+            actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
+            addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
+            gameSystemController.getUnitToMove().deleteObservers();
+
+            // Le seteo los observadores
+            gameSystemController.getUnitToMove().attachObserver(actualPlayer);
+            gameSystemController.getUnitToMove().attachObserver(this);
+            gameSystemController.getUnitToMove().attachObserver(cellToMove);
+
+            gameSystemController.unitHasBeenMoved(cellView);
+            turnController.changeTurn();
+        } catch (MovementException err) {
+            new AlertPopUpWindow()
+                    .display("Move Exception", "No podes moverte ahi");
+        }
     }
 
     /**
@@ -119,6 +131,8 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
 
     @Override
     public void update(Unit unit) {
+        System.out.println(unit.getType());
+        System.out.println("LIMPIA CELDA " + xPosition + " " + yPosition);
         cellView.clearImage();
     }
 }

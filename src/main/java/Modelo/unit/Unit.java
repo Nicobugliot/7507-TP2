@@ -15,7 +15,7 @@ public abstract class Unit {
     protected Cell cell;
     protected Integer hp;
     protected Integer cost;
-    protected Board board = Board.getBoard();
+    protected static Board board = Board.getBoard();
     protected Integer team;
     protected MasterHand masterHand = new MasterHand();
     protected List<Observer> observers = new ArrayList<Observer>();
@@ -35,8 +35,6 @@ public abstract class Unit {
     public void applyDamage(Integer damage) {
         this.hp -= damage;
         if (this.hp <= 0){
-            this.die();
-
             // Notifico que se murio y elimino todos los observadores
             notifyAllObservers();
             deleteObservers();
@@ -45,6 +43,7 @@ public abstract class Unit {
 
     public void setCell(Cell cell) {
         this.cell = cell;
+        this.attachObserver(cell);
     }
 
     public boolean isAlive(){
@@ -97,8 +96,10 @@ public abstract class Unit {
 
     public void notifyAllObservers() {
         for (Observer observer : observers) {
+            System.out.println(observer);
             observer.update(this);
         }
+        deleteObservers();
     }
 
     public void attachObserver(Observer observer) {

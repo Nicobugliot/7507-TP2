@@ -42,7 +42,6 @@ public class Cell extends Observer{
 
     public void deleteUnit(){
         this.unit = null;
-        unit.deleteObserver(this);
     }
 
     public void setTeam(Integer team) {
@@ -55,9 +54,6 @@ public class Cell extends Observer{
         }
         this.setUnit(unit);
         unit.setCell(this);
-
-        // Agrego a la celda como observer
-        unit.attachObserver(this);
     }
 
     public boolean containsAllyOf(Integer team){

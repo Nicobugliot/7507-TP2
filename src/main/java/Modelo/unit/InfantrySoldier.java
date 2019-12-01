@@ -6,11 +6,10 @@ import Modelo.utils.UtilBoard;
 
 public class InfantrySoldier extends Unit {
     {
-        hp = 100;
+        hp = 10;
         cost = 1;
     }
     private Integer meleeDamage = 10;
-    private Boolean dead = false;
     private Battalion battalion;
     private static Integer MIN_DISTANCE_ATACK = 1;
 
