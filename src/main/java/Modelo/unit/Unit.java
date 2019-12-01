@@ -26,7 +26,7 @@ public abstract class Unit {
         this.type = type;
     }
 
-    public abstract void useAbility(Unit unit) throws AbilityException;
+    public abstract void useAbility(Unit unit);
 
     public void applyDamage(Integer damage) {
         this.hp -= damage;

@@ -42,12 +42,7 @@ public class Player {
         if (cell.isEmpty()) {
             throw new EmptyCellException("La casilla esta vacia");
         }
-
-        try {
-            unit.useAbility(cell.getUnit());
-        } catch (AbilityException e) {//TODO Definir un comportamiento para cuando no se pudo utilizar la habilidad
-            e.printStackTrace();
-        }
+        unit.useAbility(cell.getUnit());
     }
 
     public void looseUnit(Unit unit){

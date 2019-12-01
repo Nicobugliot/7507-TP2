@@ -3,10 +3,12 @@ package Controladores;
 import Modelo.Board;
 import Modelo.Cell;
 import Modelo.Player;
+import Modelo.exceptions.AbilityException;
 import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
 import Modelo.unit.Unit;
 import Vista.mainGame.CellView;
+import Vista.popUp.AlertPopUpWindow;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
@@ -68,9 +70,11 @@ public class CellController implements EventHandler<MouseEvent> {
             actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
             addUnitToBoard(unit.getType().toString());
         } catch (MovementException err) {
-            System.out.println("No se puede iniciar una unidad en celda enemiga");
+            new AlertPopUpWindow()
+                    .display("Movement Exception", "No se puede iniciar una unidad en celda enemiga");
         } catch (OccupiedCellException err) {
-            System.out.println("No se puede iniciar una unidad en una celda ocupada");
+            new AlertPopUpWindow()
+                    .display("Movement Exception", "No se puede iniciar una unidad en una celda ocupada");
         }
     }
 
@@ -93,10 +97,15 @@ public class CellController implements EventHandler<MouseEvent> {
      */
     private void attackUnitController(Player actualPlayer) {
         //TODO falta el manejo de excepciones
-        System.out.println("ATAQUE");
-        Cell cellToAttack = board.getCell(xPosition, yPosition);
-        actualPlayer.useUnit(gameSystemController.getUnitAbility(), cellToAttack);
-        gameSystemController.unitAbilityHasBeenUsed();
-        turnController.changeTurn();
+        try {
+            Cell cellToAttack = board.getCell(xPosition, yPosition);
+            actualPlayer.useUnit(gameSystemController.getUnitAbility(), cellToAttack);
+            gameSystemController.unitAbilityHasBeenUsed();
+            turnController.changeTurn();
+        } catch (AbilityException err) {
+            new AlertPopUpWindow()
+                    .display("Attack Exception", "No podes atacar a esa distancia");
+            gameSystemController.unitAbilityHasBeenUsed();
+        }
     }
 }
