@@ -61,7 +61,7 @@ public class GameSystemController {
         return this.unitMoveTo;
     }
 
-    public void unitHasBennMoved() {
+    public void unitHasBeenMoved(CellView cellView) {
         this.unitMoveTo = null;
         lastCellView.clearImage();
     }

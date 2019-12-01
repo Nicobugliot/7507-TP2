@@ -40,16 +40,7 @@ public class CellController implements EventHandler<MouseEvent> {
         Player actualPlayer = turnController.getActualPlayer();
 
         if (turnController.getSetUnit() != null) {
-            Unit unit = turnController.getSetUnit();
-            try {
-                unit.setTeam(actualPlayer.getTeam());
-                actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
-                addUnitToBoard(unit.getType().toString());
-            } catch (MovementException err) {
-                System.out.println("No se puede iniciar una unidad en celda enemiga");
-            } catch (OccupiedCellException err) {
-                System.out.println("No se puede iniciar una unidad en una celda ocupada");
-            }
+            initializeUnitController(actualPlayer);
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) { //
             Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
 
@@ -59,16 +50,51 @@ public class CellController implements EventHandler<MouseEvent> {
             gameSystemController.refreshUnitView(cellUnit, cellView);
 
         } else if (turnController.getUnitAbility() != null) { // Caso de ataque
-            Cell cellToAttack = board.getCell(xPosition, yPosition);
-            actualPlayer.useUnit(turnController.getUnitAbility(), cellToAttack);
-
+            attackUnitController(actualPlayer);
         } else if (gameSystemController.getUnitToMove() != null) {
-            Cell cellToMove = board.getCell(xPosition, yPosition);
-            actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
-            addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
-            gameSystemController.unitHasBennMoved();
+            moveUnitController(actualPlayer);
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
+    }
+
+    /**
+     * Funcion que se encarga de inicializar una unidad en el tablero
+     * @param actualPlayer
+     */
+    private void initializeUnitController(Player actualPlayer) {
+        Unit unit = turnController.getSetUnit();
+        try {
+            unit.setTeam(actualPlayer.getTeam());
+            actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
+            addUnitToBoard(unit.getType().toString());
+        } catch (MovementException err) {
+            System.out.println("No se puede iniciar una unidad en celda enemiga");
+        } catch (OccupiedCellException err) {
+            System.out.println("No se puede iniciar una unidad en una celda ocupada");
+        }
+    }
+
+    /**
+     * Funcion que se encarga de la logica para mover la unidad en el tablero
+     * @param actualPlayer
+     */
+    private void moveUnitController(Player actualPlayer) {
+        //TODO falta el manejo de excepciones
+        Cell cellToMove = board.getCell(xPosition, yPosition);
+        actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
+        addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
+        gameSystemController.unitHasBeenMoved(cellView);
+        turnController.changeTurn();
+    }
+
+    /**
+     * Funcion que se encarga de la logica para atacar a otra unidad
+     * @param actualPlayer
+     */
+    private void attackUnitController(Player actualPlayer) {
+        //TODO falta el manejo de excepciones
+        Cell cellToAttack = board.getCell(xPosition, yPosition);
+        actualPlayer.useUnit(turnController.getUnitAbility(), cellToAttack);
     }
 }

@@ -2,9 +2,6 @@ package Controladores;
 
 import Modelo.Player;
 import Modelo.unit.Unit;
-import Vista.mainGame.CellView;
-import Vista.mainGame.PlayerView;
-import Vista.mainGame.UnitView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -73,11 +70,11 @@ public class TurnController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        this.changePlayer();
+        this.changeTurn();
         System.out.println("Es el turno de: " + actualPlayer.getName());
     }
 
-    private void changePlayer() {
+    public void changeTurn() {
         // Logica barata para cambiar el turno
         Player swap = actualPlayer;
         actualPlayer = nextPlayer;
