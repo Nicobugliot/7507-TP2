@@ -2,6 +2,7 @@ package test;
 
 import Modelo.Cell;
 import Modelo.exceptions.MovementException;
+import Modelo.exceptions.OccupiedCellException;
 import org.junit.jupiter.api.Test;
 import Modelo.Player;
 import Modelo.unit.Unit;
@@ -38,7 +39,7 @@ public class CellUnitTest {
 
         cell.setUnit(firstUnit);
 
-        assertThrows(MovementException.class, () -> {
+        assertThrows(OccupiedCellException.class, () -> {
            cell.setUnit(secondUnit);
         });
     }

@@ -3,7 +3,7 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnitObserver {
+public class Channel {
 
     private String news;
     private List<Player> players = new ArrayList<>();

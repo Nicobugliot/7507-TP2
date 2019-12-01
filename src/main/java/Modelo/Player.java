@@ -6,7 +6,7 @@ import Modelo.unit.Unit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player extends Observer{
 
     private String playerName;
     private Integer points = 20;
@@ -35,6 +35,7 @@ public class Player {
         this.points -= price;
         unit.setTeam(this.team);
         this.playerUnits.add(unit);
+        unit.attachObserver(this);
     }
 
     public void useUnit(Unit unit, Cell cell){
@@ -74,4 +75,9 @@ public class Player {
     }
 
     public String getName() { return this.playerName; }
+
+    @Override
+    public void update(Unit unit) {
+        playerUnits.remove(unit);
+    }
 }

@@ -46,7 +46,7 @@ public class InfantrySoldier extends Unit {
     }
 
     public void moveBattalion(Cell nextCellA , Cell nextCellB , Cell nextCellC) {
-        if (battalion.isNotEmpty()){
+        if (battalion.isEmpty()){
             this.battalion.moveTo(nextCellA , nextCellB , nextCellC);
         }
     }

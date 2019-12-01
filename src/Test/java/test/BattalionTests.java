@@ -144,7 +144,7 @@ class BattalionTests {
         battalion.addUnit(soldierB);
         battalion.addUnit(soldierC);
 
-        assertEquals(battalion.isNotEmpty() , Boolean.TRUE);
+        assertEquals(battalion.isEmpty() , false);
 
         battalion.moveTo(cellD , cellE , cellF);
 
@@ -152,6 +152,6 @@ class BattalionTests {
         assertEquals(cellE.getUnit(), soldierB);
         assertEquals(cellF.getUnit(), soldierC);
         assertEquals(cellD.getUnit(), soldierD);
-        assertEquals(battalion.isNotEmpty() , Boolean.FALSE);
+        assertEquals(battalion.isEmpty() , true);
     }
 }

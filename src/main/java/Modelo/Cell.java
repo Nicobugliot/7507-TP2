@@ -4,7 +4,7 @@ import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
 import Modelo.unit.Unit;
 
-public class Cell {
+public class Cell extends Observer{
 
     private Unit unit;
     private Integer xPosition;
@@ -14,10 +14,6 @@ public class Cell {
     public Cell(Integer xPosition, Integer yPosition){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-    }
-
-    public Integer getTeam() {
-        return this.team;
     }
 
     public Boolean isEmpty() {
@@ -32,7 +28,7 @@ public class Cell {
         return yPosition;
     }
 
-    public void setUnit(Unit unit) throws OccupiedCellException{
+    public void setUnit(Unit unit) {
         if (this.isEmpty()) {
             this.unit =  unit;
         }else {
@@ -45,6 +41,7 @@ public class Cell {
     }
 
     public void deleteUnit(){
+        unit.deleteObserver(this);
         this.unit = null;
     }
 
@@ -58,9 +55,17 @@ public class Cell {
         }
         this.setUnit(unit);
         unit.setCell(this);
+
+        // Agrego a la celda como observer
+        unit.attachObserver(this);
     }
 
     public boolean containsAllyOf(Integer team){
         return ( this.unit.isAllyOf(team));
+    }
+
+    @Override
+    public void update(Unit unit) {
+        this.unit = null;
     }
 }

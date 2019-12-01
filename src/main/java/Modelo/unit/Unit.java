@@ -2,8 +2,11 @@ package Modelo.unit;
 
 import Modelo.Board;
 import Modelo.Cell;
-import Modelo.exceptions.AbilityException;
+import Modelo.Observer;
 import Modelo.MasterHand;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Modelo.utils.UtilBoard.distanceBetweenCells;
 
@@ -15,6 +18,7 @@ public abstract class Unit {
     protected Board board;
     protected Integer team;
     protected MasterHand masterHand = new MasterHand();
+    protected List<Observer> observers = new ArrayList<Observer>();
 
     public UnitType getType() {
         return type;
@@ -32,6 +36,10 @@ public abstract class Unit {
         this.hp -= damage;
         if (this.hp <= 0){
             this.die();
+
+            // Notifico que se murio y elimino todos los observadores
+            notifyAllObservers();
+            deleteObservers();
         }
     }
 
@@ -85,5 +93,23 @@ public abstract class Unit {
 
     public Integer getLife() {
         return this.hp;
+    }
+
+    public void notifyAllObservers() {
+        for (Observer observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    public void attachObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void deleteObservers() {
+        observers.clear();
+    }
+
+    public void deleteObserver(Observer observer) {
+        observers.remove(observer);
     }
 }

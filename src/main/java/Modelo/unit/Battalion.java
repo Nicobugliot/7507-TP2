@@ -4,6 +4,7 @@ import Modelo.Cell;
 import Modelo.exceptions.AbilityException;
 import Modelo.exceptions.BattalionException;
 import Modelo.exceptions.MovementException;
+import Modelo.exceptions.OccupiedCellException;
 import Modelo.utils.UtilBoard;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 public class Battalion extends Unit {
 
     private List<Unit> units;
-    private UtilBoard utilBoard;
+    private UtilBoard utilBoard = new UtilBoard();
 
     public Battalion(){
         super(UnitType.INFANTRY);
@@ -44,7 +45,7 @@ public class Battalion extends Unit {
         for (Integer i = 0; i < listCell.size(); i++) {
             try {
                 units.get(i).moveTo(listCell.get(i));
-            } catch (MovementException err) {
+            } catch (OccupiedCellException err) {
                 // Agarro el error de movimiento ya que se debe quedar en su lugar
             }
         }
@@ -52,12 +53,9 @@ public class Battalion extends Unit {
     }
 
     private void checkBattalionStatus() {
-        if((utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(1).getCell()) == 1
-        || utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(2).getCell()) == 1)
-        && (utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(0).getCell()) == 1
-        || utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(2).getCell()) == 1)
-        && (utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(0).getCell()) == 1
-        || utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(1).getCell()) == 1)){
+        if(!(utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(1).getCell()) == 1 && utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(2).getCell()) == 1)
+        || !(utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(0).getCell()) == 1 && utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(2).getCell()) == 1)
+        || !(utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(0).getCell()) == 1 && utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(1).getCell()) == 1)){
             dissolveBattalion();
         }
     }
@@ -66,11 +64,11 @@ public class Battalion extends Unit {
         //for (Integer i = 0; i < units.size(); i++){
        //     this.units.remove(i);
        // }
-        units = new ArrayList<>();
+        units.clear();
     }
 
-    public Boolean isNotEmpty(){
-        return (units.size() == 3);
+    public Boolean isEmpty(){
+        return !(units.size() == 3);
     }
 }
 

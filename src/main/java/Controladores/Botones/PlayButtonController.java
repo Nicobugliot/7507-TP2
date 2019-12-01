@@ -8,7 +8,6 @@ import Vista.scene.PreGameScene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PlayButtonController implements EventHandler<ActionEvent> {
