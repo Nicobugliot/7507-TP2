@@ -96,7 +96,6 @@ public abstract class Unit {
 
     public void notifyAllObservers() {
         for (Observer observer : observers) {
-            System.out.println(observer);
             observer.update(this);
         }
         deleteObservers();

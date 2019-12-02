@@ -52,10 +52,6 @@ public class GameSystemController {
         actualPlayerView.refreshPoints();
     }
 
-    public void setLastCellView(CellView cellView) {
-        this.lastCellView = cellView;
-    }
-
     public void setUnitMoveTo(Unit unit) {
         this.unitMoveTo = unit;
     }
@@ -67,6 +63,10 @@ public class GameSystemController {
     public void unitHasBeenMoved(CellView cellView) {
         this.unitMoveTo = null;
         lastCellView.clearImage();
+    }
+
+    public void setLastCellView(CellView cellView) {
+        this.lastCellView = cellView;
     }
 
     public CellView getLastCellView() {
