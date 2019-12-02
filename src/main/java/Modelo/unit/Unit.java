@@ -96,6 +96,7 @@ public abstract class Unit {
 
     public void notifyAllObservers() {
         for (Observer observer : observers) {
+            System.out.println(observer);
             observer.update(this);
         }
         deleteObservers();
@@ -108,4 +109,12 @@ public abstract class Unit {
     public void deleteObservers() {
         observers.clear();
     }
+
+    public boolean leadsABattalion() { return Boolean.FALSE; }
+
+    public boolean belongsToABattalion() {return Boolean.FALSE; }
+
+    public void joinABattalion(){}
+
+    public void leaveBattalion(){}
 }

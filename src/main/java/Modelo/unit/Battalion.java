@@ -5,6 +5,7 @@ import Modelo.exceptions.AbilityException;
 import Modelo.exceptions.BattalionException;
 import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
+import Modelo.utils.UtilBattalion;
 import Modelo.utils.UtilBoard;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Battalion extends Unit {
 
     private List<Unit> units;
     private UtilBoard utilBoard = new UtilBoard();
+    private UtilBattalion utilBattalion = new UtilBattalion();
 
     public Battalion(){
         super(UnitType.INFANTRY);
@@ -42,14 +44,20 @@ public class Battalion extends Unit {
         throw new AbilityException("Los batallones no tienen habilidad");
     }
 
+    public void moveTo(Cell originCellOfLeader, Cell nextCellForLeader) {
 
-    public void moveTo(Cell nextCellA , Cell nextCellB , Cell nextCellC) {
-        List<Cell> listCell = List.of(nextCellA, nextCellB, nextCellC);
-        for (Integer i = 0; i < listCell.size(); i++) {
-            try {
-                units.get(i).moveTo(listCell.get(i));
-            } catch (OccupiedCellException err) {
-                // Agarro el error de movimiento ya que se debe quedar en su lugar
+        utilBattalion.calculateMovementDirection(originCellOfLeader , nextCellForLeader);
+        Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(2).getCell());
+        Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(3).getCell());
+
+        List<Cell> listCell = List.of(nextCellForLeader, nextCellB, nextCellC);
+        for (Integer j = 0; j < listCell.size(); j++) {
+            for (Integer i = 0; i < listCell.size(); i++) {
+                try {
+                    units.get(i).moveTo(listCell.get(i));
+                } catch (OccupiedCellException | MovementException err) {
+                    // Agarro el error de movimiento ya que se debe quedar en su lugar
+                }
             }
         }
         this.checkBattalionStatus();
@@ -64,9 +72,8 @@ public class Battalion extends Unit {
     }
 
     private void dissolveBattalion() {
-        //for (Integer i = 0; i < units.size(); i++){
-       //     this.units.remove(i);
-       // }
+        units.get(1).leaveBattalion();
+        units.get(2).leaveBattalion();
         units.clear();
     }
 

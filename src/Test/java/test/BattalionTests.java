@@ -154,4 +154,35 @@ class BattalionTests {
         assertEquals(cellD.getUnit(), soldierD);
         assertEquals(battalion.isEmpty() , true);
     }
+
+    @Test
+    void Test06ASoldierCanMoveToACellThatWasOccupiedByAnotherBattalionUnit(){
+        Battalion battalion = new Battalion();
+        Unit soldierA = new InfantrySoldier();
+        Unit soldierB = new InfantrySoldier();
+        Unit soldierC = new InfantrySoldier();
+        Cell cellA = new Cell(1,1);
+        Cell cellB = new Cell(1,2);
+        Cell cellC = new Cell(1,3);
+        Cell cellD = new Cell(1,4);
+
+        soldierA.setCell(cellA);
+        cellA.setUnit(soldierA);
+        soldierB.setCell(cellB);
+        cellB.setUnit(soldierB);
+        soldierC.setCell(cellC);
+        cellC.setUnit(soldierC);
+
+        battalion.addUnit(soldierA);
+        battalion.addUnit(soldierB);
+        battalion.addUnit(soldierC);
+
+        assertEquals(battalion.isEmpty() , false);
+
+        battalion.moveTo(cellB , cellC , cellD);
+
+        assertEquals(cellB.getUnit(), soldierA);
+        assertEquals(cellC.getUnit(), soldierB);
+        assertEquals(cellD.getUnit(), soldierC);
+    }
 }
