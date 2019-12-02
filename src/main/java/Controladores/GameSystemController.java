@@ -1,9 +1,12 @@
 package Controladores;
 
+import Modelo.unit.InfantrySoldier;
 import Modelo.unit.Unit;
 import Vista.mainGame.CellView;
 import Vista.mainGame.PlayerView;
 import Vista.mainGame.UnitView;
+
+import java.util.ArrayList;
 
 public class GameSystemController {
 
@@ -14,6 +17,7 @@ public class GameSystemController {
     private CellView lastCellView;
     private Unit unitMoveTo;
     private Unit setUnitAbility;
+    private ArrayList<Unit> battalionSoldiers;
 
     public static GameSystemController getInstance(){
         if (gameSystemController == null){
@@ -83,5 +87,13 @@ public class GameSystemController {
 
     public void unitAbilityHasBeenUsed() {
         this.setUnitAbility = null;
+    }
+
+    public void setBattalionLeader(Unit unit) {
+        battalionSoldiers.add(unit);
+    }
+
+    public ArrayList<Unit> getBattalion() {
+        return this.battalionSoldiers;
     }
 }

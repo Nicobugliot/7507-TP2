@@ -14,7 +14,6 @@ public class TurnController implements EventHandler<ActionEvent> {
     private Player nextPlayer;
     private static TurnController controller;
     private Unit setUnit;
-    private Unit setUnitAbility;
     private static GameSystemController gameSystemController = GameSystemController.getInstance();
 
     public static TurnController getInstance(){
@@ -68,6 +67,7 @@ public class TurnController implements EventHandler<ActionEvent> {
         actualPlayer = nextPlayer;
         nextPlayer = swap;
 
+        gameSystemController.getLastCellView().unHighlightUnit();
         gameSystemController.changeTurn();
     }
 }

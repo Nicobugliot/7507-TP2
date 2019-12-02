@@ -11,6 +11,8 @@ import Vista.popUp.AlertPopUpWindow;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
+
 public class CellController extends Observer implements EventHandler<MouseEvent> {
 
     private final Integer yPosition;
@@ -44,18 +46,32 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             attackUnitController(actualPlayer);
         } else if (gameSystemController.getUnitToMove() != null) {
             moveUnitController(actualPlayer);
-        } else if (!board.getCell(xPosition, yPosition).isEmpty()) { //
-            cellView.highlightUnit();
-            showUnitController();
+        } else if (!gameSystemController.getBattalion().isEmpty()) {
+            makeBattalion(gameSystemController.getBattalion());
+        } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
+            try {
+                gameSystemController.getLastCellView().unHighlightUnit();
+                gameSystemController.setLastCellView(cellView);
+                showUnitController();
+            } catch (NullPointerException err) {
+                gameSystemController.setLastCellView(cellView);
+                showUnitController();
+            }
+
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
+    }
+
+    private void makeBattalion(ArrayList<Unit> battalionSoldiers) {
+
     }
 
     /**
      * Funcion para mostrar las estadisticas de la unidad en la vista
      */
     private void showUnitController() {
+        cellView.highlightUnit();
         Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
         gameSystemController.refreshUnitView(cellUnit, cellView);
     }

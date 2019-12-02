@@ -1,6 +1,7 @@
 package Vista.mainGame;
 
 import Controladores.Botones.AbilityController;
+import Controladores.Botones.BattalionController;
 import Controladores.Botones.MoveButtonController;
 import Modelo.unit.Unit;
 import javafx.geometry.Pos;
@@ -43,6 +44,13 @@ public class UnitView extends HBox {
          */
         this.getChildren().clear();
         this.getChildren().addAll(unitType, unitLife, moveToButton, abilityButton);
+
+        // En el caso del soldado para el batallón
+        if (unit.canFormBattalions()) {
+            Button battalionButton = new Button("Make battalion");
+            battalionButton.setOnAction(new BattalionController(unit));
+            this.getChildren().add(battalionButton);
+        }
     }
 
     public void clearView() {

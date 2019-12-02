@@ -30,7 +30,7 @@ public class InfantrySoldier extends Unit {
         }
     }
 
-    private void formBattalionIfPossible(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
+    private void formBattalion(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
 
         if (unitA.canFormBattalions() && unitB.canFormBattalions()){        //se corrobora que las ingresadas puedan formar batallon
             this.battalion = new Battalion();
