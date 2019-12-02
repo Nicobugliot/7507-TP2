@@ -68,6 +68,7 @@ public class TurnController implements EventHandler<ActionEvent> {
         actualPlayer = nextPlayer;
         nextPlayer = swap;
 
+        gameSystemController.getLastCellView().unHighlightUnit();
         gameSystemController.changeTurn();
     }
 }
