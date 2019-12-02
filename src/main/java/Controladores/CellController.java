@@ -46,7 +46,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             attackUnitController(actualPlayer);
         } else if (gameSystemController.getUnitToMove() != null) {
             moveUnitController(actualPlayer);
-        } else if (!gameSystemController.getBattalion().isEmpty()) {
+        } else if (gameSystemController.getBattalion() != null) {
             makeBattalion(gameSystemController.getBattalion());
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
             try {
