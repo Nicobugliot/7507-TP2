@@ -45,6 +45,8 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         } else if (gameSystemController.getUnitToMove() != null) {
             moveUnitController(actualPlayer);
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) { //
+
+            cellView.highlightUnit();
             showUnitController();
         } else {
             System.out.println(xPosition + " " + yPosition);
