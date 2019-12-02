@@ -6,6 +6,7 @@ import Modelo.Player;
 import Modelo.exceptions.MovementException;
 import Modelo.unit.*;
 import Modelo.exceptions.InsufficientPointsException;
+import Vista.popUp.AlertPopUpWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -47,10 +48,12 @@ public class AddUnitController implements EventHandler<ActionEvent> {
                 turnController.setUnit(unit);
                 gameSystemController.refreshPlayerView();
             } catch (InsufficientPointsException err) {
-                System.out.println("No tenes mas guita man");
+                new AlertPopUpWindow()
+                        .display("Money exception", err.getMessage());
             }
         } else {
-            System.out.println("Tenes que ubicar la pieza.");
+            new AlertPopUpWindow()
+                    .display("Move Exception", "Tenes que ubicar la pieza primero");;
         }
     }
 }
