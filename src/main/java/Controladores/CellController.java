@@ -44,16 +44,9 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             attackUnitController(actualPlayer);
         } else if (gameSystemController.getUnitToMove() != null) {
             moveUnitController(actualPlayer);
-        } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
-            try {
-                gameSystemController.getLastCellView().unHighlightUnit();
-                gameSystemController.setLastCellView(cellView);
-                showUnitController();
-            } catch (NullPointerException err) {
-                gameSystemController.setLastCellView(cellView);
-                showUnitController();
-            }
-
+        } else if (!board.getCell(xPosition, yPosition).isEmpty()) { //
+            cellView.highlightUnit();
+            showUnitController();
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
@@ -63,7 +56,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
      * Funcion para mostrar las estadisticas de la unidad en la vista
      */
     private void showUnitController() {
-        cellView.highlightUnit();
         Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
         gameSystemController.refreshUnitView(cellUnit, cellView);
     }
