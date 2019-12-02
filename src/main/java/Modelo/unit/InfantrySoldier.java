@@ -30,6 +30,15 @@ public class InfantrySoldier extends Unit {
         }
     }
 
+    @Override
+    public void moveTo(Cell nextCell) {
+        try {
+            battalion.moveTo(nextCell);
+        } catch (NullPointerException err) {
+            masterHand.moveUnit(this, nextCell);
+        }
+    }
+
     private void formBattalion(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
 
         if (unitA.canFormBattalions() && unitB.canFormBattalions()){        //se corrobora que las ingresadas puedan formar batallon
