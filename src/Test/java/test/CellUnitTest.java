@@ -1,10 +1,11 @@
 package test;
 
-import cell.Cell;
-import exceptions.MovementException;
+import Modelo.Cell;
+import Modelo.exceptions.MovementException;
+import Modelo.exceptions.OccupiedCellException;
 import org.junit.jupiter.api.Test;
-import player.Player;
-import unit.Unit;
+import Modelo.Player;
+import Modelo.unit.Unit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -38,7 +39,7 @@ public class CellUnitTest {
 
         cell.setUnit(firstUnit);
 
-        assertThrows(MovementException.class, () -> {
+        assertThrows(OccupiedCellException.class, () -> {
            cell.setUnit(secondUnit);
         });
     }
@@ -72,7 +73,7 @@ public class CellUnitTest {
         Cell cell = new Cell(0, 0);
 
         when(player.getTeam()).thenReturn(0);
-        cell.setPlayer(player);
+        cell.setTeam(0);
 
         Unit unit = new TestDummy();
         cell.initializeUnit(0, unit);
@@ -85,7 +86,7 @@ public class CellUnitTest {
         Cell cell = new Cell(0, 0);
 
         when(player.getTeam()).thenReturn(1);
-        cell.setPlayer(player);
+        cell.setTeam(1);
 
         Unit unit = new TestDummy();
 

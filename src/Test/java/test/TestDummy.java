@@ -1,7 +1,8 @@
 package test;
 
-import cell.Cell;
-import unit.Unit;
+import Modelo.Cell;
+import Modelo.unit.Unit;
+import Modelo.unit.UnitType;
 
 public class TestDummy extends Unit {
 
@@ -14,9 +15,15 @@ public class TestDummy extends Unit {
     private Boolean dead = false;
     private Integer damageReceived = 0;
 
+    public TestDummy() {
+        super(UnitType.INFANTRY);
+    }
+
     @Override
     public void useAbility(Unit unit) {
-        unit.applyDamage(meleeDamage);
+        if (unit.isAllyOf(this.team)) {
+            unit.applyDamage(meleeDamage);
+        }
     }
 
     @Override

@@ -1,11 +1,11 @@
 package test;
 
-import board.Board;
-import cell.Cell;
-import exceptions.AbilityException;
+import Modelo.Board;
+import Modelo.Cell;
+import Modelo.exceptions.AbilityException;
 import org.junit.jupiter.api.Test;
-import unit.*;
-import utils.UtilBoard;
+import Modelo.unit.*;
+import Modelo.utils.UtilBoard;
 
 import java.util.HashSet;
 import java.util.Set;

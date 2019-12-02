@@ -1,8 +1,7 @@
 package test;
 
-import cell.Cell;
-import player.Player;
-import unit.Unit;
+import Modelo.Player;
+import Modelo.unit.Unit;
 
 import java.util.HashSet;
 import java.util.Set;
