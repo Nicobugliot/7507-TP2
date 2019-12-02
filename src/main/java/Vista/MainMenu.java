@@ -7,9 +7,12 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -24,7 +27,7 @@ public class MainMenu extends Application{
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        primaryStage.setTitle("AlgoChess v1.0 - Alpha");
+        primaryStage.setTitle("AlgoChess v1.3 - Alpha");
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setOnCloseRequest(e -> {
             e.consume();

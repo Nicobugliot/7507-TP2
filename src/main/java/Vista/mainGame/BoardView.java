@@ -1,6 +1,10 @@
 package Vista.mainGame;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 public class BoardView extends GridPane {
 
