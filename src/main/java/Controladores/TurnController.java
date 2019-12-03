@@ -2,6 +2,7 @@ package Controladores;
 
 import Modelo.Player;
 import Modelo.unit.Unit;
+import Vista.mainGame.CellView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -67,7 +68,7 @@ public class TurnController implements EventHandler<ActionEvent> {
         actualPlayer = nextPlayer;
         nextPlayer = swap;
 
-        gameSystemController.getLastCellView().unHighlightUnit();
+        if (gameSystemController.getLastCellView() != null) gameSystemController.getLastCellView().unHighlightUnit();
         gameSystemController.changeTurn();
     }
 }
