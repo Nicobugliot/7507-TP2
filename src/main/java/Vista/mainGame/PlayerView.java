@@ -29,7 +29,6 @@ public class PlayerView extends HBox {
     private Text spaceText;
     private Text pointText;
     private Text pointsText;
-    private Button addUnitButton;
     private Button changeTurnButton;
     private Button soldierButton;
     private Button riderButton;
@@ -71,8 +70,6 @@ public class PlayerView extends HBox {
         /**
          * Configuración de los botones
          * */
-        addUnitButton = new Button("Add unit");
-        addUnitButton.setAlignment(Pos.CENTER);
 
         changeTurnButton = new Button("Finish turn");
         changeTurnButton.setAlignment(Pos.CENTER_RIGHT);
@@ -92,7 +89,6 @@ public class PlayerView extends HBox {
         /**
          * Asigno controladores para los botones
          */
-        addUnitButton.setOnAction(new AddUnitController("Add"));
         changeTurnButton.setOnAction(turnController);
         soldierButton.setOnAction(new AddUnitController("Soldier"));
         riderButton.setOnAction(new AddUnitController("Rider"));
@@ -115,7 +111,6 @@ public class PlayerView extends HBox {
                 spaceText,
                 pointText,
                 pointsText,
-                addUnitButton,
                 changeTurnButton,
                 soldierButton,
                 riderButton,
@@ -143,7 +138,6 @@ public class PlayerView extends HBox {
                 spaceText,
                 pointText,
                 pointsText,
-                addUnitButton,
                 changeTurnButton,
                 soldierButton,
                 riderButton,
