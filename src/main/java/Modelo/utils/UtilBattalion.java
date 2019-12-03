@@ -18,14 +18,6 @@ public class UtilBattalion {
         movementY = (nextY - actualY);
     }
 
-    public static Integer getXMovement(){
-        return movementX;
-    }
-
-    public static Integer getYMovement(){
-        return movementY;
-    }
-
     public static Cell calculateNextCellFor(Cell cellA){
         Board board = Board.getBoard();
         Integer xPosition = cellA.getXPosition();

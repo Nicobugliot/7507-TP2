@@ -44,11 +44,12 @@ public class Battalion extends Unit {
         throw new AbilityException("Los batallones no tienen habilidad");
     }
 
-    public void moveTo(Cell originCellOfLeader, Cell nextCellForLeader) {
+    @Override
+    public void moveTo(Cell nextCellForLeader) {
 
-        utilBattalion.calculateMovementDirection(originCellOfLeader , nextCellForLeader);
-        Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(2).getCell());
-        Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(3).getCell());
+        utilBattalion.calculateMovementDirection(units.get(0).getCell() , nextCellForLeader);
+        Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(1).getCell());
+        Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(2).getCell());
 
         List<Cell> listCell = List.of(nextCellForLeader, nextCellB, nextCellC);
         for (Integer j = 0; j < listCell.size(); j++) {
