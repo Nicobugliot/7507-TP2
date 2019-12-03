@@ -12,9 +12,11 @@ public class InfantrySoldier extends Unit {
     private Integer meleeDamage = 10;
     private Battalion battalion;
     private static Integer MIN_DISTANCE_ATACK = 1;
+    private Boolean belongsToABattalion;
 
     public InfantrySoldier() {
         super(UnitType.INFANTRY);
+        belongsToABattalion = false;
     }
 
     @Override
@@ -30,22 +32,19 @@ public class InfantrySoldier extends Unit {
         }
     }
 
-    @Override
-    public void moveTo(Cell nextCell) {
-        try {
-            battalion.moveTo(nextCell);
-        } catch (NullPointerException err) {
-            masterHand.moveUnit(this, nextCell);
-        }
-    }
+    private void formBattalionIfPossible(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
 
-    private void formBattalion(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
-
-        if (unitA.canFormBattalions() && unitB.canFormBattalions()){        //se corrobora que las ingresadas puedan formar batallon
+        if (unitA.canFormBattalions() && unitB.canFormBattalions() &&
+            (UtilBoard.distanceBetweenCells(this.cell, unitA.getCell()) == 1 || UtilBoard.distanceBetweenCells(this.cell, unitB.getCell()) == 1) &&
+            (UtilBoard.distanceBetweenCells(this.cell, unitA.getCell()) == 1 || UtilBoard.distanceBetweenCells(unitA.getCell(), unitB.getCell()) == 1) &&
+            (UtilBoard.distanceBetweenCells(this.cell, unitB.getCell()) == 1 || UtilBoard.distanceBetweenCells(unitA.getCell(), unitB.getCell()) == 1)
+            ){        //se corrobora que las ingresadas puedan formar batallon
             this.battalion = new Battalion();
             this.battalion.addUnit(this);
             this.battalion.addUnit(unitA);
             this.battalion.addUnit(unitB);
+            unitA.joinABattalion();
+            unitB.leaveBattalion();
         }                                                         //habria que lanzar una excepcion si no cumplen
         
         //al mover hay que hacer un for de 3 intentando mover cada unidad que no se haya movido
@@ -57,9 +56,29 @@ public class InfantrySoldier extends Unit {
         return true;
     }
 
-    public void moveBattalion(Cell nextCellA , Cell nextCellB , Cell nextCellC) {
-        if (battalion.isEmpty()){
-            this.battalion.moveTo(nextCellA , nextCellB , nextCellC);
+    public void moveBattalionTo(Cell nextCellForLeader) {
+        if (! battalion.isEmpty()){
+            this.battalion.moveTo(nextCellForLeader);
         }
+    }
+
+    @Override
+    public boolean leadsABattalion() {
+        return (! battalion.isEmpty());
+    }
+
+    @Override
+    public boolean belongsToABattalion() {
+        return (belongsToABattalion);
+    }
+
+    @Override
+    public void joinABattalion(){
+        belongsToABattalion = Boolean.TRUE;
+    }
+
+    @Override
+    public void leaveBattalion(){
+        belongsToABattalion = Boolean.FALSE;
     }
 }
