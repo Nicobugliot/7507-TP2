@@ -7,6 +7,7 @@ public class UtilBattalion {
 
     private static int movementX;
     private static int movementY;
+    private static Board board = Board.getBoard();
 
     public static void calculateMovementDirection(Cell actualCell, Cell nextCell) {
         Integer actualX = actualCell.getXPosition();
@@ -18,8 +19,7 @@ public class UtilBattalion {
         movementY = (nextY - actualY);
     }
 
-    public static Cell calculateNextCellFor(Cell cellA){
-        Board board = Board.getBoard();
+    public static Cell calculateNextCellFor(Cell cellA) {
         Integer xPosition = cellA.getXPosition();
         Integer yPosition = cellA.getYPosition();
         return  (board.getCell(xPosition + movementX , yPosition + movementY));

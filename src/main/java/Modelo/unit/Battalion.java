@@ -57,6 +57,7 @@ public class Battalion extends Unit {
                 try {
                     units.get(i).moveTo(listCell.get(i));
                 } catch (OccupiedCellException | MovementException err) {
+                    System.out.println();
                     // Agarro el error de movimiento ya que se debe quedar en su lugar
                 }
             }
