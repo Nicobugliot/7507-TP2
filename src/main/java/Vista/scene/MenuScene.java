@@ -31,14 +31,34 @@ public class MenuScene extends VBox {
 
         // create Background
         Background backgroundImageObject = new Background(backgroundImage);
+        String cssProp = "-fx-background-color: #ecebe9,rgba(0,0,0,0.05),linear-gradient(#dcca8a, #c7a740),linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%),linear-gradient(#f6ebbe, #e6c34d);"+
+                "-fx-background-insets: 0,1,2,3,0;" +
+                "-fx-background-radius: 50;" +
+                "-fx-font-family: 'Chalkduster';" +
+                "-fx-padding: 15 30 15 30;" +
+                "-fx-font-size: 18px;" +
+                "-fx-text-fill: #311c09;" +
+                " -fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);";
 
-        Label menuTitle = new Label("Main Menu");
+        String cssPropText = "-fx-font-size: 50px;" +
+                "-fx-font-family: 'Chalkduster';" +
+                "-fx-color-label-visible: black;" +
+                "-fx-fill: black;" +
+                "-fx-text-fill: #fffce1;" +
+                " -fx-font-weight: bold;" +
+                " -fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);" ;
 
-        startGameButton = new Button("Play");
+
+        Label menuTitle = new Label("ALGOCHESS");
+        menuTitle.setStyle(cssPropText);
+
+        startGameButton = new Button("PLAY");
         startGameButton.setOnAction(new PlayButtonController(stage));
+        startGameButton.setStyle(cssProp);
 
-        exitButton = new Button("Exit");
+        exitButton = new Button("EXIT");
         exitButton.setOnAction(new ExitButtonController(stage));
+        exitButton.setStyle(cssProp);
 
         /**
          * Configuraciones del VBox

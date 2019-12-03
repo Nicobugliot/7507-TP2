@@ -39,6 +39,15 @@ public class PlayerView extends HBox {
         //super();
         this.player = player;
         this.color = color;
+        String cssProperties = "-fx-background-color:#eee0c6;"+
+                "-fx-background-insets: 0,1,2,3,0;" +
+                "-fx-background-radius: 50;" +
+                "-fx-font-family: 'Chalkduster';" +
+                "-fx-padding: 15 30 15 30;" +
+                "-fx-font-size: 12px;" +
+                "-fx-text-fill: #000000;" +
+                " -fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);";
+
 
         /**
          * Configuración del texto
@@ -68,23 +77,29 @@ public class PlayerView extends HBox {
         spaceText.setTextAlignment(TextAlignment.LEFT);
 
         /**
-         * Configuración de los botones
+         * Configuración de los botones y sus estilos
          * */
+
 
         changeTurnButton = new Button("Finish turn");
         changeTurnButton.setAlignment(Pos.CENTER_RIGHT);
+        changeTurnButton.setStyle(cssProperties);
 
         soldierButton = new Button("Soldier");
         soldierButton.setAlignment(Pos.CENTER_RIGHT);
+        soldierButton.setStyle(cssProperties);
 
         riderButton = new Button("Rider");
         riderButton.setAlignment(Pos.CENTER_RIGHT);
+        riderButton.setStyle(cssProperties);
 
         healerButton = new Button("Healer");
         healerButton.setAlignment(Pos.CENTER_RIGHT);
+        healerButton.setStyle(cssProperties);
 
         catapultButton = new Button("Catapult");
         catapultButton.setAlignment(Pos.CENTER_RIGHT);
+        catapultButton.setStyle(cssProperties);
 
         /**
          * Asigno controladores para los botones

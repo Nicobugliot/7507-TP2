@@ -9,9 +9,5 @@
         <module name="algoritmos-3.tp-2" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="7507-TP2" target="11" />
-      <module name="algoritmos-3.tp-2" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
