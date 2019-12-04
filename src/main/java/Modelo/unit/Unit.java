@@ -127,8 +127,4 @@ public abstract class Unit {
     public void joinABattalion(){}
 
     public void leaveBattalion(){}
-
-    public void moveBattalionTo(Cell cell) {
-        throw new RuntimeException("ASD");
-    }
 }
