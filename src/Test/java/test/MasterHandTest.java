@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
-public class MasterHandUnitTest {
+public class MasterHandTest {
 
     private Cell cell = mock(Cell.class);
     private MasterHand masterHand = new MasterHand();

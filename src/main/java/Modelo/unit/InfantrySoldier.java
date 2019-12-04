@@ -37,9 +37,6 @@ public class InfantrySoldier extends Unit {
     @Override
     public void formBattalion(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
 
-        System.out.println(this.cell.getXPosition() + " " + this.cell.getYPosition());
-        System.out.println(unitA.getCell().getXPosition() + " " + unitA.getCell().getYPosition());
-        System.out.println(unitB.getCell().getXPosition() + " " + unitB.getCell().getYPosition());
         if (unitA.canFormBattalions() && unitB.canFormBattalions() &&
             (UtilBoard.distanceBetweenCells(this.cell, unitA.getCell()) == 1 || UtilBoard.distanceBetweenCells(this.cell, unitB.getCell()) == 1) &&
             (UtilBoard.distanceBetweenCells(this.cell, unitA.getCell()) == 1 || UtilBoard.distanceBetweenCells(unitA.getCell(), unitB.getCell()) == 1) &&

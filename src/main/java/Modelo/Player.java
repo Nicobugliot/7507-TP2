@@ -4,7 +4,6 @@ import Modelo.exceptions.*;
 import Modelo.unit.Unit;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Player extends Observer{
 

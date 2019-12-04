@@ -2,7 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UnitSimpleCombatTest{
+class SimpleCombatTest {
 /*
 
     @Test
