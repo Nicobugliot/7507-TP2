@@ -60,10 +60,6 @@ public abstract class Unit {
         return this.cell;
     }
 
-    public void die() {
-        this.hp = 0;
-    }
-
     public Boolean canBeHealed() {
         return true;
     }

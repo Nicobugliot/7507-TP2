@@ -170,7 +170,13 @@ class InfantrySoldierTests {
         assertThrows(MovementException.class, () -> {
             soldier.moveTo(nextCell);
         });
+    }
 
+    @Test
+    void Testo07InfantrySoldierCanFormABattalion() {
+        Unit unit = new InfantrySoldier();
+
+        assertTrue(unit.canFormBattalions());
     }
 
 

@@ -2,7 +2,9 @@ package test;
 
 import Modelo.Board;
 import Modelo.Cell;
+import Modelo.Player;
 import Modelo.exceptions.AbilityException;
+import Modelo.exceptions.MovementException;
 import org.junit.jupiter.api.Test;
 import Modelo.unit.*;
 import Modelo.utils.UtilBoard;
@@ -10,8 +12,7 @@ import Modelo.utils.UtilBoard;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class CatapultTests {
@@ -82,6 +83,17 @@ class CatapultTests {
         assertThrows(AbilityException.class, () -> {
             catapult.useAbility(target);
         });
+    }
+
+    @Test
+    void Test03CatapultCantMoveAndCantBeHeal() {
+        Unit catapult = new Catapult();
+        Cell cell = mock(Cell.class);
+
+        assertThrows(MovementException.class, () -> {
+            catapult.moveTo(cell);
+        });
+        assertFalse(catapult.canBeHealed());
     }
 
 }
