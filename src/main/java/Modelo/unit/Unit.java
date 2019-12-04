@@ -4,7 +4,9 @@ import Modelo.Board;
 import Modelo.Cell;
 import Modelo.Observer;
 import Modelo.MasterHand;
+import Modelo.exceptions.BattalionException;
 
+import java.sql.BatchUpdateException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +84,10 @@ public abstract class Unit {
         return false;
     }
 
+    public void formBattalion(Unit unitA, Unit unitB) {
+        throw new BattalionException("No podes formar un batallon");
+    }
+
     public void moveTo(Cell nextCell) {
         masterHand.moveUnit(this, nextCell);
     }
@@ -102,6 +108,10 @@ public abstract class Unit {
         deleteObservers();
     }
 
+    public Integer getTeam() {
+        return this.team;
+    }
+
     public void attachObserver(Observer observer) {
         observers.add(observer);
     }
@@ -117,4 +127,8 @@ public abstract class Unit {
     public void joinABattalion(){}
 
     public void leaveBattalion(){}
+
+    public void moveBattalionTo(Cell cell) {
+        throw new RuntimeException("ASD");
+    }
 }

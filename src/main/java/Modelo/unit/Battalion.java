@@ -13,9 +13,9 @@ import java.util.List;
 
 public class Battalion extends Unit {
 
-    private List<Unit> units;
+    private List<Unit> units = new ArrayList<Unit>();
     private UtilBoard utilBoard = new UtilBoard();
-    private UtilBattalion utilBattalion = new UtilBattalion();
+    private static UtilBattalion utilBattalion = new UtilBattalion();
 
     public Battalion(){
         super(UnitType.INFANTRY);
@@ -46,7 +46,6 @@ public class Battalion extends Unit {
 
     @Override
     public void moveTo(Cell nextCellForLeader) {
-
         utilBattalion.calculateMovementDirection(units.get(0).getCell() , nextCellForLeader);
         Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(1).getCell());
         Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(2).getCell());
@@ -55,9 +54,8 @@ public class Battalion extends Unit {
         for (Integer j = 0; j < listCell.size(); j++) {
             for (Integer i = 0; i < listCell.size(); i++) {
                 try {
-                    units.get(i).moveTo(listCell.get(i));
+                    masterHand.moveUnit(units.get(i), listCell.get(i));
                 } catch (OccupiedCellException | MovementException err) {
-                    System.out.println();
                     // Agarro el error de movimiento ya que se debe quedar en su lugar
                 }
             }
@@ -66,9 +64,9 @@ public class Battalion extends Unit {
     }
 
     private void checkBattalionStatus() {
-        if(!(utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(1).getCell()) == 1 && utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(2).getCell()) == 1)
-        || !(utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(0).getCell()) == 1 && utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(2).getCell()) == 1)
-        || !(utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(0).getCell()) == 1 && utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(1).getCell()) == 1)){
+        if(!((utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(1).getCell()) == 1 || utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(2).getCell()) == 1)
+        && (utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(1).getCell()) == 1 || utilBoard.distanceBetweenCells(units.get(1).getCell() , units.get(2).getCell()) == 1)
+        && (utilBoard.distanceBetweenCells(units.get(0).getCell() , units.get(2).getCell()) == 1 || utilBoard.distanceBetweenCells(units.get(2).getCell() , units.get(1).getCell()) == 1))){
             dissolveBattalion();
         }
     }
@@ -77,10 +75,15 @@ public class Battalion extends Unit {
         units.get(1).leaveBattalion();
         units.get(2).leaveBattalion();
         units.clear();
+        System.out.println("Se disolvio el batallon");
     }
 
     public Boolean isEmpty(){
         return !(units.size() == 3);
+    }
+
+    public List<Unit> getUnits() {
+        return units;
     }
 }
 

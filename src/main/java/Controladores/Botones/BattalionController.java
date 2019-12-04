@@ -17,6 +17,10 @@ public class BattalionController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        gameSystemController.setBattalionLeader(unit);
+        if (unit.belongsToABattalion()) {
+            System.out.println("YA PERTENECE A UN BATALLON");
+        } else {
+            gameSystemController.setBattalionLeader(unit);
+        }
     }
 }

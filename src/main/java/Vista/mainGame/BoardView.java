@@ -1,4 +1,5 @@
 package Vista.mainGame;
+import Controladores.GameSystemController;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
@@ -9,6 +10,7 @@ import java.io.File;
 public class BoardView extends GridPane {
 
     // the dimensions of our background Image
+    private static GameSystemController gameSystemController = GameSystemController.getInstance();
     private final int BORDER_WIDTH = 800;
     private final int BORDER_HEIGHT = 800;
 
@@ -21,6 +23,7 @@ public class BoardView extends GridPane {
         for (int i = 0; i < tileNum; i++) {
             for (int j = 0; j < tileNum; j++) {
                 CellView tile = new CellView(i, j);
+                gameSystemController.setCellViews(j, i, tile);
                 tile.setBackground(Background.EMPTY);
                 tile.setPrefSize(tileWidth, tileHeight);
 

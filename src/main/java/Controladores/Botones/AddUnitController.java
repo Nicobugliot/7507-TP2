@@ -29,8 +29,8 @@ public class AddUnitController implements EventHandler<ActionEvent> {
         this.actualPlayer = turnController.getActualPlayer();
         switch (unit){
             case "Soldier":
-                //buyUnit(new InfantrySoldier());
-                buyConfirmation();
+                buyUnit(new InfantrySoldier());
+                //buyConfirmation();
                 break;
             case "Rider":
                 buyUnit(new Rider());

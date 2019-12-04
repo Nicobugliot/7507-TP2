@@ -1,6 +1,5 @@
 package Controladores;
 
-import Modelo.unit.InfantrySoldier;
 import Modelo.unit.Unit;
 import Vista.mainGame.CellView;
 import Vista.mainGame.PlayerView;
@@ -17,7 +16,9 @@ public class GameSystemController {
     private CellView lastCellView;
     private Unit unitMoveTo;
     private Unit setUnitAbility;
-    private ArrayList<Unit> battalionSoldiers;
+    private Unit battalionLeader;
+    private ArrayList<Unit> arrayUnit = new ArrayList<Unit>();
+    private CellView[][] cellViews = new CellView[20][20];
 
     public static GameSystemController getInstance(){
         if (gameSystemController == null){
@@ -64,9 +65,8 @@ public class GameSystemController {
         return this.unitMoveTo;
     }
 
-    public void unitHasBeenMoved(CellView cellView) {
+    public void unitHasBeenMoved() {
         this.unitMoveTo = null;
-        lastCellView.clearImage();
     }
 
     public void setLastCellView(CellView cellView) {
@@ -90,10 +90,26 @@ public class GameSystemController {
     }
 
     public void setBattalionLeader(Unit unit) {
-        battalionSoldiers.add(unit);
+        battalionLeader = unit;
     }
 
-    public ArrayList<Unit> getBattalion() {
-        return this.battalionSoldiers;
+    public Unit getBattalionLeader() {
+        return battalionLeader;
+    }
+
+    public void addUnitBattalion(Unit unit) {
+        arrayUnit.add(unit);
+    }
+
+    public ArrayList<Unit> getUnitBattalion() {
+        return arrayUnit;
+    }
+
+    public void setCellViews(Integer x, Integer y, CellView cellView) {
+        cellViews[x][y] = cellView;
+    }
+
+    public CellView getCellView(Integer x, Integer y) {
+        return cellViews[x][y];
     }
 }

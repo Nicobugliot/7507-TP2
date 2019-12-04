@@ -2,6 +2,8 @@ package Modelo.unit;
 
 import Modelo.Cell;
 import Modelo.exceptions.AbilityException;
+import Modelo.exceptions.BattalionException;
+import Modelo.exceptions.MovementException;
 import Modelo.utils.UtilBoard;
 
 public class InfantrySoldier extends Unit {
@@ -10,7 +12,7 @@ public class InfantrySoldier extends Unit {
         cost = 1;
     }
     private Integer meleeDamage = 10;
-    private Battalion battalion;
+    private Battalion battalion = new Battalion();
     private static Integer MIN_DISTANCE_ATACK = 1;
     private Boolean belongsToABattalion;
 
@@ -32,8 +34,12 @@ public class InfantrySoldier extends Unit {
         }
     }
 
-    private void formBattalionIfPossible(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
+    @Override
+    public void formBattalion(Unit unitA , Unit unitB) {    //debe recibir las otras dos unidades que forman el batallon
 
+        System.out.println(this.cell.getXPosition() + " " + this.cell.getYPosition());
+        System.out.println(unitA.getCell().getXPosition() + " " + unitA.getCell().getYPosition());
+        System.out.println(unitB.getCell().getXPosition() + " " + unitB.getCell().getYPosition());
         if (unitA.canFormBattalions() && unitB.canFormBattalions() &&
             (UtilBoard.distanceBetweenCells(this.cell, unitA.getCell()) == 1 || UtilBoard.distanceBetweenCells(this.cell, unitB.getCell()) == 1) &&
             (UtilBoard.distanceBetweenCells(this.cell, unitA.getCell()) == 1 || UtilBoard.distanceBetweenCells(unitA.getCell(), unitB.getCell()) == 1) &&
@@ -44,11 +50,23 @@ public class InfantrySoldier extends Unit {
             this.battalion.addUnit(unitA);
             this.battalion.addUnit(unitB);
             unitA.joinABattalion();
-            unitB.leaveBattalion();
-        }                                                         //habria que lanzar una excepcion si no cumplen
+            unitB.joinABattalion();
+            this.joinABattalion();
+        } else {
+            throw new BattalionException("No podes unirte al batallon");
+        }                                                        //habria que lanzar una excepcion si no cumplen
         
         //al mover hay que hacer un for de 3 intentando mover cada unidad que no se haya movido
         //en cuanto se logra mover una unidad, la removemos del batallon y se siguen tratando de mover los miembros restantes
+    }
+
+    @Override
+    public void moveTo(Cell nextCell) {
+        if (belongsToABattalion()) {
+            moveBattalionTo(nextCell);
+        } else {
+            masterHand.moveUnit(this, nextCell);
+        }
     }
 
     @Override
@@ -56,9 +74,12 @@ public class InfantrySoldier extends Unit {
         return true;
     }
 
+    @Override
     public void moveBattalionTo(Cell nextCellForLeader) {
         if (! battalion.isEmpty()){
             this.battalion.moveTo(nextCellForLeader);
+        } else {
+            throw new MovementException("Solo el lider puede mover al batallón");
         }
     }
 
@@ -80,5 +101,9 @@ public class InfantrySoldier extends Unit {
     @Override
     public void leaveBattalion(){
         belongsToABattalion = Boolean.FALSE;
+    }
+
+    public Battalion getBattalion() {
+        return this.battalion;
     }
 }

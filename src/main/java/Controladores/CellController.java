@@ -5,6 +5,8 @@ import Modelo.Cell;
 import Modelo.Observer;
 import Modelo.Player;
 import Modelo.exceptions.*;
+import Modelo.unit.Battalion;
+import Modelo.unit.InfantrySoldier;
 import Modelo.unit.Unit;
 import Vista.mainGame.CellView;
 import Vista.popUp.AlertPopUpWindow;
@@ -29,13 +31,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         this.cellView = cellView;
     }
 
-    private void addUnitToBoard(String unitName) {
-        Player actualPlayer = turnController.getActualPlayer();
-        String color = actualPlayer.getTeam() == 0  ? "rojo" : "azul";
-        cellView.updateImage(unitName + "_" + color + ".png");
-        turnController.unitHasBeenSet();
-    }
-
     @Override
     public void handle(MouseEvent event) {
         Player actualPlayer = turnController.getActualPlayer();
@@ -46,9 +41,11 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             attackUnitController(actualPlayer);
         } else if (gameSystemController.getUnitToMove() != null) {
             moveUnitController(actualPlayer);
-        } else if (gameSystemController.getBattalion() != null) {
-            makeBattalion(gameSystemController.getBattalion());
+        } else if (gameSystemController.getBattalionLeader() != null) {
+            showUnitController();
+            makeBattalion(board.getCell(xPosition, yPosition).getUnit());
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
+            actualizeView();
             try {
                 gameSystemController.getLastCellView().unHighlightUnit();
                 gameSystemController.setLastCellView(cellView);
@@ -57,20 +54,33 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
                 gameSystemController.setLastCellView(cellView);
                 showUnitController();
             }
-
         } else {
             System.out.println(xPosition + " " + yPosition);
         }
     }
 
-    private void makeBattalion(ArrayList<Unit> battalionSoldiers) {
-
+    private void makeBattalion(Unit unit) {
+        gameSystemController.addUnitBattalion(unit);
+        if (gameSystemController.getUnitBattalion().size() == 2) {
+            gameSystemController
+                    .getBattalionLeader()
+                    .formBattalion(gameSystemController.getUnitBattalion().get(0), gameSystemController.getUnitBattalion().get(1));
+            gameSystemController.setBattalionLeader(null);
+        }
     }
 
     /**
      * Funcion para mostrar las estadisticas de la unidad en la vista
      */
     private void showUnitController() {
+        if (board.getCell(xPosition, yPosition).getUnit().leadsABattalion()) {
+            InfantrySoldier infantrySoldier = (InfantrySoldier) board.getCell(xPosition, yPosition).getUnit();
+            Battalion battalion = infantrySoldier.getBattalion();
+            for (Unit soldiers: battalion.getUnits()) {
+                CellView cellView = gameSystemController.getCellView(soldiers.getCell().getYPosition(), soldiers.getCell().getXPosition());
+                cellView.highlightUnit();
+            }
+        }
         cellView.highlightUnit();
         Unit cellUnit = board.getCell(xPosition, yPosition).getUnit();
         gameSystemController.refreshUnitView(cellUnit, cellView);
@@ -85,8 +95,9 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         try {
             unit.setTeam(actualPlayer.getTeam());
             actualPlayer.initializeUnit(unit, board.getCell(xPosition, yPosition));
-            addUnitToBoard(unit.getType().toString());
             unit.attachObserver(this);
+            turnController.unitHasBeenSet();
+            actualizeView();
         } catch (MovementException err) {
             new AlertPopUpWindow()
                     .display("Movement Exception", err.getMessage());
@@ -105,7 +116,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         try {
             Cell cellToMove = board.getCell(xPosition, yPosition);
             actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
-            addUnitToBoard(gameSystemController.getUnitToMove().getType().toString());
             gameSystemController.getUnitToMove().deleteObservers();
 
             // Le seteo los observadores
@@ -113,7 +123,8 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             gameSystemController.getUnitToMove().attachObserver(this);
             gameSystemController.getUnitToMove().attachObserver(cellToMove);
 
-            gameSystemController.unitHasBeenMoved(cellView);
+            gameSystemController.unitHasBeenMoved();
+            actualizeView();
             turnController.changeTurn();
         } catch (MovementException err) {
             new AlertPopUpWindow()
@@ -145,6 +156,24 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
                     .display("Attack Exception", err.getMessage());
             gameSystemController.setUnitAbility(null);
         }
+    }
+
+    private void actualizeView() {
+        for(Integer i = 0; i < 20; i++){
+            for(Integer j = 0; j < 20; j++){
+                CellView cellView = gameSystemController.getCellView(i, j);
+                if (board.getCell(j, i).getUnit() != null) {
+                    addUnitToBoard(board.getCell(j, i).getUnit(), cellView);
+                } else {
+                    cellView.clearImage();
+                }
+            }
+        }
+    }
+
+    private void addUnitToBoard(Unit unit, CellView cellView) {
+        String color = unit.getTeam() == 0 ? "rojo" : "azul";
+        cellView.updateImage(unit.getType().toString() + "_" + color + ".png");
     }
 
     @Override
