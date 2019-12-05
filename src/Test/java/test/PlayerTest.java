@@ -219,4 +219,37 @@ class PlayerTest {
             player.useUnit(unit, nextCell);
         });
     }
+
+    @Test
+    void Test15PlayerLooseHisLastUnitAndLoose() {
+        Player player = new Player("Jorge");
+        player.setTeam(0);
+        Unit unit = new InfantrySoldier();
+        unit.setTeam(0);
+        player.addUnit(unit);
+        Cell cell = new Cell(1, 0);
+        unit.setCell(cell);
+
+        Cell nextCell = new Cell(0, 0);
+        Unit nextUnit = new InfantrySoldier();
+        nextUnit.setTeam(1);
+        nextUnit.setCell(nextCell);
+
+        assertThrows(GameOverException.class, () -> {
+            for (int i = 0; i < 10; i++) {
+                nextUnit.useAbility(unit);
+            }
+        });
+    }
+
+    @Test
+    void Test16PlayerGetPoints() {
+        Player player = new Player("Jorge");
+
+        assertEquals(player.getPoints(), 20);
+
+        player.addUnit(new InfantrySoldier());
+
+        assertEquals(player.getPoints(), 19);
+    }
 }

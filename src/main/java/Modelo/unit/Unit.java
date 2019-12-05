@@ -21,15 +21,14 @@ public abstract class Unit {
     protected Integer team;
     protected MasterHand masterHand = new MasterHand();
     protected List<Observer> observers = new ArrayList<Observer>();
-
-    public UnitType getType() {
-        return type;
-    }
-
     protected final UnitType type;
 
     protected Unit(UnitType type) {
         this.type = type;
+    }
+
+    public UnitType getType() {
+        return type;
     }
 
     public abstract void useAbility(Unit unit);
@@ -46,10 +45,6 @@ public abstract class Unit {
     public void setCell(Cell cell) {
         this.cell = cell;
         this.attachObserver(cell);
-    }
-
-    public boolean isAlive(){
-        return (hp > 0);
     }
 
     public Integer getCost(){
@@ -98,7 +93,6 @@ public abstract class Unit {
 
     public void notifyAllObservers() {
         for (Observer observer : observers) {
-            System.out.println(observer);
             observer.update(this);
         }
         deleteObservers();
