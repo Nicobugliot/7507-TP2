@@ -39,41 +39,44 @@ public class PlayerView extends HBox {
         //super();
         this.player = player;
         this.color = color;
-        String cssProperties = "-fx-background-color:#eee0c6;"+
+        String cssProperties ="fx-font-size: 18px;" +
+                "-fx-background-color: linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%);"+
                 "-fx-background-insets: 0,1,2,3,0;" +
                 "-fx-background-radius: 50;" +
                 "-fx-font-family: 'Chalkduster';" +
                 "-fx-padding: 15 30 15 30;" +
-                "-fx-font-size: 12px;" +
-                "-fx-text-fill: #000000;" +
-                " -fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);";
+                "-fx-text-fill: #311c09;";
+
+        String cssPropText = "-fx-font-size: 30;" +
+                "-fx-font-family: 'Chalkduster';" +
+                "-fx-color-label-visible: #ffe8a7;" +
+                "-fx-fill: #ffe8a7;" +
+                "-fx-text-fill: bold;" +
+                "-fx-font-weight: bold;" +
+                "-fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);" ;
 
 
         /**
          * Configuración del texto
          * */
-        playerText = new Text();
-        playerText.setText("Player = ");
-        playerText.setFont(new Font(20));
-        playerText.setTextAlignment(TextAlignment.LEFT);
 
         nameText = new Text();
         nameText.setText(player.getName());
-        nameText.setFont(new Font(20));
+        nameText.setStyle(cssPropText);
 
         pointText = new Text();
-        pointText.setText("Points = ");
-        pointText.setFont(new Font(20));
+        pointText.setText(" = ");
+        pointText.setStyle(cssPropText);
         pointText.setTextAlignment(TextAlignment.LEFT);
 
         pointsText = new Text();
         pointsText.setText(Integer.toString(player.getPoints()));
-        pointsText.setFont(new Font(20));
+        pointsText.setStyle(cssPropText);
         pointsText.setTextAlignment(TextAlignment.LEFT);
 
         spaceText = new Text();
         spaceText.setText(" ");
-        spaceText.setFont(new Font(20));
+        spaceText.setStyle(cssPropText);
         spaceText.setTextAlignment(TextAlignment.LEFT);
 
         /**
@@ -121,8 +124,7 @@ public class PlayerView extends HBox {
                                 Insets.EMPTY)));
         this.setSpacing(5);
 
-        this.getChildren().addAll(playerText,
-                nameText,
+        this.getChildren().addAll(nameText,
                 spaceText,
                 pointText,
                 pointsText,
@@ -134,6 +136,13 @@ public class PlayerView extends HBox {
     }
 
     public void refreshPoints() {
+        String cssPropText = "-fx-font-size: 30;" +
+                "-fx-font-family: 'Chalkduster';" +
+                "-fx-color-label-visible: #ffe8a7;" +
+                "-fx-fill: #ffe8a7;" +
+                "-fx-text-fill: bold;" +
+                "-fx-font-weight: bold;" +
+                "-fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);" ;
         int index = this.getChildren().indexOf(pointsText);
 
         Text newPointsText = new Text();
@@ -141,15 +150,16 @@ public class PlayerView extends HBox {
         newPointsText.setFont(new Font(20));
         newPointsText.setTextAlignment(TextAlignment.LEFT);
         pointsText = newPointsText;
+        pointsText.setStyle(cssPropText);
 
         this.getChildren().set(index, pointsText);
     }
 
     public void turnView() {
+
         this.getChildren().clear();
 
-        this.getChildren().addAll(playerText,
-                nameText,
+        this.getChildren().addAll(nameText,
                 spaceText,
                 pointText,
                 pointsText,
@@ -163,8 +173,7 @@ public class PlayerView extends HBox {
     public void notTurnView() {
         this.getChildren().clear();
 
-        this.getChildren().addAll(playerText,
-                nameText,
+        this.getChildren().addAll(nameText,
                 spaceText,
                 pointText,
                 pointsText);

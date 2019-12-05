@@ -21,7 +21,7 @@ public class SendNameButtonEventHandler implements EventHandler<ActionEvent> {
 
         if (this.textField.getText().trim().equals("")) {
 
-            this.label.setText("Debe ingresar un texto");
+            this.label.setText("You must enter a name");
             this.label.setTextFill(Color.web("#FF0000"));
 
         } else {

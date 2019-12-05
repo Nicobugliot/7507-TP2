@@ -31,10 +31,13 @@ public class PreGameScene extends VBox {
 
     private String askPlayerName( String playerNumber){
         InputNamePopUpWindow askPlayerForName = new InputNamePopUpWindow();
+        String playerNumberStr;
+        if(playerNumber.equals("0")){playerNumberStr ="1";}
+        else{playerNumberStr ="2";}
+
         String selectedName = askPlayerForName.display(
-                "Waiting for name", "Player "+playerNumber+" what's your name?",
-                "Accept",
-                "playerNumber");
+                "Waiting for name", "Player "+playerNumberStr+" what's your name?",
+                "Accept", "playerNumberStr");
 
         return selectedName;
     }

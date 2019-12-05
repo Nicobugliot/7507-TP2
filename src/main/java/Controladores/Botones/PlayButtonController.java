@@ -46,14 +46,14 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
         String gongPath = "sounds/gong.mp3";
         Media gongMedia = new Media(getClass().getClassLoader().getResource(gongPath).toExternalForm());
         AudioClip gongPlayer = new AudioClip(gongMedia.getSource());
-        gongPlayer.play(0.5);
+        gongPlayer.play(0.3);
 
         //Music
         String musicPath = "sounds/definitelyNotTheAOEMusic.mp3";
         Media media = new Media(getClass().getClassLoader().getResource(musicPath).toExternalForm());
         AudioClip musicPlayer = new AudioClip(media.getSource());
         musicPlayer.setCycleCount(AudioClip.INDEFINITE);
-        musicPlayer.play();
+        musicPlayer.play(0.1);
 
         // Arranca el juego
         GameContainerView gameContainer = new GameContainerView();

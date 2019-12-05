@@ -33,8 +33,8 @@ public class GameContainerView extends StackPane{
         /**
          * Vista de los jugadores
          */
-        PlayerView firstPlayerView = new PlayerView(players.get(0), Color.valueOf("#AF6E6F"));
-        PlayerView secondPlayerView = new PlayerView(players.get(1), Color.valueOf("#688FC0"));
+        PlayerView firstPlayerView = new PlayerView(players.get(0), Color.valueOf("grey"));
+        PlayerView secondPlayerView = new PlayerView(players.get(1), Color.valueOf("grey"));
 
         /**
          * Vista de las unidades

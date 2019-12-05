@@ -8,7 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,17 +29,44 @@ public class InputNamePopUpWindow implements EventHandler<ActionEvent> {
         window.setTitle(title);
         window.setMinWidth(300);
         window.setMinHeight(250);
+        String cssProp ="-fx-font-size: 18px;" +
+                "-fx-background-color: linear-gradient(#f9f2d6 0%, #f4e5bc 20%, #e6c75d 80%, #e2c045 100%);"+
+                "-fx-background-insets: 0,1,2,3,0;" +
+                "-fx-background-radius: 50;" +
+                "-fx-font-family: 'Chalkduster';" +
+                "-fx-padding: 15 30 15 30;" +
+                "-fx-text-fill: #311c09;";
+
+        String cssPropText = "-fx-font-size: 50;" +
+                "-fx-font-family: 'Chalkduster';" +
+                "-fx-color-label-visible: #ffe8a7;" +
+                "-fx-fill: black;" +
+                "-fx-text-fill: #000000;" +
+                " -fx-font-weight: bold;" +
+                " -fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);" ;
 
         messageLabel = new Label(message);
+        messageLabel.setStyle(cssPropText);
+
         acceptButton = new Button(acceptMessage);
         acceptButton.setOnAction(this);
+        acceptButton.setStyle(cssProp);
 
         playerName = new TextField();
-        playerName.setPromptText("Insert name for player " + playerNumber);
+        playerName.setPromptText("Insert name for player " + playerNumber+1);
+        playerName.setStyle(cssPropText);
+
         NameInputEventHandler NameInputEventHandler = new NameInputEventHandler(acceptButton);
         playerName.setOnKeyPressed(NameInputEventHandler);
+        playerName.setStyle(cssPropText);
+
+
+
+        // create a image
+
 
         VBox layout = new VBox(10);
+
         layout.getChildren().addAll(messageLabel, playerName, acceptButton);
         layout.setAlignment(Pos.CENTER);
 
@@ -54,7 +82,7 @@ public class InputNamePopUpWindow implements EventHandler<ActionEvent> {
         if(actionEvent.getSource() == acceptButton ) {
             if (this.playerName.getText().trim().equals("")) {
 
-                this.messageLabel.setText("Debe ingresar un texto");
+                this.messageLabel.setText("You must enter a name");
                 this.messageLabel.setTextFill(Color.web("#FF0000"));
 
             } else {
