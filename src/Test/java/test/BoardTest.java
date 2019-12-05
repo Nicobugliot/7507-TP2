@@ -107,4 +107,30 @@ public class BoardTest {
 
         assertFalse(board.enemiesInShortRange(board.getCell(0, 0), 0));
     }
+
+    @Test
+    void Test07BoardGetAlliesInShortRange() {
+        Board board = Board.getBoard();
+        Unit firstUnit = new InfantrySoldier();
+        Unit secondtUnit = new InfantrySoldier();
+        firstUnit.setTeam(0);
+        secondtUnit.setTeam(0);
+        board.getCell(0, 0).setUnit(firstUnit);
+        board.getCell(0, 2).setUnit(secondtUnit);
+
+        assertTrue(board.alliesInShortRange(board.getCell(0, 0), 0));
+    }
+
+    @Test
+    void Test08BoardCantGetAlliesInShortRange() {
+        Board board = Board.getBoard();
+        Unit firstUnit = new InfantrySoldier();
+        Unit secondtUnit = new InfantrySoldier();
+        firstUnit.setTeam(0);
+        secondtUnit.setTeam(0);
+        board.getCell(0, 0).setUnit(firstUnit);
+        board.getCell(0, 1).setUnit(secondtUnit);
+
+        assertTrue(board.alliesInShortRange(board.getCell(0, 0), 0));
+    }
 }
