@@ -28,7 +28,7 @@ public class Player extends Observer{
     public void addUnit(Unit unit) throws InsufficientPointsException{
         Integer price = unit.getCost();
         if(this.points < price){
-            throw new InsufficientPointsException("You don't have enough point to buy it");
+            throw new InsufficientPointsException("You don't have enough points to buy it");
         }
         this.points -= price;
         unit.setTeam(this.team);
@@ -48,7 +48,7 @@ public class Player extends Observer{
     public void looseUnit(Unit unit){
         playerUnits.remove(unit);
         if (playerUnits.size() == 0){
-            throw new GameOverException("El usuario "+ playerName +" ha perdido");
+            throw new GameOverException( playerName +" has lost!");
         }
     }
 
@@ -61,7 +61,7 @@ public class Player extends Observer{
         if (playerUnits.contains(unit)) {
             unit.moveTo(nextCell);
         } else {
-            throw new MovementException("Esa unidad no te corresponde");
+            throw new MovementException("This is a enemy unit");
         }
     }
 
