@@ -38,6 +38,8 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             attackUnitController(actualPlayer);
         } else if (gameSystemController.getUnitToMove() != null) {
             moveUnitController(actualPlayer);
+        } else if (gameSystemController.getBattalionLeaderToMove() != null) {
+            moveBattalionController(actualPlayer);
         } else if (gameSystemController.getBattalionLeader() != null) {
             showUnitController();
             makeBattalion(board.getCell(xPosition, yPosition).getUnit());
@@ -127,6 +129,28 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             new AlertPopUpWindow()
                     .display("Move Exception", err.getMessage());
             gameSystemController.setUnitMoveTo(null);
+        }
+    }
+
+    private void moveBattalionController(Player actualPlayer) {
+        //TODO falta el manejo de excepciones
+        try {
+            Cell cellToMove = board.getCell(xPosition, yPosition);
+            actualPlayer.moveBattalion(gameSystemController.getBattalionLeaderToMove(), cellToMove);        //movimiento tablero
+            gameSystemController.getBattalionLeaderToMove().deleteObservers();
+
+            // Le seteo los observadores
+            gameSystemController.getBattalionLeaderToMove().attachObserver(actualPlayer);
+            gameSystemController.getBattalionLeaderToMove().attachObserver(this);
+            gameSystemController.getBattalionLeaderToMove().attachObserver(cellToMove);
+
+            gameSystemController.battalionLeaderHasBeenMoved();
+            actualizeView();
+            turnController.changeTurn();
+        } catch (MovementException err) {
+            new AlertPopUpWindow()
+                    .display("Move Exception", err.getMessage());
+            gameSystemController.setBattalionLeaderMoveTo(null);
         }
     }
 

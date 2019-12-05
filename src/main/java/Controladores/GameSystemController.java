@@ -59,8 +59,6 @@ public class GameSystemController {
         actualPlayerView.refreshPoints();
     }
 
-
-
     public void setUnitMoveTo(Unit unit) {
         this.unitMoveTo = unit;
     }   //setBattalionMoveTo   y   battalionMoveTo
@@ -72,8 +70,6 @@ public class GameSystemController {
     public void unitHasBeenMoved() {
         this.unitMoveTo = null;
     }       // mismo pero con batallon
-
-
 
     public void setBattalionLeaderMoveTo(Unit unit) {
         this.battalionLeaderMoveTo = unit;
@@ -87,10 +83,12 @@ public class GameSystemController {
         this.battalionLeaderMoveTo = null;
     }
 
-
-
     public void setLastCellView(CellView cellView) {
         this.lastCellView = cellView;
+    }
+
+    public CellView getLastCellView() {
+        return this.lastCellView;
     }
 
     public void setUnitAbility(Unit unit) {
