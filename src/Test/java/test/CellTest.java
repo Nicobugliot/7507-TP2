@@ -1,7 +1,6 @@
 package test;
 
 import Modelo.Cell;
-import Modelo.exceptions.GameOverException;
 import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
 import Modelo.unit.InfantrySoldier;
@@ -10,7 +9,6 @@ import Modelo.Player;
 import Modelo.unit.Unit;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

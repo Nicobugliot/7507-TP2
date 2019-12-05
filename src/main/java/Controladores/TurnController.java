@@ -3,9 +3,12 @@ package Controladores;
 import Modelo.Player;
 import Modelo.unit.Unit;
 import Vista.mainGame.CellView;
+import Vista.popUp.AlertPopUpWindow;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class TurnController implements EventHandler<ActionEvent> {
@@ -42,7 +45,6 @@ public class TurnController implements EventHandler<ActionEvent> {
         // Elijo el primer jugador
         this.actualPlayer = players.get(0);
         this.nextPlayer = players.get(1);
-        System.out.println("Es el turno de " + actualPlayer.getName());
     }
 
     public void setUnit(Unit unit) {
@@ -61,8 +63,18 @@ public class TurnController implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         if (!firstPlayerFinish) {
+            if (actualPlayer.getUnitsAmount() == 0) {
+                new AlertPopUpWindow()
+                        .display("Game Over", "Player " + actualPlayer.getName() + " loose");
+                Platform.exit();
+            }
             firstPlayerFinish = true;
         } else if (!secondPlayerFinish) {
+            if (actualPlayer.getUnitsAmount() == 0) {
+                new AlertPopUpWindow()
+                        .display("Game Over", "Player " + actualPlayer.getName() + " loose");
+                Platform.exit();
+            }
             secondPlayerFinish = true;
         }
         this.changeTurn();
@@ -77,14 +89,6 @@ public class TurnController implements EventHandler<ActionEvent> {
 
         if (gameSystemController.getLastCellView() != null) gameSystemController.getLastCellView().unHighlightUnit();
         gameSystemController.changeTurn();
-    }
-
-    public void firstPlayerFinish() {
-        firstPlayerFinish = true;
-    }
-
-    public void secondPlayerFinish() {
-        secondPlayerFinish = true;
     }
 
     public boolean getFirstPlayerFinish() {

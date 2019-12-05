@@ -10,6 +10,7 @@ import Modelo.unit.InfantrySoldier;
 import Modelo.unit.Unit;
 import Vista.mainGame.CellView;
 import Vista.popUp.AlertPopUpWindow;
+import javafx.application.Platform;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
@@ -42,7 +43,16 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             moveBattalionController(actualPlayer);
         } else if (gameSystemController.getBattalionLeader() != null) {
             showUnitController();
-            makeBattalion(board.getCell(xPosition, yPosition).getUnit());
+            try {
+                makeBattalion(board.getCell(xPosition, yPosition).getUnit());
+            } catch (BattalionException err ) {
+                new AlertPopUpWindow()
+                        .display("Battalion error", err.getMessage());
+                actualizeView();
+                gameSystemController.setBattalionLeader(null);
+                gameSystemController.resetUnitBattalion();
+            }
+
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
             actualizeView();
             if (turnController.getFirstPlayerFinish() && turnController.getSecondPlayerFinish()) {
@@ -172,6 +182,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         } catch (GameOverException err) {
             new AlertPopUpWindow()
                     .display("You loose", err.getMessage());
+            Platform.exit();
         } catch (EmptyCellException err) {
             new AlertPopUpWindow()
                     .display("Attack Exception", err.getMessage());

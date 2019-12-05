@@ -58,9 +58,9 @@ public class PlayButtonController implements EventHandler<ActionEvent> {
         // Arranca el juego
         GameContainerView gameContainer = new GameContainerView();
         Scene gameScene = new Scene(gameContainer);
-        stage.setScene(gameScene);
-        stage.setFullScreen(true);
         stage.setTitle("AlgoChess");
+        stage.setScene(gameScene);
+        stage.setMaximized(true);
         stage.show();
     }
 
