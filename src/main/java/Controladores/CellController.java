@@ -13,8 +13,6 @@ import Vista.popUp.AlertPopUpWindow;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
-
 public class CellController extends Observer implements EventHandler<MouseEvent> {
 
     private final Integer yPosition;
@@ -23,7 +21,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
     private TurnController turnController = TurnController.getInstance();
     private GameSystemController gameSystemController = GameSystemController.getInstance();
     private CellView cellView;
-    private CellView lastCellView;
 
     public CellController(Integer x, Integer y, CellView cellView) {
         this.xPosition = x;
@@ -39,27 +36,23 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             initializeUnitController(actualPlayer);
         } else if (gameSystemController.getUnitAbility() != null) { // Caso de ataque
             attackUnitController(actualPlayer);
-        } else if (gameSystemController.getUnitToMove() != null) {      //habria que agregar algo tipo getBattalionToMove
-            moveUnitController(actualPlayer);                         //copiar este metodo adaptado para mover batallones en vez de unidades individuales
-
-        } else if (gameSystemController.getBattalionLeaderToMove() != null) {      //habria que agregar algo tipo getBattalionToMove
-            moveBattalionController(actualPlayer);                        //copiar este metodo adaptado para mover batallones en vez de unidades individuales
-
+        } else if (gameSystemController.getUnitToMove() != null) {
+            moveUnitController(actualPlayer);
         } else if (gameSystemController.getBattalionLeader() != null) {
             showUnitController();
             makeBattalion(board.getCell(xPosition, yPosition).getUnit());
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
             actualizeView();
-            try {
-                gameSystemController.getLastCellView().unHighlightUnit();
-                gameSystemController.setLastCellView(cellView);
-                showUnitController();
-            } catch (NullPointerException err) {
-                gameSystemController.setLastCellView(cellView);
-                showUnitController();
+            if (turnController.getFirstPlayerFinish() && turnController.getSecondPlayerFinish()) {
+                try {
+                    //gameSystemController.getLastCellView().unHighlightUnit();
+                    gameSystemController.setLastCellView(cellView);
+                    showUnitController();
+                } catch (NullPointerException err) {
+                    gameSystemController.setLastCellView(cellView);
+                    showUnitController();
+                }
             }
-        } else {
-            System.out.println(xPosition + " " + yPosition);
         }
     }
 
@@ -119,7 +112,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         //TODO falta el manejo de excepciones
         try {
             Cell cellToMove = board.getCell(xPosition, yPosition);
-            actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);        //movimiento tablero
+            actualPlayer.moveUnit(gameSystemController.getUnitToMove(), cellToMove);
             gameSystemController.getUnitToMove().deleteObservers();
 
             // Le seteo los observadores
@@ -134,28 +127,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             new AlertPopUpWindow()
                     .display("Move Exception", err.getMessage());
             gameSystemController.setUnitMoveTo(null);
-        }
-    }
-
-    private void moveBattalionController(Player actualPlayer) {
-        //TODO falta el manejo de excepciones
-        try {
-            Cell cellToMove = board.getCell(xPosition, yPosition);
-            actualPlayer.moveBattalion(gameSystemController.getBattalionLeaderToMove(), cellToMove);        //movimiento tablero
-            gameSystemController.getBattalionLeaderToMove().deleteObservers();
-
-            // Le seteo los observadores
-            gameSystemController.getBattalionLeaderToMove().attachObserver(actualPlayer);
-            gameSystemController.getBattalionLeaderToMove().attachObserver(this);
-            gameSystemController.getBattalionLeaderToMove().attachObserver(cellToMove);
-
-            gameSystemController.battalionLeaderHasBeenMoved();
-            actualizeView();
-            turnController.changeTurn();
-        } catch (MovementException err) {
-            new AlertPopUpWindow()
-                    .display("Move Exception", err.getMessage());
-            gameSystemController.setBattalionLeaderMoveTo(null);
         }
     }
 
