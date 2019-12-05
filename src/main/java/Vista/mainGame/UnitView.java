@@ -42,7 +42,7 @@ public class UnitView extends VBox {
 
 
         //TODO sacar el harcode a todo.
-        Text unitLife = new Text(unit.getLife().toString());
+        Text unitLife = new Text("HP: " + unit.getLife().toString());
         unitLife.setStyle(cssPropText);
         /**
          * Seteo los botones

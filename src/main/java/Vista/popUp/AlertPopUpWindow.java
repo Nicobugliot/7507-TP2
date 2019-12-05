@@ -49,6 +49,7 @@ public class AlertPopUpWindow implements EventHandler<ActionEvent> {
         Scene scene = new Scene(layout);
         this.window.setScene(scene);
         this.window.showAndWait();//Espera a que cierren el popUp para dejarte interactuar con los otros escenarios
+        this.window.toFront();
     }
 
     @Override
