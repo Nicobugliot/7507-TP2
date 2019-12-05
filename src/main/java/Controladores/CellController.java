@@ -43,13 +43,15 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             makeBattalion(board.getCell(xPosition, yPosition).getUnit());
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
             actualizeView();
-            try {
-                //gameSystemController.getLastCellView().unHighlightUnit();
-                gameSystemController.setLastCellView(cellView);
-                showUnitController();
-            } catch (NullPointerException err) {
-                gameSystemController.setLastCellView(cellView);
-                showUnitController();
+            if (turnController.getFirstPlayerFinish() && turnController.getSecondPlayerFinish()) {
+                try {
+                    //gameSystemController.getLastCellView().unHighlightUnit();
+                    gameSystemController.setLastCellView(cellView);
+                    showUnitController();
+                } catch (NullPointerException err) {
+                    gameSystemController.setLastCellView(cellView);
+                    showUnitController();
+                }
             }
         }
     }

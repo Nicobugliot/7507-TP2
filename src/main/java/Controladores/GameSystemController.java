@@ -50,6 +50,7 @@ public class GameSystemController {
         actualPlayerView.turnView();
         nextPlayerView.notTurnView();
 
+
         unitView.clearView();
     }
 
@@ -71,10 +72,6 @@ public class GameSystemController {
 
     public void setLastCellView(CellView cellView) {
         this.lastCellView = cellView;
-    }
-
-    public CellView getLastCellView() {
-        return this.lastCellView;
     }
 
     public void setUnitAbility(Unit unit) {
