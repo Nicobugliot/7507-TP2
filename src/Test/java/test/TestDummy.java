@@ -29,9 +29,6 @@ public class TestDummy extends Unit {
     @Override
     public void applyDamage(Integer damage) {
         this.hp -= damage;
-        if (this.hp <= 0){
-            this.die();
-        }
         this.damageReceived += damage;
     }
 

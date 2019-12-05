@@ -16,9 +16,7 @@ public class UtilMovement {
                             (! (row == yPosition && column == xPosition) )) {
                         return true;
                     }
-                }catch (ArrayIndexOutOfBoundsException err) {
-
-                }
+                }catch (ArrayIndexOutOfBoundsException err) { }
             }
         }
         return false;
