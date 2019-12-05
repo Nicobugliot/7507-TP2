@@ -114,9 +114,9 @@ public abstract class Unit {
 
     public boolean belongsToABattalion() {return Boolean.FALSE; }
 
-    public void joinABattalion(){}
+    public void joinABattalion(){throw new BattalionException("No puede unirse a un batallon");}
 
-    public void leaveBattalion(){}
+    public void leaveBattalion(){throw new BattalionException("No puede salir de batallones");}
 
     public void moveBattalionTo(Cell nextCell){
         throw new BattalionException("No podes mover batallones");
