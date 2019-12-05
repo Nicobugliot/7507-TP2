@@ -46,21 +46,24 @@ public class Battalion extends Unit {
 
     @Override
     public void moveTo(Cell nextCellForLeader) {
-        utilBattalion.calculateMovementDirection(units.get(0).getCell() , nextCellForLeader);
-        Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(1).getCell());
-        Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(2).getCell());
+        this.checkBattalionStatus();
+        if(! isEmpty()){
+            utilBattalion.calculateMovementDirection(units.get(0).getCell() , nextCellForLeader);
+            Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(1).getCell());
+            Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(2).getCell());
 
-        List<Cell> listCell = List.of(nextCellForLeader, nextCellB, nextCellC);
-        for (Integer j = 0; j < listCell.size(); j++) {
-            for (Integer i = 0; i < listCell.size(); i++) {
-                try {
-                    masterHand.moveUnit(units.get(i), listCell.get(i));
-                } catch (OccupiedCellException | MovementException err) {
-                    // Agarro el error de movimiento ya que se debe quedar en su lugar
+            List<Cell> listCell = List.of(nextCellForLeader, nextCellB, nextCellC);
+            for (Integer j = 0; j < listCell.size(); j++) {
+                for (Integer i = 0; i < listCell.size(); i++) {
+                    try {
+                        masterHand.moveUnit(units.get(i), listCell.get(i));
+                    } catch (OccupiedCellException | MovementException err) {
+                        // Agarro el error de movimiento ya que se debe quedar en su lugar
+                    }
                 }
             }
+            this.checkBattalionStatus();
         }
-        this.checkBattalionStatus();
     }
 
     private void checkBattalionStatus() {
