@@ -10,14 +10,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-import java.io.File;
 
 public class PlayerView extends HBox {
 
@@ -34,9 +31,9 @@ public class PlayerView extends HBox {
     private Button riderButton;
     private Button healerButton;
     private Button catapultButton;
+    private String cssPropText;
 
     public PlayerView(Player player, Color color) {
-        //super();
         this.player = player;
         this.color = color;
         String cssProperties ="fx-font-size: 18px;" +
@@ -47,7 +44,7 @@ public class PlayerView extends HBox {
                 "-fx-padding: 15 30 15 30;" +
                 "-fx-text-fill: #311c09;";
 
-        String cssPropText = "-fx-font-size: 30;" +
+         this.cssPropText = "-fx-font-size: 30;" +
                 "-fx-font-family: 'Chalkduster';" +
                 "-fx-color-label-visible: #ffe8a7;" +
                 "-fx-fill: #ffe8a7;" +
@@ -159,24 +156,38 @@ public class PlayerView extends HBox {
 
         this.getChildren().clear();
 
-        this.getChildren().addAll(nameText,
-                spaceText,
-                pointText,
-                pointsText,
-                changeTurnButton,
-                soldierButton,
-                riderButton,
-                healerButton,
-                catapultButton);
+        if (turnController.getFirstPlayerFinish() && turnController.getSecondPlayerFinish()) {
+            spaceText = new Text(" ");
+            Text turnText = new Text("is your turn");
+            spaceText.setStyle(cssPropText);
+            turnText.setStyle(cssPropText);
+            this.getChildren().addAll(nameText, spaceText, turnText);
+
+        } else {
+            this.getChildren().addAll(nameText,
+                    spaceText,
+                    pointText,
+                    pointsText,
+                    changeTurnButton,
+                    soldierButton,
+                    riderButton,
+                    healerButton,
+                    catapultButton);
+        }
+
     }
 
     public void notTurnView() {
         this.getChildren().clear();
 
-        this.getChildren().addAll(nameText,
-                spaceText,
-                pointText,
-                pointsText);
+        if (turnController.getFirstPlayerFinish() && turnController.getSecondPlayerFinish()) {
+            this.getChildren().addAll(nameText);
+        } else {
+            this.getChildren().addAll(nameText,
+                    spaceText,
+                    pointText,
+                    pointsText);
+        }
     }
 
 }

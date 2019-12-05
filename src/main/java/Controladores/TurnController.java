@@ -16,6 +16,8 @@ public class TurnController implements EventHandler<ActionEvent> {
     private static TurnController controller;
     private Unit setUnit;
     private static GameSystemController gameSystemController = GameSystemController.getInstance();
+    private boolean firstPlayerFinish = false;
+    private boolean secondPlayerFinish = false;
 
     public static TurnController getInstance(){
         if (controller == null){
@@ -58,6 +60,11 @@ public class TurnController implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
+        if (!firstPlayerFinish) {
+            firstPlayerFinish = true;
+        } else if (!secondPlayerFinish) {
+            secondPlayerFinish = true;
+        }
         this.changeTurn();
         System.out.println("Es el turno de: " + actualPlayer.getName());
     }
@@ -70,5 +77,21 @@ public class TurnController implements EventHandler<ActionEvent> {
 
         if (gameSystemController.getLastCellView() != null) gameSystemController.getLastCellView().unHighlightUnit();
         gameSystemController.changeTurn();
+    }
+
+    public void firstPlayerFinish() {
+        firstPlayerFinish = true;
+    }
+
+    public void secondPlayerFinish() {
+        secondPlayerFinish = true;
+    }
+
+    public boolean getFirstPlayerFinish() {
+        return firstPlayerFinish;
+    }
+
+    public boolean getSecondPlayerFinish() {
+        return secondPlayerFinish;
     }
 }
