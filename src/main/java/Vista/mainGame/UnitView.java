@@ -7,9 +7,10 @@ import Modelo.unit.Unit;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class UnitView extends HBox {
+public class UnitView extends VBox {
 
     private final static double WIDTH = 300;
     private final static double HEIGHT = 1000;
