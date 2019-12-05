@@ -48,7 +48,7 @@ public class Player extends Observer{
     public void looseUnit(Unit unit){
         playerUnits.remove(unit);
         if (playerUnits.size() == 0){
-            throw new GameOverException("El usuario "+ playerName +" ha perdido");
+            throw new GameOverException( playerName +" has lost!");
         }
     }
 
@@ -61,7 +61,7 @@ public class Player extends Observer{
         if (playerUnits.contains(unit)) {
             unit.moveTo(nextCell);
         } else {
-            throw new MovementException("Esa unidad no te corresponde");
+            throw new MovementException("This is not your unit");
         }
     }
 
@@ -70,7 +70,7 @@ public class Player extends Observer{
         if (playerUnits.contains(unit)) {
             unit.moveBattalionTo(nextCell);
         } else {
-            throw new MovementException("Esa unidad no te corresponde");
+            throw new MovementException("This is not your unit");
         }
     }
 

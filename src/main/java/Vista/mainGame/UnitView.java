@@ -29,7 +29,7 @@ public class UnitView extends VBox {
                 "-fx-background-radius: 50;" +
                 "-fx-font-family: 'Chalkduster';" +
                 "-fx-padding: 15 30 15 30;" +
-                "-fx-font-size: 18px;" +
+                "-fx-font-size: 15px;" +
                 "-fx-text-fill: #311c09;" +
                 " -fx-effect: dropshadow( one-pass-box ,black  , 0, 0.0 , 0 , 1);";
         String cssPropText = "-fx-font-size: 50px;" +

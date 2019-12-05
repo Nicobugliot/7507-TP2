@@ -18,17 +18,17 @@ public class Healer extends Unit {
     @Override
     public void useAbility(Unit unit) throws AbilityException {
         if( UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) > MIN_DISTANCE_ATACK) {
-            throw new AbilityException("No puedo curar a esa distancia");
+            throw new AbilityException("I can´t heal at that distance");
         }
 
         if (unit.isAllyOf(this.team)) {
             if (unit.canBeHealed()) {
                 unit.applyDamage((-1)*healingAmount);
             }else{
-                throw new AbilityException("No puedo curar a la catapulta");
+                throw new AbilityException("I can´t heal any catapult");
             }
         } else {
-            throw new AbilityException("No puedo curar unidades enemigas");
+            throw new AbilityException("I can´t heal enemy´s units");
         }
 
     }

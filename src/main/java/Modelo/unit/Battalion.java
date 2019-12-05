@@ -30,9 +30,19 @@ public class Battalion extends Unit {
         units.add(unit);
     }
 
+    public void removeUnit(Unit unit) throws BattalionException {
+        units.remove(unit);
+        if (units.size() < 3){
+            for (Unit battalionSoldier : units){
+                this.removeUnit(battalionSoldier);
+            }
+            throw new BattalionException("The battalion has been destructed.");
+        }
+    }
+
     @Override
     public void useAbility(Unit unit) throws AbilityException {
-        throw new AbilityException("Los batallones no tienen habilidad");
+        throw new AbilityException("Battalion do not have abilities");
     }
 
     @Override
@@ -74,7 +84,7 @@ public class Battalion extends Unit {
             units.get(i).leaveBattalion();
         }
         units.clear();
-        System.out.println("Se disolvio el batallon");
+        System.out.println("The Battalion has been destructed!");
     }
 
     public Boolean isEmpty(){

@@ -27,10 +27,10 @@ public class InfantrySoldier extends Unit {
             if (UtilBoard.distanceBetweenCells(this.cell, unit.getCell()) == MIN_DISTANCE_ATACK){
                 unit.applyDamage(meleeDamage);
             }else {
-                throw new AbilityException("No puedo atacar a esa distancia");
+                throw new AbilityException("I can´t attack at that distace");
             }
         } else {
-            throw new AbilityException("No podes atacar a unidades aliadas");
+            throw new AbilityException("You can´t attack your own units ");
         }
     }
 
@@ -50,7 +50,7 @@ public class InfantrySoldier extends Unit {
             unitB.joinABattalion();
             this.joinABattalion();
         } else {
-            throw new BattalionException("No podes unirte al batallon");
+            throw new BattalionException("You can´t make part of the battalion");
         }                                                        //habria que lanzar una excepcion si no cumplen
         
         //al mover hay que hacer un for de 3 intentando mover cada unidad que no se haya movido
@@ -72,7 +72,7 @@ public class InfantrySoldier extends Unit {
         if (! battalion.isEmpty()){
             this.battalion.moveTo(nextCellForLeader);
         } else {
-            throw new MovementException("Solo el lider puede mover al batallón");
+            throw new MovementException("Only the leader moves the battalion");
         }
     }
 

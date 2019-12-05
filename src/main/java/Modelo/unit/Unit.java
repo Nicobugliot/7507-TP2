@@ -76,7 +76,7 @@ public abstract class Unit {
     }
 
     public void formBattalion(Unit unitA, Unit unitB) {
-        throw new BattalionException("No podes formar un batallon");
+        throw new BattalionException("You can´t make part of the battalion");
     }
 
     public void moveTo(Cell nextCell) {
@@ -114,11 +114,11 @@ public abstract class Unit {
 
     public boolean belongsToABattalion() {return Boolean.FALSE; }
 
-    public void joinABattalion(){throw new BattalionException("No puede unirse a un batallon");}
+    public void joinABattalion(){throw new BattalionException("You can´t make part of the battalion");}
 
-    public void leaveBattalion(){throw new BattalionException("No puede salir de batallones");}
+    public void leaveBattalion(){throw new BattalionException("You can´t quit from the battalion");}
 
     public void moveBattalionTo(Cell nextCell){
-        throw new BattalionException("No podes mover batallones");
+        throw new BattalionException("You can´t move the battalion");
     }
 }

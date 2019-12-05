@@ -30,9 +30,9 @@ public class Rider extends Unit {
             } else if (distance <= 2) {
                 unit.applyDamage(meleeDamage);
                 return;
-            } else throw new AbilityException("Objetivo fuera de rango");
+            } else throw new AbilityException("The object is out of range");
         } else {
-            throw new AbilityException("No podes atacar a unidades aliadas");
+            throw new AbilityException("You can´t attack your own units");
         }
     }
 
