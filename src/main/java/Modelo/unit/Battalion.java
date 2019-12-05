@@ -7,6 +7,7 @@ import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
 import Modelo.utils.UtilBattalion;
 import Modelo.utils.UtilBoard;
+import Modelo.utils.UtilMovement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,21 +49,25 @@ public class Battalion extends Unit {
     public void moveTo(Cell nextCellForLeader) {
         this.checkBattalionStatus();
         if(! isEmpty()){
-            utilBattalion.calculateMovementDirection(units.get(0).getCell() , nextCellForLeader);
-            Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(1).getCell());
-            Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(2).getCell());
+            if (UtilMovement.unitCanMove(units.get(0).getCell(), nextCellForLeader)){
+                utilBattalion.calculateMovementDirection(units.get(0).getCell() , nextCellForLeader);
+                Cell nextCellB = utilBattalion.calculateNextCellFor(units.get(1).getCell());
+                Cell nextCellC = utilBattalion.calculateNextCellFor(units.get(2).getCell());
 
-            List<Cell> listCell = List.of(nextCellForLeader, nextCellB, nextCellC);
-            for (Integer j = 0; j < listCell.size(); j++) {
-                for (Integer i = 0; i < listCell.size(); i++) {
-                    try {
-                        masterHand.moveUnit(units.get(i), listCell.get(i));
-                    } catch (OccupiedCellException | MovementException err) {
-                        // Agarro el error de movimiento ya que se debe quedar en su lugar
+                List<Cell> listCell = List.of(nextCellForLeader, nextCellB, nextCellC);
+                for (Integer j = 0; j < listCell.size(); j++) {
+                    for (Integer i = 0; i < listCell.size(); i++) {
+                        try {
+                            masterHand.moveUnit(units.get(i), listCell.get(i));
+                        } catch (OccupiedCellException | MovementException err) {
+                            // Agarro el error de movimiento ya que se debe quedar en su lugar
+                        }
                     }
                 }
+                this.checkBattalionStatus();
+            } else {
+                throw new MovementException("I can't move there");
             }
-            this.checkBattalionStatus();
         }
     }
 
