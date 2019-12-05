@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Battalion extends Unit {
 
-    private List<Unit> units = new ArrayList<Unit>();
+    private List<Unit> units;
     private UtilBoard utilBoard = new UtilBoard();
     private static UtilBattalion utilBattalion = new UtilBattalion();
 

@@ -115,6 +115,10 @@ public class GameSystemController {
         arrayUnit.add(unit);
     }
 
+    public void resetUnitBattalion() {
+        arrayUnit = new ArrayList<Unit>();
+    }
+
     public ArrayList<Unit> getUnitBattalion() {
         return arrayUnit;
     }

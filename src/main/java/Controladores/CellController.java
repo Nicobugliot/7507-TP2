@@ -47,7 +47,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             actualizeView();
             if (turnController.getFirstPlayerFinish() && turnController.getSecondPlayerFinish()) {
                 try {
-                    //gameSystemController.getLastCellView().unHighlightUnit();
                     gameSystemController.setLastCellView(cellView);
                     showUnitController();
                 } catch (NullPointerException err) {
@@ -65,6 +64,7 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
                     .getBattalionLeader()
                     .formBattalion(gameSystemController.getUnitBattalion().get(0), gameSystemController.getUnitBattalion().get(1));
             gameSystemController.setBattalionLeader(null);
+            gameSystemController.resetUnitBattalion();
         }
     }
 
