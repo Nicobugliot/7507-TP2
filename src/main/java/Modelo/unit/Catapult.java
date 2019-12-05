@@ -30,7 +30,7 @@ public class Catapult extends Unit {
                 affectedUnit.applyDamage(rangedDamage);
             }
         }else {
-            throw new AbilityException("No puedo atacar a esa distancia");
+            throw new AbilityException("You can´t attack at that distance!");
         }
     }
 
@@ -84,6 +84,6 @@ public class Catapult extends Unit {
 
     @Override
     public void moveTo(Cell nextCell) {
-        throw new MovementException("No me puedo mover, soy una catapulta");
+        throw new MovementException("Catapults can´t make moves!");
     }
 }
