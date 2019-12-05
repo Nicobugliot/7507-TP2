@@ -42,7 +42,6 @@ public class TurnController implements EventHandler<ActionEvent> {
         // Elijo el primer jugador
         this.actualPlayer = players.get(0);
         this.nextPlayer = players.get(1);
-        System.out.println("Es el turno de " + actualPlayer.getName());
     }
 
     public void setUnit(Unit unit) {
@@ -75,16 +74,7 @@ public class TurnController implements EventHandler<ActionEvent> {
         actualPlayer = nextPlayer;
         nextPlayer = swap;
 
-        if (gameSystemController.getLastCellView() != null) gameSystemController.getLastCellView().unHighlightUnit();
         gameSystemController.changeTurn();
-    }
-
-    public void firstPlayerFinish() {
-        firstPlayerFinish = true;
-    }
-
-    public void secondPlayerFinish() {
-        secondPlayerFinish = true;
     }
 
     public boolean getFirstPlayerFinish() {

@@ -13,8 +13,6 @@ import Vista.popUp.AlertPopUpWindow;
 import javafx.event.*;
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
-
 public class CellController extends Observer implements EventHandler<MouseEvent> {
 
     private final Integer yPosition;
@@ -23,7 +21,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
     private TurnController turnController = TurnController.getInstance();
     private GameSystemController gameSystemController = GameSystemController.getInstance();
     private CellView cellView;
-    private CellView lastCellView;
 
     public CellController(Integer x, Integer y, CellView cellView) {
         this.xPosition = x;
@@ -47,15 +44,13 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
         } else if (!board.getCell(xPosition, yPosition).isEmpty()) {
             actualizeView();
             try {
-                gameSystemController.getLastCellView().unHighlightUnit();
+                //gameSystemController.getLastCellView().unHighlightUnit();
                 gameSystemController.setLastCellView(cellView);
                 showUnitController();
             } catch (NullPointerException err) {
                 gameSystemController.setLastCellView(cellView);
                 showUnitController();
             }
-        } else {
-            System.out.println(xPosition + " " + yPosition);
         }
     }
 
