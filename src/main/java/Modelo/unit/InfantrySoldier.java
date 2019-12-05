@@ -59,7 +59,7 @@ public class InfantrySoldier extends Unit {
 
     @Override
     public void moveTo(Cell nextCell) {
-        if (belongsToABattalion()) {
+        if (leadsABattalion()) {
             moveBattalionTo(nextCell);
         } else {
             masterHand.moveUnit(this, nextCell);
