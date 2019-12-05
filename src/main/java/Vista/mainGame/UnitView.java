@@ -2,8 +2,8 @@ package Vista.mainGame;
 
 import Controladores.Botones.AbilityController;
 import Controladores.Botones.BattalionController;
+import Controladores.Botones.MoveBattalionButtonController;
 import Controladores.Botones.MoveButtonController;
-import Controladores.TurnController;
 import Modelo.unit.Unit;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,7 +15,6 @@ public class UnitView extends VBox {
 
     private final static double WIDTH = 100;
     private final static double HEIGHT = 1000;
-    private static TurnController turnController = TurnController.getInstance();
 
 
     public UnitView() {
@@ -66,19 +65,21 @@ public class UnitView extends VBox {
          */
         this.getChildren().clear();
         this.getChildren().addAll(unitLife, moveToButton, abilityButton);
-        // Si todavía no empezó la guerra
         this.setSpacing(20);
         this.setMinHeight(200);
         this.setMinWidth(200);
+
         // En el caso del soldado para el batallón
         if (unit.canFormBattalions()) {
             Button battalionButton = new Button("Make battalion");
             battalionButton.setOnAction(new BattalionController(unit));
-            battalionButton.setStyle(cssProp);
-            this.getChildren().add(battalionButton);
-        }
-        if (!turnController.getFirstPlayerFinish() || !turnController.getSecondPlayerFinish()){
-            clearView();
+            battalionButton.setStyle(cssProp);                                  // crear boton para moverse en batallon
+
+            Button moveBattalionButton = new Button("Move battalion");
+            moveBattalionButton.setOnAction(new MoveBattalionButtonController(unit, cellView));
+            moveBattalionButton.setStyle(cssProp);
+
+            this.getChildren().addAll(battalionButton, moveBattalionButton);
         }
     }
 

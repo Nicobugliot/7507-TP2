@@ -123,4 +123,8 @@ public abstract class Unit {
     public void joinABattalion(){}
 
     public void leaveBattalion(){}
+
+    public void moveBattalionTo(Cell nextCell){
+        throw new BattalionException("No podes mover batallones");
+    }
 }
