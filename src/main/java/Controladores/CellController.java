@@ -199,7 +199,6 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
 
     @Override
     public void update(Unit unit) {
-        System.out.println(unit.getType());
         cellView.clearImage();
     }
 }

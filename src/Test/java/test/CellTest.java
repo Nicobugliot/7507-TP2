@@ -1,8 +1,10 @@
 package test;
 
 import Modelo.Cell;
+import Modelo.exceptions.GameOverException;
 import Modelo.exceptions.MovementException;
 import Modelo.exceptions.OccupiedCellException;
+import Modelo.unit.InfantrySoldier;
 import org.junit.jupiter.api.Test;
 import Modelo.Player;
 import Modelo.unit.Unit;
@@ -93,5 +95,24 @@ public class CellTest {
         assertThrows(MovementException.class, () -> {
             cell.initializeUnit(0, unit);
         });
+    }
+
+    @Test
+    void Test07CellLooseAnUnitWhenItsDies() {
+        Unit unit = new InfantrySoldier();
+        Cell cell = new Cell(1, 0);
+        unit.setTeam(0);
+        cell.setUnit(unit);
+        unit.setCell(cell);
+
+        Cell nextCell = new Cell(0, 0);
+        Unit nextUnit = new InfantrySoldier();
+        nextUnit.setTeam(1);
+        nextUnit.setCell(nextCell);
+        for (int i = 0; i < 10; i++) {
+            nextUnit.useAbility(unit);
+        }
+
+        assertNull(cell.getUnit());
     }
 }

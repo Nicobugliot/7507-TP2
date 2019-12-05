@@ -49,7 +49,7 @@ public class UnitView extends VBox {
          */
         Button moveToButton = new Button("Move unit");
         moveToButton.setStyle(cssProp);
-        Button abilityButton = new Button("Atack");
+        Button abilityButton = new Button("Attack");
         abilityButton.setStyle(cssProp);
 
         /**
