@@ -72,8 +72,9 @@ public class Battalion extends Unit {
     }
 
     private void dissolveBattalion() {
-        units.get(1).leaveBattalion();
-        units.get(2).leaveBattalion();
+        for (Integer i = 0; i < units.size(); i++) {
+            units.get(i).leaveBattalion();
+        }
         units.clear();
         System.out.println("Se disolvio el batallon");
     }
