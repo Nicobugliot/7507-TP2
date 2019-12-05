@@ -50,7 +50,7 @@ public class Cell extends Observer{
 
     public void initializeUnit(Integer team, Unit unit) {
         if (this.team != team) {
-            throw new MovementException("No se puede inicializar una unidad en campo enemigo");
+            throw new MovementException("You can't initialize a unity in an enemy's field");
         }
         this.setUnit(unit);
         unit.setCell(this);

@@ -13,7 +13,7 @@ public class MasterHand {
             unit.getCell().deleteUnit();
             unit.setCell(nextCell);
         } else {
-            throw new MovementException("No puedo moverme hasta ahi");
+            throw new MovementException("I can't move there");
         }
     }
 

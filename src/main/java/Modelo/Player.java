@@ -28,7 +28,7 @@ public class Player extends Observer{
     public void addUnit(Unit unit) throws InsufficientPointsException{
         Integer price = unit.getCost();
         if(this.points < price){
-            throw new InsufficientPointsException("No dispone los puntos necesarios para hacer la compra");
+            throw new InsufficientPointsException("You don't have enough point to buy it");
         }
         this.points -= price;
         unit.setTeam(this.team);
@@ -38,9 +38,9 @@ public class Player extends Observer{
 
     public void useUnit(Unit unit, Cell cell){
         if (cell.isEmpty()) {
-            throw new EmptyCellException("La casilla esta vacia");
+            throw new EmptyCellException("This cell is empty");
         } else if (!playerUnits.contains(unit)) {
-            throw new AbilityException("No podes atacar con una unidad enemiga");
+            throw new AbilityException("You can't attack with an enemy unit");
         }
         unit.useAbility(cell.getUnit());
     }
