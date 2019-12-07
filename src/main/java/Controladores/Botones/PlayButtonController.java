@@ -5,19 +5,13 @@ import Controladores.TurnController;
 import Modelo.Board;
 import Vista.mainGame.GameContainerView;
 import Vista.scene.PreGameScene;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.nio.file.Paths;
 
 public class PlayButtonController implements EventHandler<ActionEvent> {
 

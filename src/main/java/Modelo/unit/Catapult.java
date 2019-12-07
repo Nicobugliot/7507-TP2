@@ -1,6 +1,5 @@
 package Modelo.unit;
 
-import Modelo.Board;
 import Modelo.Cell;
 import Modelo.exceptions.AbilityException;
 import Modelo.exceptions.MovementException;

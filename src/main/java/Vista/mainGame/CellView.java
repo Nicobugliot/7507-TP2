@@ -17,9 +17,6 @@ public class CellView extends Pane {
         xPosition = x;
         yPosition = y;
         this.setOnMouseClicked(new CellController(xPosition, yPosition, this));
-        this.setOnMouseExited(e -> {
-            //System.out.println(xPosition + " " + yPosition);
-        });
     }
 
     public void updateImage(String resource) {
@@ -35,9 +32,7 @@ public class CellView extends Pane {
         imageView.setEffect(new Glow(0.8));
     }
 
-    public void unHighlightUnit() {
-        imageView.setEffect(new Glow(0));
-    }
+    public void unHighlightUnit() { imageView.setEffect(null); }
 
     public void clearImage() {
         this.getChildren().clear();

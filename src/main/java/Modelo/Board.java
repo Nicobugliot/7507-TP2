@@ -82,16 +82,33 @@ public class Board {
     /*Finds the neighbour cells if possible surrrounding a given position*/
     private Set<Cell> findNeighborCells(int x, int y) {
         Set<Cell> neighbourCells = new HashSet<>();
-        for (Integer row = y - 1; row <= y + 1; row++) {
-            for (Integer column = x - 1; column <= x + 1; column++) {
-                try {
-                    if (!((row == y) && (column == x))) {
-                        neighbourCells.add(boardCells[row][column]);
-                    }
-                } catch (ArrayIndexOutOfBoundsException err) { }
-            }
+        try
+        {
+            try { neighbourCells.add(boardCells[x][y - 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x - 1][y - 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x - 1][y]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x - 1][y + 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x][y + 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x + 1][y + 1]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x + 1][y]); }
+            catch (Exception e) {}
+            try { neighbourCells.add(boardCells[x + 1][y - 1]); }
+            catch (Exception e) {}
         }
-        return neighbourCells;
+        catch (Exception e)
+        {
+            // exception caused due to position non-existing in matrix.
+        }
+        finally
+        {
+            return neighbourCells;
+        }
     }
 
     public boolean alliesInShortRange(Cell cell, Integer team) {

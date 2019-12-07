@@ -139,6 +139,10 @@ public class CellController extends Observer implements EventHandler<MouseEvent>
             new AlertPopUpWindow()
                     .display("Move Exception", err.getMessage());
             gameSystemController.setUnitMoveTo(null);
+        } catch (OccupiedCellException err) {
+            new AlertPopUpWindow()
+                    .display("Move Exception", err.getMessage());
+            gameSystemController.setUnitMoveTo(null);
         }
     }
 
